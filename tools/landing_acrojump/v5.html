@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>ACROJUMP · Recorrido Real · Sánchez de Bustamante 762</title>
+  <meta name="description" content="Recorré por dentro el galpón real de Acrojump en Abasto mientras armás tu clase de prueba para Kids o Adultxs. 4,7 ★ en Google (97 reseñas).">
+  <meta property="og:title" content="ACROJUMP · Entrá al galpón de Abasto">
+  <meta property="og:description" content="Antes de volar, aprendés a caer. Recorrido real por la sala de Sánchez de Bustamante 762.">
+  <meta property="og:image" content="./assets/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SportsActivityLocation",
+    "name": "ACROJUMP",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Sánchez de Bustamante 762",
+      "addressLocality": "Ciudad Autónoma de Buenos Aires",
+      "addressRegion": "CABA",
+      "addressCountry": "AR"
+    },
+    "telephone": "+5491176096294",
+    "sameAs": ["https://www.instagram.com/acro_jump/"],
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.7", "reviewCount": "97" }
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #0c0d12;
+      --surface: #13151e;
+      --ink: #f4f4f7;
+      --muted: #9da3b6;
+      --line: rgba(255, 255, 255, 0.14);
+      --cyan: #00ffeb;
+      --violet: #bd00ff;
+      --display: 'Abolition', 'Archivo', sans-serif;
+      --sans: 'Archivo', system-ui, -apple-system, sans-serif;
+      --mono: 'Space Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { background: var(--bg); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+    body { overflow-x: clip; }
+    :focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+
+    #tour-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100dvh;
+      display: block;
+      z-index: 0;
+    }
+    .scrim {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: linear-gradient(180deg, rgba(12,13,18,0.58) 0%, rgba(12,13,18,0.18) 42%, rgba(12,13,18,0.88) 100%);
+    }
+
+    .mono { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+    .disp { font-family: var(--display); font-weight: 900; text-transform: uppercase; line-height: 0.93; letter-spacing: 0.01em; }
+
+    /* Topbar */
+    .topbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: calc(10px + env(safe-area-inset-top)) 16px 10px;
+      background: linear-gradient(180deg, rgba(12,13,18,0.88), rgba(12,13,18,0));
+    }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .brand img { height: 28px; width: auto; }
+    .top-right { display: flex; align-items: center; gap: 10px; }
+    .load-pill {
+      padding: 4px 8px;
+      background: rgba(12,13,18,0.88);
+      border: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    /* Progress bar */
+    .progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--cyan);
+      z-index: 40;
+      transition: width 0.08s linear;
+    }
+
+    /* Main Scroll Stations */
+    main { position: relative; z-index: 10; }
+    .st {
+      min-height: 100dvh;
+      display: flex;
+      align-items: flex-end;
+      padding: 80px 16px calc(92px + env(safe-area-inset-bottom));
+    }
+    .card {
+      width: 100%;
+      max-width: 470px;
+      background: rgba(12, 13, 18, 0.92);
+      border: 1px solid var(--line);
+      border-top: 2px solid var(--cyan);
+      padding: 20px;
+    }
+    .card .kicker { color: var(--cyan); display: block; margin-bottom: 8px; }
+    .card h1 { font-size: clamp(36px, 9.5vw, 76px); margin-bottom: 10px; }
+    .card h2 { font-size: clamp(32px, 8vw, 56px); margin-bottom: 10px; }
+    .card h1 em, .card h2 em { font-style: normal; color: var(--cyan); }
+    .card p { font-size: 15px; color: #d6d9e4; line-height: 1.5; }
+
+    .proof {
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .proof b { color: var(--ink); }
+
+    .stat { display: flex; align-items: baseline; gap: 12px; margin: 6px 0 10px; }
+    .stat b { font-family: var(--display); font-size: 60px; line-height: 0.9; color: var(--cyan); }
+    .stat span { font-size: 14px; color: #d6d9e4; }
+
+    .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+    .duo div { border: 1px solid var(--line); padding: 11px; font-size: 13px; color: var(--muted); background: var(--surface); }
+    .duo div strong { display: block; color: var(--ink); font-size: 14px; margin-bottom: 4px; }
+    .duo .k { border-top: 2px solid var(--cyan); }
+    .duo .a { border-top: 2px solid var(--violet); }
+
+    /* Configurator */
+    .seg { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 12px 0; }
+    .seg button, .chip, .sch {
+      font-family: var(--sans);
+      cursor: pointer;
+      color: var(--ink);
+      background: var(--surface);
+      border: 1px solid var(--line);
+    }
+    .seg button {
+      min-height: 46px;
+      font-weight: 800;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+    }
+    .seg button.on { background: var(--cyan); color: #0c0d12; border-color: var(--cyan); }
+    .lbl {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 10px 0 6px;
+    }
+    .lbl b { font-family: var(--display); font-size: 24px; color: var(--cyan); }
+    input[type="range"] { width: 100%; min-height: 44px; accent-color: var(--cyan); cursor: pointer; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { min-height: 44px; padding: 9px 13px; font-size: 13px; font-weight: 600; }
+    .chip.on, .sch.on { border-color: var(--cyan); color: var(--cyan); background: rgba(0, 255, 235, 0.11); }
+    .schs { display: grid; gap: 8px; }
+    .sch { min-height: 50px; text-align: left; padding: 9px 12px; }
+    .sch strong { display: block; font-size: 13px; }
+    .sch span { font-size: 12px; color: var(--muted); }
+    .wa {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      margin-top: 14px;
+      background: var(--cyan);
+      color: #0c0d12;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-size: 14px;
+      text-decoration: none;
+    }
+    .foot-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 12px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .foot-links a { text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 2px; }
+
+    /* Bottom Dock */
+    .dock {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      z-index: 30;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 8px;
+      align-items: center;
+      padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+      background: rgba(12, 13, 18, 0.96);
+      border-top: 1px solid var(--line);
+    }
+    .dock button {
+      min-height: 46px;
+      min-width: 46px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-weight: 800;
+      font-size: 15px;
+      cursor: pointer;
+    }
+    .dock .lab { text-align: center; color: var(--muted); }
+    .dock .lab b { display: block; color: var(--ink); font-size: 13px; font-family: var(--sans); letter-spacing: 0.04em; }
+
+    @media (min-width: 900px) {
+      .st { padding: 90px 5vw 100px; }
+      .card { padding: 26px; }
+      .dock { left: auto; right: 24px; bottom: 24px; width: 400px; border: 1px solid var(--line); }
+    }
+    @media (max-width: 400px) {
+      .duo { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="progress-bar" id="pbar"></div>
+  <canvas id="tour-canvas" aria-hidden="true"></canvas>
+  <div class="scrim"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#s1">
+      <img src="./assets/logo.png" alt="ACROJUMP" onerror="this.outerHTML='<b class=disp style=font-size:22px>ACROJUMP</b>'">
+    </a>
+    <div class="top-right">
+      <span class="mono load-pill" id="load-pill">Sala 1/72</span>
+      <a class="mono load-pill" href="https://www.instagram.com/acro_jump/" target="_blank" rel="noopener" style="text-decoration:none;color:var(--ink);">@acro_jump</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="st" id="s1" data-name="La puerta">
+      <div class="card">
+        <span class="mono kicker">01 · Sánchez de Bustamante 762</span>
+        <h1 class="disp">Antes de volar,<br><em>aprendés a caer.</em></h1>
+        <p>Deslizá para caminar adentro del galpón real de Acrojump en Abasto. Cupos chicos, trato familiar y profes en cada colchoneta.</p>
+        <div class="proof"><b>4,7 ★</b> en Google · 97 reseñas · «El trato con los niños es muy bueno, técnica y juegos.»</div>
+      </div>
+    </section>
+
+    <section class="st" id="s2" data-name="Pasillo &amp; Cajón">
+      <div class="card">
+        <span class="mono kicker">02 · Ingreso al Galpón</span>
+        <h2 class="disp">Un taller vivo,<br>no una vidriera.</h2>
+        <p>Dejás el ruido de la calle atrás y entrás directo al pasillo rojo: cajón de salto, colchonetones de alta densidad y aire para perder el miedo.</p>
+      </div>
+    </section>
+
+    <section class="st" id="s3" data-name="Airtrack &amp; Telas">
+      <div class="card">
+        <span class="mono kicker">03 · Zona Central</span>
+        <h2 class="disp">No trabajamos<br>a granel.</h2>
+        <div class="stat"><b>1:6</b><span>Un profe cada seis u ocho alumnos, abajo tuyo cuidando cada muñeca y cada apoyo.</span></div>
+        <p>Acá nadie es un número de socio. Si te caés en el Airtrack, se resuelve con tiza y una risa compartida.</p>
+      </div>
+    </section>
+
+    <section class="st" id="s4" data-name="Kids &amp; Adultxs">
+      <div class="card">
+        <span class="mono kicker">04 · Dos Caminos</span>
+        <h2 class="disp">Elegí tu grupo.</h2>
+        <div class="duo">
+          <div class="k"><strong>Kids &amp; Teens</strong>3 a 16 años. Juego motriz, técnica real y cero pantallas.</div>
+          <div class="a"><strong>Adultxs</strong>Desde cero. Acro piso, giros, flexi y telas.</div>
+        </div>
+        <p class="proof">1ra clase: ropa cómoda sin cierres · pelo atado · botella de agua · 10 min antes.</p>
+      </div>
+    </section>
+
+    <section class="st" id="s5" data-name="Tu clase">
+      <div class="card">
+        <span class="mono kicker">05 · Subite al colchón</span>
+        <h2 class="disp">Armá tu<br><em>clase de prueba.</em></h2>
+        <div class="seg" id="seg">
+          <button type="button" class="on" data-b="kids" aria-pressed="true">Kids / Teens</button>
+          <button type="button" data-b="adultxs" aria-pressed="false">Adultxs</button>
+        </div>
+        <div id="fk">
+          <div class="lbl"><span>Edad</span><b id="ev">7 años</b></div>
+          <input type="range" id="er" min="3" max="16" value="7" aria-label="Edad">
+          <div class="lbl"><span>¿Cómo es?</span></div>
+          <div class="chips" data-k="perfil">
+            <button type="button" class="chip on" aria-pressed="true">No para de moverse</button>
+            <button type="button" class="chip" aria-pressed="false">Es tímido o tímida</button>
+            <button type="button" class="chip" aria-pressed="false">Le encanta girar</button>
+          </div>
+        </div>
+        <div id="fa" hidden>
+          <div class="lbl"><span>¿Qué querés probar?</span></div>
+          <div class="chips" data-k="obj">
+            <button type="button" class="chip on" aria-pressed="true">Acro piso desde cero</button>
+            <button type="button" class="chip" aria-pressed="false">Técnica y giros</button>
+            <button type="button" class="chip" aria-pressed="false">Flexibilidad</button>
+            <button type="button" class="chip" aria-pressed="false">Telas</button>
+          </div>
+        </div>
+        <div class="lbl"><span>Horarios</span></div>
+        <div class="schs" id="schs"></div>
+        <a class="wa" id="wa" target="_blank" rel="noopener">Consultar por WhatsApp →</a>
+        <div class="foot-links">
+          <a href="https://maps.google.com/?q=S%C3%A1nchez+de+Bustamante+762+CABA" target="_blank" rel="noopener">Google Maps · Bustamante 762</a>
+          <a href="https://www.instagram.com/acro_jump/" target="_blank" rel="noopener">@acro_jump</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="dock" aria-label="Navegación del recorrido">
+    <button type="button" id="prev" aria-label="Estación anterior">←</button>
+    <div class="lab mono"><span id="dockN">01 / 05</span><b id="dockT">La puerta</b></div>
+    <button type="button" id="next" aria-label="Estación siguiente">→</button>
+  </nav>
+
+  <script>
+    /* --- Video Frame Scrubbing Engine (72 frames reales de la sala) --- */
+    const TOTAL_FRAMES = 72;
+    const canvas = document.getElementById('tour-canvas');
+    const ctx = canvas.getContext('2d');
+    const frames = new Array(TOTAL_FRAMES);
+    let loadedCount = 0;
+    let targetFrame = 0;
+    let currentFrame = 0;
+    let lastDrawn = -1;
+
+    function pad(n) { return String(n).padStart(3, '0'); }
+
+    function drawCover(img) {
+      if (!img || !img.complete || !img.naturalWidth) return;
+      const cw = canvas.width, ch = canvas.height;
+      const iw = img.naturalWidth, ih = img.naturalHeight;
+      const scale = Math.max(cw / iw, ch / ih);
+      const w = iw * scale, h = ih * scale;
+      ctx.drawImage(img, (cw - w) / 2, (ch - h) / 2, w, h);
+    }
+
+    function resizeCanvas() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.floor(window.innerWidth * dpr);
+      canvas.height = Math.floor(window.innerHeight * dpr);
+      lastDrawn = -1;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    // Load first frame immediately, then preload rest sequentially/batched
+    function loadFrame(idx) {
+      const img = new Image();
+      img.src = `./assets/tour/f_${pad(idx + 1)}.jpg`;
+      img.onload = () => {
+        loadedCount++;
+        const pill = document.getElementById('load-pill');
+        if (loadedCount >= TOTAL_FRAMES) {
+          pill.textContent = 'Sala real · 100%';
+        } else {
+          pill.textContent = `Sala ${loadedCount}/${TOTAL_FRAMES}`;
+        }
+        if (idx === 0 && lastDrawn === -1) {
+          drawCover(img);
+          lastDrawn = 0;
+        }
+      };
+      frames[idx] = img;
+    }
+
+    loadFrame(0);
+    for (let i = 1; i < TOTAL_FRAMES; i++) {
+      setTimeout(() => loadFrame(i), i * 18);
+    }
+
+    const secs = [...document.querySelectorAll('.st')];
+    let curSec = -1;
+    function onScroll() {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const ratio = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+      targetFrame = ratio * (TOTAL_FRAMES - 1);
+      document.getElementById('pbar').style.width = `${(ratio * 100).toFixed(1)}%`;
+
+      const near = Math.min(secs.length - 1, Math.round(ratio * (secs.length - 1)));
+      if (near !== curSec) {
+        curSec = near;
+        document.getElementById('dockN').textContent = `0${near + 1} / 0${secs.length}`;
+        document.getElementById('dockT').textContent = secs[near].dataset.name;
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    function go(i) {
+      i = Math.max(0, Math.min(secs.length - 1, i));
+      secs[i].scrollIntoView({ behavior: 'smooth' });
+    }
+    document.getElementById('prev').onclick = () => go(curSec - 1);
+    document.getElementById('next').onclick = () => go(curSec + 1);
+
+    function loop() {
+      currentFrame += (targetFrame - currentFrame) * 0.14;
+      const idx = Math.min(TOTAL_FRAMES - 1, Math.max(0, Math.round(currentFrame)));
+      if (idx !== lastDrawn) {
+        // Find closest loaded frame if current is still loading
+        let pick = frames[idx];
+        if (!pick || !pick.complete || !pick.naturalWidth) {
+          for (let offset = 1; offset < TOTAL_FRAMES; offset++) {
+            if (idx - offset >= 0 && frames[idx - offset]?.complete) { pick = frames[idx - offset]; break; }
+            if (idx + offset < TOTAL_FRAMES && frames[idx + offset]?.complete) { pick = frames[idx + offset]; break; }
+          }
+        }
+        if (pick && pick.complete && pick.naturalWidth) {
+          drawCover(pick);
+          lastDrawn = idx;
+        }
+      }
+      requestAnimationFrame(loop);
+    }
+    loop();
+
+    /* --- Configurador WhatsApp --- */
+    const CONFIG = {
+      wa: '5491176096294',
+      kids: [
+        { d: 'Lun y Mié · 17:30', x: 'Baby / MiniKids (3–6)', a: 3, b: 6 },
+        { d: 'Mar y Jue · 18:00', x: 'Kids inicial (7–11)', a: 7, b: 11 },
+        { d: 'Lun y Mié · 18:30', x: 'Kids / Teens (10–16)', a: 10, b: 16 },
+        { d: 'Sábados · 11:00', x: 'Sábado Kids (5–14)', a: 5, b: 14 }
+      ],
+      adultxs: [
+        { d: 'Lun y Mié · 19:30', x: 'Acro piso desde cero' },
+        { d: 'Mar y Jue · 20:00', x: 'Técnica, giros y airtrack' },
+        { d: 'Viernes · 19:00', x: 'Flexibilidad' },
+        { d: 'Sábados · 12:30', x: 'Acro + telas' }
+      ]
+    };
+    const st = { b: 'kids', edad: 7, perfil: 'No para de moverse', obj: 'Acro piso desde cero', h: '' };
+    const $ = id => document.getElementById(id);
+
+    function renderSch() {
+      let l = st.b === 'kids' ? CONFIG.kids.filter(o => st.edad >= o.a && st.edad <= o.b) : CONFIG.adultxs;
+      if (!l.length) l = CONFIG.kids.slice(0, 2);
+      if (!l.some(o => o.d === st.h)) st.h = l[0].d;
+      $('schs').innerHTML = '';
+      l.forEach(o => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        const on = o.d === st.h;
+        b.className = 'sch' + (on ? ' on' : '');
+        b.setAttribute('aria-pressed', on);
+        b.innerHTML = `<strong>${o.d}</strong><span>${o.x}</span>`;
+        b.onclick = () => { st.h = o.d; renderSch(); updateWa(); };
+        $('schs').appendChild(b);
+      });
+    }
+
+    function updateWa() {
+      const m = st.b === 'kids'
+        ? `Hola! Recorrí la sala de ACROJUMP en la web y quiero una clase de prueba para Kids.\n• Edad: ${st.edad} años\n• Cómo es: ${st.perfil}\n• Horario: ${st.h}`
+        : `Hola! Recorrí la sala de ACROJUMP en la web y quiero una clase de prueba para Adultxs.\n• Interés: ${st.obj}\n• Horario: ${st.h}`;
+      $('wa').href = `https://wa.me/${CONFIG.wa}?text=${encodeURIComponent(m)}`;
+    }
+
+    document.querySelectorAll('#seg button').forEach(b => b.onclick = () => {
+      document.querySelectorAll('#seg button').forEach(x => { x.classList.remove('on'); x.setAttribute('aria-pressed', 'false'); });
+      b.classList.add('on');
+      b.setAttribute('aria-pressed', 'true');
+      st.b = b.dataset.b;
+      $('fk').hidden = st.b !== 'kids';
+      $('fa').hidden = st.b !== 'adultxs';
+      renderSch();
+      updateWa();
+    });
+
+    $('er').oninput = e => { st.edad = +e.target.value; $('ev').textContent = `${st.edad} años`; renderSch(); updateWa(); };
+
+    document.querySelectorAll('.chips').forEach(g => g.querySelectorAll('.chip').forEach(c => c.onclick = () => {
+      g.querySelectorAll('.chip').forEach(x => { x.classList.remove('on'); x.setAttribute('aria-pressed', 'false'); });
+      c.classList.add('on');
+      c.setAttribute('aria-pressed', 'true');
+      st[g.dataset.k] = c.textContent;
+      updateWa();
+    }));
+
+    renderSch();
+    updateWa();
+  </script>
+</body>
+</html>

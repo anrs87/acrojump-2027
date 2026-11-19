@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ACROJUMP — Dirección de Arte & Sistema Multimedial Consagrado 2027</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=JetBrains+Mono:wght@400;500;700;800&family=Syne:wght@800;900&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Abolition';
+      src: url('../marca/tipografias/Abolition-Regular.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    :root {
+      --acro-teal: #009084;
+      --acro-teal-rgb: 0, 144, 132;
+      --acro-plum: #1c0a2a;
+      --acro-plum-dark: #12051c;
+      --acro-bone: #f7f5ef;
+      --acro-ink: #0a0b0e;
+      --acro-gray: #7a8291;
+      
+      --ui-bg: #060709;
+      --ui-surface: #101217;
+      --ui-border: rgba(255, 255, 255, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--ui-bg);
+      color: var(--acro-bone);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.4;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* BARRA DE CONTROL DE DIRECCIÓN DE ARTE */
+    header.director-bar {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(10, 11, 14, 0.94);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--ui-border);
+      padding: 1.2rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .brand-id {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand-stamp {
+      background: var(--acro-teal);
+      color: #000;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 0.35rem 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .director-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .director-title span {
+      color: var(--acro-gray);
+      font-weight: 400;
+    }
+
+    .concept-nav {
+      display: flex;
+      background: #000;
+      padding: 4px;
+      border-radius: 6px;
+      border: 1px solid var(--ui-border);
+      gap: 4px;
+    }
+
+    .concept-btn {
+      background: transparent;
+      border: none;
+      color: var(--acro-gray);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.55rem 1.1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .concept-btn:hover {
+      color: #fff;
+    }
+
+    .concept-btn.active {
+      background: var(--ui-surface);
+      color: var(--acro-teal);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      border: 1px solid rgba(0, 144, 132, 0.3);
+    }
+
+    /* CONTENEDOR PRINCIPAL */
+    main {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 3rem 2rem 6rem;
+    }
+
+    /* CRÍTICA Y APERTURA EDITORIAL */
+    .director-prologue {
+      max-width: 980px;
+      margin-bottom: 3.5rem;
+      border-left: 3px solid var(--acro-teal);
+      padding-left: 1.8rem;
+    }
+
+    .prologue-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--acro-teal);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+
+    .prologue-h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .prologue-p {
+      color: #9ba1b0;
+      font-size: 1.05rem;
+      line-height: 1.55;
+    }
+
+    /* ESCENARIO DE COMPARACIÓN DE LAS 3 CORRIENTES */
+    .concepts-container {
+      display: flex;
+      flex-direction: column;
+      gap: 5rem;
+    }
+
+    .concept-section {
+      display: grid;
+      grid-template-columns: 500px 1fr;
+      gap: 3.5rem;
+      align-items: center;
+      background: var(--ui-surface);
+      border: 1px solid var(--ui-border);
+      border-radius: 16px;
+      padding: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .concept-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .concept-badge-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .c-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 0.25rem 0.6rem;
+      border-radius: 3px;
+      text-transform: uppercase;
+    }
+
+    .c-badge.teal { background: rgba(0, 144, 132, 0.2); color: #00f5d4; border: 1px solid var(--acro-teal); }
+    .c-badge.plum { background: rgba(124, 58, 237, 0.2); color: #d8b4fe; border: 1px solid #7c3aed; }
+    .c-badge.white { background: rgba(255, 255, 255, 0.15); color: #fff; }
+
+    .concept-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .concept-thesis {
+      color: #a4acba;
+      font-size: 0.98rem;
+      line-height: 1.6;
+    }
+
+    .spec-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      border-top: 1px solid var(--ui-border);
+      padding-top: 1.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+    }
+
+    .spec-item h5 {
+      color: var(--acro-gray);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.3rem;
+    }
+
+    .spec-item p {
+      color: #fff;
+      font-weight: 700;
+    }
+
+    /* ========================================================
+       DISPOSITIVO MOCKUP (9:16)
+       ======================================================== */
+    .mockup-frame {
+      aspect-ratio: 9/16;
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.9);
+      user-select: none;
+    }
+
+    /* ========================================================
+       CONCEPTO 01: CHRONO-STRIKE (A TODO COLOR // CERO BLANCO Y NEGRO)
+       ======================================================== */
+    .c1-viewport {
+      background: #0a0c10;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+
+    /* Estroboscopía Cromática: Desfase óptico en Ciruela/Teal */
+    .c1-ghost-layer {
+      position: absolute;
+      inset: -4%;
+      background-image: url('../marca/para_reels/ALAN/ACTUAL.jpg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.45;
+      filter: saturate(180%) hue-rotate(45deg);
+      transform: translate(-14px, 16px) scale(0.97);
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    /* Capa Tipográfica TRASERA en Eje Z (Color Hueso / Opacidad) */
+    .c1-back-text {
+      position: absolute;
+      top: 26%;
+      left: -6%;
+      right: -6%;
+      z-index: 5;
+      font-family: 'Abolition', sans-serif;
+      font-size: 7.5rem;
+      line-height: 0.78;
+      text-transform: uppercase;
+      color: rgba(247, 245, 239, 0.18);
+      letter-spacing: 0.02em;
+      pointer-events: none;
+    }
+
+    /* Capa del Sujeto Principal a COLOR PLENO (Sin blanco y negro) */
+    .c1-main-subject {
+      position: absolute;
+      inset: 0;
+      background-image: url('../marca/para_reels/ALAN/ACTUAL.jpg');
+      background-size: cover;
+      background-position: center;
+      z-index: 8;
+      filter: contrast(118%) saturate(125%) brightness(0.95);
+    }
+
+    /* Gradiente cinemático suave */
+    .c1-vignette {
+      position: absolute;
+      inset: 0;
+      z-index: 9;
+      background: linear-gradient(180deg, rgba(8,9,12,0.6) 0%, transparent 40%, rgba(8,9,12,0.92) 85%);
+      pointer-events: none;
+    }
+
+    /* UI Delantera */
+    .c1-front-ui {
+      position: relative;
+      z-index: 20;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2.2rem 1.8rem;
+    }
+
+    .c1-top-telemetry {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: #fff;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      padding-bottom: 0.6rem;
+    }
+
+    .c1-hero-headline {
+      font-family: 'Abolition', sans-serif;
+      font-size: 4.8rem;
+      line-height: 0.82;
+      text-transform: uppercase;
+      color: #ffffff;
+      text-shadow: 0 4px 30px rgba(0,0,0,0.9);
+      letter-spacing: 0.01em;
+    }
+
+    .c1-hero-headline span.teal-word {
+      color: var(--acro-teal);
+      display: block;
+      text-shadow: 0 0 25px rgba(0, 144, 132, 0.5);
+    }
+
+    .c1-bottom-ticket {
+      background: rgba(10, 12, 16, 0.88);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 0.85rem 1.1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+    }
+
+    /* ========================================================
+       CONCEPTO 02: RISOGRAPH TACTIL DINÁMICO (SELECTOR DE TINTAS)
+       ======================================================== */
+    .c2-viewport {
+      background: var(--acro-bone);
+      color: #121318;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2rem 1.6rem;
+      overflow: hidden;
+      transition: background 0.3s ease;
+    }
+
+    .c2-viewport::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: 
+        radial-gradient(rgba(0, 144, 132, 0.2) 1.5px, transparent 0),
+        radial-gradient(rgba(18, 19, 24, 0.06) 1px, transparent 0);
+      background-size: 8px 8px, 4px 4px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .c2-header {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 2px solid #121318;
+      padding-bottom: 0.6rem;
+    }
+
+    .c2-brand-stamp {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 900;
+      font-size: 1.1rem;
+      letter-spacing: -0.04em;
+    }
+
+    .c2-edition {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--c2-active-ink, var(--acro-teal));
+      font-weight: 800;
+      transition: color 0.3s ease;
+    }
+
+    /* Caja de Duotono Dinámico */
+    .c2-duotone-box {
+      position: relative;
+      z-index: 5;
+      height: 48%;
+      margin: 1.2rem 0;
+      border: 2px solid #121318;
+      overflow: hidden;
+      background: var(--c2-active-ink, var(--acro-teal));
+      box-shadow: 6px 6px 0px #121318;
+      transition: background 0.3s ease;
+    }
+
+    .c2-duotone-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: contrast(150%) brightness(0.95);
+      mix-blend-mode: multiply;
+      transition: filter 0.3s ease;
+    }
+
+    .c2-side-label {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: #121318;
+      color: var(--acro-bone);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      padding: 0.2rem 0.5rem;
+      font-weight: 700;
+    }
+
+    .c2-lead-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.1rem;
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+
+    .c2-lead-title mark {
+      background: var(--c2-active-ink, var(--acro-teal));
+      color: #fff;
+      padding: 0 0.3rem;
+      transition: background 0.3s ease;
+    }
+
+    .c2-caption-zine {
+      font-size: 0.82rem;
+      line-height: 1.4;
+      color: #333;
+      max-width: 270px;
+      font-weight: 500;
+    }
+
+    .c2-footer-bar {
+      position: relative;
+      z-index: 5;
+      border-top: 2px solid #121318;
+      padding-top: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 700;
+    }
+
+    /* BARRA DE TINTAS INTERACTIVA PARA EL RISOGRAPH */
+    .c2-ink-controls {
+      display: flex;
+      gap: 6px;
+      margin-top: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .ink-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      padding: 0.35rem 0.7rem;
+      border-radius: 4px;
+      border: 1px solid var(--ui-border);
+      cursor: pointer;
+      font-weight: 700;
+      transition: all 0.2s;
+    }
+
+    /* ========================================================
+       CONCEPTO 03 NUEVO: ORBITAL ASYMMETRY (ADIÓS TELEMETRÍA FALSA)
+       Choque de escalas (Macro Contacto vs. Vuelo en Color Pleno)
+       ======================================================== */
+    .c3-viewport {
+      background: #090a0f;
+      color: #fff;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2.2rem 1.8rem;
+      overflow: hidden;
+    }
+
+    /* COMPOSICIÓN DE DOBLE PLANO ASIMÉTRICO (SPLIT SHOCK) */
+    .c3-asymmetric-split {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-rows: 60% 40%;
+      z-index: 1;
+    }
+
+    .c3-top-flight {
+      position: relative;
+      background-image: url('../marca/para_reels/ALAN/ACTUAL.jpg');
+      background-size: cover;
+      background-position: center top;
+      filter: contrast(120%) saturate(120%);
+    }
+
+    .c3-top-flight::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(9,10,15,0.7) 0%, transparent 40%, rgba(9,10,15,0.95) 100%);
+    }
+
+    .c3-bottom-contact {
+      position: relative;
+      background-image: url('../marca/fotos-referencia/piso-colchones-01.jpg');
+      background-size: cover;
+      background-position: center bottom;
+      filter: contrast(130%) saturate(115%);
+      border-top: 2px solid var(--acro-teal);
+    }
+
+    .c3-bottom-contact::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(9,10,15,0.85) 0%, rgba(0, 144, 132, 0.25) 100%);
+    }
+
+    /* BANDA DE CONTACTO / RITMO ROTACIONAL */
+    .c3-macro-tag {
+      position: absolute;
+      top: -12px;
+      left: 1.8rem;
+      background: var(--acro-teal);
+      color: #000;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 900;
+      padding: 0.25rem 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      z-index: 10;
+    }
+
+    .c3-ui-content {
+      position: relative;
+      z-index: 10;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .c3-top-sys {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      padding-bottom: 0.7rem;
+    }
+
+    .c3-sys-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: #fff;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .c3-hero-stacked {
+      margin-top: auto;
+      margin-bottom: 1.2rem;
+    }
+
+    .c3-massive-cut {
+      font-family: 'Syne', sans-serif;
+      font-size: 3.6rem;
+      font-weight: 900;
+      line-height: 0.86;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.9);
+    }
+
+    .c3-massive-cut em {
+      font-style: normal;
+      color: var(--acro-teal);
+      display: block;
+    }
+
+    .c3-sub-kinetic {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-top: 0.8rem;
+      max-width: 260px;
+      line-height: 1.35;
+      font-weight: 500;
+    }
+
+    .c3-footer-spec {
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      padding-top: 0.9rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+    }
+
+    /* CONTROLES INTERACTIVOS DE CALIBRACIÓN */
+    .calibration-panel {
+      background: var(--ui-surface);
+      border: 1px solid var(--ui-border);
+      border-radius: 12px;
+      padding: 1.5rem 2rem;
+      margin-top: 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .calib-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: var(--acro-teal);
+      letter-spacing: 0.1em;
+      font-weight: 700;
+    }
+
+    .calib-buttons {
+      display: flex;
+      gap: 0.8rem;
+    }
+
+    .calib-btn {
+      background: #000;
+      border: 1px solid var(--ui-border);
+      color: #fff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .calib-btn:hover {
+      background: var(--acro-teal);
+      color: #000;
+      border-color: var(--acro-teal);
+      font-weight: 700;
+    }
+
+    @media (max-width: 1050px) {
+      .concept-section {
+        grid-template-columns: 1fr;
+      }
+      .mockup-frame {
+        max-width: 440px;
+        margin: 0 auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BARRA DE DIRECCIÓN DE ARTE -->
+  <header class="director-bar">
+    <div class="brand-id">
+      <span class="brand-stamp">DIRECCIÓN DE ARTE // ACROJUMP</span>
+      <h2 class="director-title">3 CORRIENTES CONSAGRADAS <span>— CERO FILTROS BARATOS</span></h2>
+    </div>
+
+    <div class="concept-nav">
+      <button class="concept-btn active" onclick="scrollToConcept('c1')">01. CHRONO-STRIKE (COLOR 3D)</button>
+      <button class="concept-btn" onclick="scrollToConcept('c2')">02. RISOGRAPH (PALETA VIVA)</button>
+      <button class="concept-btn" onclick="scrollToConcept('c3')">03. ORBITAL FLOW (CHOQUE ASIMÉTRICO)</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- APERTURA DE JUICIO CRÍTICO -->
+    <div class="director-prologue">
+      <span class="prologue-meta">Análisis sin filtros // Estándar Internacional</span>
+      <h1 class="prologue-h1">
+        Basta de pegar una foto con un degradé negro encima y llamarlo "diseño".
+      </h1>
+      <p class="prologue-p">
+        Un director de arte consagrado no disfraza la foto con un filtro de Instagram. Diseña **la relación entre el cuerpo y el plano**: cómo la tipografía pasa por detrás del músculo, cómo la tinta física penetra el papel de embalaje de los colchones, o cómo la trayectoria balística de un salto se transforma en un sistema de notación contemporáneo. Acá tenés 3 piezas que demuestran qué significa diseñar en serio.
+      </p>
+    </div>
+
+    <div class="concepts-container">
+
+      <!-- ==============================================
+           CONCEPTO 01: CHRONO-STRIKE (A TODO COLOR // CERO B&W)
+           ============================================== -->
+      <section class="concept-section" id="c1">
+        <div class="concept-info">
+          <div class="concept-badge-row">
+            <span class="c-badge teal">CONCEPTO 01</span>
+            <span class="c-badge white">COLOR PLENO + PROFUNDIDAD Z</span>
+          </div>
+
+          <h3 class="concept-title">CHRONO-STRIKE (Cromático 3D)</h3>
+
+          <p class="concept-thesis">
+            <strong>Cero blanco y negro:</strong> La foto respira con la saturación y temperatura real de la piel y el tatami. El movimiento se descompone ópticamente: una estela cromática sutil en el despegue y el congelamiento nítido en el ápice. La tipografía <em>Abolition</em> gigante corre en el eje Z <strong>intercalada en el espacio</strong>: la silueta de Alan pasa por delante del texto trasero y por detrás del titular de impacto frontal.
+          </p>
+
+          <div class="spec-grid">
+            <div class="spec-item">
+              <h5>COMPOSICIÓN Z-INDEX</h5>
+              <p>Texto atravesando el cuerpo 3D</p>
+            </div>
+            <div class="spec-item">
+              <h5>TRATAMIENTO CROMÁTICO</h5>
+              <p>Color vivo + Estela espectral</p>
+            </div>
+            <div class="spec-item">
+              <h5>PALETA ESTRUCTURAL</h5>
+              <p>#009084 Teal + Carbón mineral</p>
+            </div>
+            <div class="spec-item">
+              <h5>SENSACIÓN</h5>
+              <p>Vuelo, inercia y presencia real</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- MOCKUP 01 VIVO -->
+        <div class="mockup-frame c1-viewport">
+          <!-- Capa 1: Estela espectral cromática -->
+          <div class="c1-ghost-layer"></div>
+
+          <!-- Capa 2: Texto Trasero (Intercalado detrás del sujeto) -->
+          <div class="c1-back-text">ACRO<br>JUMP</div>
+
+          <!-- Capa 3: Sujeto Principal a Color Pleno -->
+          <div class="c1-main-subject"></div>
+          <div class="c1-vignette"></div>
+
+          <!-- Capa 4: UI y Tipografía Delantera -->
+          <div class="c1-front-ui">
+            <div class="c1-top-telemetry">
+              <span>ACROJUMP // ÁPICE DE VUELO</span>
+              <span>EST. 2011</span>
+            </div>
+
+            <div>
+              <div class="c1-hero-headline">
+                FUERZA<br>
+                <span class="teal-word">DE PISO.</span>
+              </div>
+              <p style="font-size: 0.85rem; color: rgba(255,255,255,0.88); max-width: 250px; margin: 0.6rem 0 1.2rem; font-weight: 500;">
+                Acrobacia de suelo y rotación en galpón. Aprendé a dominar tu propio peso.
+              </p>
+            </div>
+
+            <div class="c1-bottom-ticket">
+              <div>
+                <span style="color: var(--acro-gray); font-size: 0.6rem; display: block;">ENTRENAMIENTO</span>
+                <span style="color: #fff; font-weight: 700;">MAR & JUE 19:00 HS</span>
+              </div>
+              <div style="text-align: right;">
+                <span style="color: var(--acro-teal); font-weight: 800;">GALPÓN ABASTO</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ==============================================
+           CONCEPTO 02: RISOGRAPH TÁCTIL DINÁMICO
+           ============================================== -->
+      <section class="concept-section" id="c2">
+        <div class="concept-info">
+          <div class="concept-badge-row">
+            <span class="c-badge teal">CONCEPTO 02</span>
+            <span class="c-badge white">SERIGRAFÍA + CONTROL DE TINTA</span>
+          </div>
+
+          <h3 class="concept-title">HEAVY RISOGRAPH (Control de Tintas)</h3>
+
+          <p class="concept-thesis">
+            Materia táctil pura: medios tonos de serigrafía, tinta espesa y tipografía de imprenta brutal. Ahora podés <strong>calibrar la tinta en tiempo real</strong> para ver cómo responde con el verde petróleo original (#009084), con violeta ciruela profundo, o con contraste de alta saturación.
+          </p>
+
+          <!-- SELECTOR DE TINTAS EN VIVO -->
+          <div style="background: #090a0f; border: 1px solid var(--ui-border); padding: 1rem; border-radius: 8px;">
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--acro-teal); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 0.6rem;">
+              🎨 Probá cambiar la tinta en vivo:
+            </span>
+            <div class="c2-ink-controls">
+              <button class="ink-pill" style="background: #009084; color: #fff;" onclick="setInkColor('#009084', '#009084')">1. Verde Acrojump (#009084)</button>
+              <button class="ink-pill" style="background: #6b21a8; color: #fff;" onclick="setInkColor('#6b21a8', '#581c87')">2. Violeta Ciruela (#6B21A8)</button>
+              <button class="ink-pill" style="background: #0f766e; color: #fff;" onclick="setInkColor('#0f766e', '#115e59')">3. Petróleo Oscuro (#0F766E)</button>
+              <button class="ink-pill" style="background: #e11d48; color: #fff;" onclick="setInkColor('#e11d48', '#be123c')">4. Rojo Tatami (#E11D48)</button>
+            </div>
+          </div>
+
+          <div class="spec-grid">
+            <div class="spec-item">
+              <h5>SISTEMA DE TINTAS</h5>
+              <p id="c2-ink-name">Tinta #009084 Acrojump</p>
+            </div>
+            <div class="spec-item">
+              <h5>TEXTURA FÍSICA</h5>
+              <p>Trama Halftone de Imprenta</p>
+            </div>
+            <div class="spec-item">
+              <h5>TIPOGRAFÍA</h5>
+              <p>Space Grotesk 900</p>
+            </div>
+            <div class="spec-item">
+              <h5>VERSATILIDAD</h5>
+              <p>Adaptable a cualquier ciclo</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- MOCKUP 02 VIVO -->
+        <div class="mockup-frame c2-viewport" id="c2Frame">
+          <div class="c2-header">
+            <span class="c2-brand-stamp">ACROJUMP / IMPRENTA</span>
+            <span class="c2-edition" id="c2Badge">SERIE 04 // MATADEROS</span>
+          </div>
+
+          <div class="c2-duotone-box" id="c2Box">
+            <img src="../marca/para_reels/ALAN/ACTUAL.jpg" alt="Acro">
+            <div class="c2-side-label">REGISTRO DE SUELO</div>
+          </div>
+
+          <div class="c2-manifesto-block">
+            <div class="c2-lead-title">
+              CAER ES PARTE<br>
+              <mark id="c2Mark">DEL MÉTODO.</mark>
+            </div>
+            <p class="c2-caption-zine">
+              Quince años enseñando la física que no te enseñan en la escuela. El piso como soporte de despegue.
+            </p>
+          </div>
+
+          <div class="c2-footer-bar">
+            <span>SÁNCHEZ DE BUSTAMANTE 762</span>
+            <span style="color: var(--c2-active-ink, var(--acro-teal));" id="c2Footer">ADULTOS & JÓVENES</span>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ==============================================
+           CONCEPTO 03 NUEVO: ORBITAL FLOW (ADIÓS CHAMUYO TELEMETRÍA)
+           ============================================== -->
+      <section class="concept-section" id="c3">
+        <div class="concept-info">
+          <div class="concept-badge-row">
+            <span class="c-badge teal">CONCEPTO 03</span>
+            <span class="c-badge white">MONTAJE DE CHOQUE // RITMO & SUELO</span>
+          </div>
+
+          <h3 class="concept-title">ORBITAL FLOW (Choque Asimétrico)</h3>
+
+          <p class="concept-thesis">
+            <strong>Adiós a los numeritos y flechas de la NASA:</strong> Acá la verdad del movimiento se construye con <strong>choque de escalas a color pleno</strong>. La pieza se quiebra en dos planos en tensión: arriba, el cuerpo suspendido en pleno vuelo; abajo, el detalle crudo del piso y el colchonetón azul donde se negocia el impacto. La tipografía es colosal, asimétrica y sigue el ritmo de rotación del breakdance y la capoeira.
+          </p>
+
+          <div class="spec-grid">
+            <div class="spec-item">
+              <h5>ARQUITECTURA VISUAL</h5>
+              <p>Díptico Asimétrico 60/40</p>
+            </div>
+            <div class="spec-item">
+              <h5>CONTRASTE DE TOMAS</h5>
+              <p>Vuelo Aéreo vs. Contacto de Piso</p>
+            </div>
+            <div class="spec-item">
+              <h5>TRATAMIENTO</h5>
+              <p>Color vivo, saturado, sin filtros</p>
+            </div>
+            <div class="spec-item">
+              <h5>IDENTIDAD</h5>
+              <p>Puro lenguaje de galpón y calle</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- MOCKUP 03 VIVO -->
+        <div class="mockup-frame c3-viewport">
+          <!-- Split de dos tomas reales -->
+          <div class="c3-asymmetric-split">
+            <div class="c3-top-flight"></div>
+            <div class="c3-bottom-contact">
+              <span class="c3-macro-tag">AMORTIGUACIÓN & SUELO</span>
+            </div>
+          </div>
+
+          <div class="c3-ui-content">
+            <div class="c3-top-sys">
+              <span class="c3-sys-tag">ACROJUMP // RITMO ROTACIONAL</span>
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(255,255,255,0.7);">BUENOS AIRES</span>
+            </div>
+
+            <div class="c3-hero-stacked">
+              <div class="c3-massive-cut">
+                RODAR.<br>
+                <em>VOLAR.</em>
+              </div>
+              <p class="c3-sub-kinetic">
+                El contacto con el suelo como motor de impulso. Técnica de b-boying y acrobacia para dominar el aire.
+              </p>
+            </div>
+
+            <div class="c3-footer-spec">
+              <div>
+                <span style="color: rgba(255,255,255,0.5); font-size: 0.6rem; display: block;">HORARIOS</span>
+                <span style="color: #fff; font-weight: 700;">MAR & JUE 19:00 HS</span>
+              </div>
+              <div style="text-align: right;">
+                <span style="color: rgba(255,255,255,0.5); font-size: 0.6rem; display: block;">SEDE</span>
+                <span style="color: var(--acro-teal); font-weight: 800;">SÁNCHEZ DE BUSTAMANTE 762</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- PANEL DE INTERACCIÓN Y CAMBIO DE FOTOS -->
+    <div class="calibration-panel">
+      <div>
+        <span class="calib-title">Calibrador de Imagen Real:</span>
+        <p style="font-size: 0.85rem; color: var(--acro-gray); margin-top: 2px;">Probá las 3 corrientes alternando la toma fotográfica de base:</p>
+      </div>
+      <div class="calib-buttons">
+        <button class="calib-btn" onclick="updateAllPhotos('../marca/para_reels/ALAN/ACTUAL.jpg')">1. Alan (Movimiento)</button>
+        <button class="calib-btn" onclick="updateAllPhotos('../marca/fotos-referencia/COLCHONES 01.jpg')">2. Colchonetón Azul</button>
+        <button class="calib-btn" onclick="updateAllPhotos('../marca/fotos-referencia/telas-altura.jpg')">3. Telas Aéreas</button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function scrollToConcept(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+      document.querySelectorAll('.concept-btn').forEach((btn, idx) => {
+        btn.classList.toggle('active', btn.getAttribute('onclick').includes(id));
+      });
+    }
+
+    function setInkColor(color, darkColor) {
+      document.documentElement.style.setProperty('--c2-active-ink', color);
+      document.getElementById('c2Box').style.background = color;
+      document.getElementById('c2Mark').style.background = color;
+      document.getElementById('c2Badge').style.color = color;
+      document.getElementById('c2Footer').style.color = color;
+      document.getElementById('c2-ink-name').textContent = 'Tinta ' + color;
+    }
+
+    function updateAllPhotos(url) {
+      // Concepto 1
+      document.querySelector('.c1-ghost-layer').style.backgroundImage = `url('${url}')`;
+      document.querySelector('.c1-main-subject').style.backgroundImage = `url('${url}')`;
+      // Concepto 2
+      document.querySelector('.c2-duotone-box img').src = url;
+      // Concepto 3 (Asymmetric Split - Plano superior)
+      const topFlight = document.querySelector('.c3-top-flight');
+      if (topFlight) topFlight.style.backgroundImage = `url('${url}')`;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,1299 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>ACROJUMP · Imprenta Atlética · Abasto, CABA</title>
+  <meta name="description" content="ACROJUMP en Sánchez de Bustamante 762, Abasto. Escuela de acrobacia para Kids (3-16) y Adultxs desde cero. 1 profe cada 6-8 alumnos. 4,7 ★ en Google.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0c0d12;
+      --surface: #14161f;
+      --surface-2: #1a1d29;
+      --ink: #f4f4f7;
+      --muted: #9ea3b5;
+      --line: rgba(255, 255, 255, 0.14);
+      --line-strong: rgba(255, 255, 255, 0.34);
+      --cyan: #00ffeb;
+      --violet: #bd00ff;
+      --display: 'Abolition', 'Archivo', sans-serif;
+      --sans: 'Archivo', system-ui, -apple-system, sans-serif;
+      --mono: 'Space Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+      color: var(--ink);
+      overflow-x: clip;
+    }
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.5;
+      overflow-x: clip;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; }
+    button { font-family: inherit; }
+    :focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+
+    .wrap {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding-inline: clamp(16px, 3.6vw, 36px);
+    }
+
+    .disp {
+      font-family: var(--display);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.01em;
+      line-height: 0.9;
+    }
+    .mono {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Franja diagonal tipo camino de cebra (cinta de piso / prensa) */
+    .zebra-strip {
+      height: 14px;
+      width: 100%;
+      background: repeating-linear-gradient(
+        -45deg,
+        var(--cyan) 0 12px,
+        var(--bg) 12px 24px
+      );
+      border-top: 1px solid var(--cyan);
+      border-bottom: 1px solid var(--line-strong);
+    }
+    .zebra-strip--thin {
+      height: 8px;
+      background: repeating-linear-gradient(
+        -45deg,
+        var(--cyan) 0 8px,
+        var(--surface) 8px 16px
+      );
+      border-top: none;
+      border-bottom: 1px solid var(--line-strong);
+    }
+
+    /* Máscaras duras fotográficas (corte biselado de guillotina) */
+    .hard-cut {
+      clip-path: polygon(0 0, calc(100% - 28px) 0, 100% 28px, 100% 100%, 28px 100%, 0 calc(100% - 28px));
+    }
+    .hard-cut-tr {
+      clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 0 100%);
+    }
+    .hard-cut-bl {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 24px 100%, 0 calc(100% - 24px));
+    }
+
+    /* Botones sólidos de imprenta (min 44px touch target) */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 46px;
+      padding: 12px 20px;
+      border: 2px solid var(--line-strong);
+      background: var(--surface);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.14s, border-color 0.14s, color 0.14s, transform 0.14s;
+    }
+    .btn:hover { border-color: var(--ink); background: var(--surface-2); }
+    .btn:active { transform: translateY(1px); }
+    .btn-cta {
+      background: var(--cyan);
+      color: #0c0d12;
+      border-color: var(--cyan);
+    }
+    .btn-cta:hover {
+      background: #ffffff;
+      border-color: #ffffff;
+      color: #0c0d12;
+    }
+
+    /* Topbar tipo cabecera de pliego */
+    .press-top {
+      background: var(--bg);
+      border-bottom: 2px solid var(--line-strong);
+    }
+    .press-top-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding-block: 12px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      min-width: 0;
+    }
+    .brand img { height: 32px; width: auto; flex-shrink: 0; }
+    .brand-meta {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+    .brand-meta strong {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .brand-meta span {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    /* 01. CARTEL HERO — Tipografía display enorme + foto con máscara dura */
+    .poster-hero {
+      padding-block: clamp(24px, 4vw, 52px) clamp(32px, 5vw, 60px);
+      border-bottom: 1px solid var(--line);
+    }
+    .press-reg-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding-bottom: 14px;
+      margin-bottom: clamp(18px, 3vw, 28px);
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+    }
+    .stamp-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background: var(--violet);
+      color: #ffffff;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero-poster-grid {
+      display: grid;
+      grid-template-columns: 1.12fr 0.88fr;
+      gap: clamp(24px, 4vw, 48px);
+      align-items: stretch;
+    }
+    .hero-type {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--ink);
+      border-left: 4px solid var(--cyan);
+      padding-left: 12px;
+    }
+    .hero-type h1 {
+      font-size: clamp(38px, 9.5vw, 118px);
+      line-height: 0.86;
+      letter-spacing: 0.005em;
+    }
+    .hero-type h1 .hl {
+      display: inline-block;
+      color: var(--cyan);
+    }
+    .hero-lead {
+      font-size: clamp(16px, 1.45vw, 19px);
+      color: #dcdfea;
+      max-width: 520px;
+    }
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .hero-proof {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px 18px;
+      align-items: center;
+      padding-top: 16px;
+      border-top: 2px solid var(--line);
+    }
+    .proof-score {
+      background: var(--surface);
+      border: 1px solid var(--line-strong);
+      padding: 8px 12px;
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+    .proof-quote {
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .proof-quote strong { color: var(--ink); }
+
+    /* Placa fotográfica del Hero */
+    .hero-plate {
+      background: var(--surface);
+      border: 2px solid var(--line-strong);
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .hero-plate-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--muted);
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--line);
+    }
+    .hero-photo-frame {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      background: #08090d;
+      overflow: hidden;
+    }
+    .hero-photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero-switcher {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+    .sw-btn {
+      min-height: 44px;
+      padding: 8px 10px;
+      background: var(--bg);
+      border: 1px solid var(--line-strong);
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    .sw-btn.on {
+      background: var(--cyan);
+      color: #0c0d12;
+      border-color: var(--cyan);
+    }
+
+    /* 02. HOJA DE CONTACTO — El Galpón por dentro */
+    .galpon {
+      padding-block: clamp(44px, 6vw, 80px);
+      border-bottom: 2px solid var(--line);
+    }
+    .sec-head {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 16px 32px;
+      align-items: end;
+      margin-bottom: 28px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+    }
+    .sec-head h2 {
+      font-size: clamp(38px, 5.4vw, 72px);
+    }
+    .sec-head p {
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 460px;
+      justify-self: end;
+    }
+
+    .press-sheet {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 16px;
+      align-items: stretch;
+    }
+    .lead-frame {
+      background: var(--surface);
+      border: 2px solid var(--line-strong);
+      display: flex;
+      flex-direction: column;
+    }
+    .lead-frame-img {
+      flex: 1;
+      min-height: 360px;
+      overflow: hidden;
+      background: #08090d;
+    }
+    .lead-frame-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .lead-frame-cap {
+      padding: 14px 16px;
+      border-top: 2px solid var(--line-strong);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .lead-frame-cap strong { font-size: 15px; text-transform: uppercase; letter-spacing: 0.03em; }
+    .lead-frame-cap span { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+
+    .contact-stack {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .contact-item {
+      background: var(--surface);
+      border: 1px solid var(--line-strong);
+      display: flex;
+      flex-direction: column;
+    }
+    .contact-item img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+    }
+    .contact-cap {
+      padding: 10px 12px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .contact-cap strong { font-size: 13px; text-transform: uppercase; letter-spacing: 0.03em; }
+    .contact-cap span { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+
+    /* 03. MANIFIESTO DE TALLER — Ratio 1:6 y Cuidado */
+    .taller {
+      padding-block: clamp(44px, 6vw, 84px);
+      background: var(--surface);
+      border-bottom: 2px solid var(--line);
+    }
+    .taller-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(24px, 4vw, 52px);
+      align-items: start;
+    }
+    .ratio-banner {
+      border: 2px solid var(--line-strong);
+      background: var(--bg);
+      padding: clamp(18px, 2.6vw, 26px);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .ratio-num {
+      font-family: var(--display);
+      font-size: clamp(64px, 7.5vw, 96px);
+      line-height: 0.85;
+      color: var(--cyan);
+      flex-shrink: 0;
+    }
+    .ratio-desc strong {
+      display: block;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 4px;
+    }
+    .ratio-desc p {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .taller-ledger {
+      list-style: none;
+      border-top: 2px solid var(--line-strong);
+    }
+    .taller-ledger li {
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+    .ledger-idx {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+      padding-top: 3px;
+    }
+    .taller-ledger h3 {
+      font-size: 18px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      margin-bottom: 4px;
+    }
+    .taller-ledger p {
+      font-size: 15px;
+      color: var(--muted);
+    }
+
+    .taller-photos {
+      display: grid;
+      gap: 16px;
+    }
+    .taller-photo-box {
+      background: var(--bg);
+      border: 2px solid var(--line-strong);
+      padding: 10px;
+    }
+    .taller-photo-box img {
+      width: 100%;
+      height: 245px;
+      object-fit: cover;
+    }
+    .taller-photo-box figcaption {
+      padding-top: 10px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* 04. DOS CAMINOS — Kids & Adultxs + 1ra Clase */
+    .caminos {
+      padding-block: clamp(44px, 6vw, 84px);
+      border-bottom: 1px solid var(--line);
+    }
+    .mobile-path-tabs { display: none; }
+    .paths-board {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .path-sheet {
+      background: var(--surface);
+      border: 2px solid var(--line-strong);
+      padding: clamp(22px, 3vw, 32px);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .path-sheet.kids { border-top: 5px solid var(--cyan); }
+    .path-sheet.adultxs { border-top: 5px solid var(--violet); }
+    .path-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 10px;
+    }
+    .path-sheet h3 {
+      font-family: var(--display);
+      font-size: clamp(34px, 3.8vw, 48px);
+      text-transform: uppercase;
+      line-height: 0.92;
+    }
+    .path-sheet p {
+      font-size: 15px;
+      color: #dcdfea;
+    }
+    .path-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+    .path-list li {
+      padding-left: 18px;
+      position: relative;
+    }
+    .path-list li::before {
+      content: "■";
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: 11px;
+      color: var(--cyan);
+    }
+    .path-sheet.adultxs .path-list li::before {
+      color: var(--ink);
+    }
+
+    .first-class-strip {
+      margin-top: 18px;
+      background: var(--surface);
+      border: 2px solid var(--line-strong);
+      padding: 16px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px 24px;
+    }
+    .fc-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 22px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    /* 05. CONFIGURADOR — Comanda de Imprenta */
+    .config {
+      padding-block: clamp(48px, 6vw, 88px);
+      background: var(--surface);
+      border-bottom: 2px solid var(--line-strong);
+    }
+    .config-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      align-items: start;
+    }
+    .config-form {
+      background: var(--bg);
+      border: 2px solid var(--line-strong);
+      padding: clamp(18px, 3vw, 28px);
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+    .seg-switch {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .seg-btn {
+      min-height: 46px;
+      padding: 10px 14px;
+      background: var(--surface);
+      border: 2px solid var(--line-strong);
+      color: var(--muted);
+      font-weight: 800;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+    }
+    .seg-btn.on {
+      background: var(--cyan);
+      color: #0c0d12;
+      border-color: var(--cyan);
+    }
+    .lbl-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 10px;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .lbl-row b {
+      font-family: var(--display);
+      font-size: 32px;
+      color: var(--cyan);
+      line-height: 0.9;
+    }
+    input[type="range"] {
+      width: 100%;
+      height: 44px;
+      accent-color: var(--cyan);
+      cursor: pointer;
+    }
+    .chip-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .chip {
+      min-height: 44px;
+      padding: 10px 14px;
+      background: var(--surface);
+      border: 1px solid var(--line-strong);
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .chip.on {
+      border-color: var(--cyan);
+      background: var(--surface-2);
+      color: var(--cyan);
+    }
+    .sched-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .sched-btn {
+      min-height: 54px;
+      text-align: left;
+      padding: 12px 14px;
+      background: var(--surface);
+      border: 1px solid var(--line-strong);
+      color: var(--ink);
+      cursor: pointer;
+    }
+    .sched-btn strong { display: block; font-size: 14px; margin-bottom: 2px; }
+    .sched-btn span { font-size: 12px; color: var(--muted); }
+    .sched-btn.on {
+      border: 2px solid var(--cyan);
+      background: var(--surface-2);
+    }
+    .sched-btn.on strong { color: var(--cyan); }
+
+    /* Recibo / Comanda en vivo */
+    .pass-ticket {
+      background: var(--bg);
+      border: 2px solid var(--line-strong);
+      border-top: 5px solid var(--cyan);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .pass-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px dashed var(--line-strong);
+      padding-bottom: 12px;
+    }
+    .pass-preview {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      padding: 14px;
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--ink);
+      white-space: pre-line;
+      line-height: 1.55;
+    }
+    .pass-note {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* Footer */
+    footer {
+      padding-block: 44px 52px;
+      background: #08090d;
+    }
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+    .footer-inner h3 {
+      font-family: var(--display);
+      font-size: clamp(30px, 4vw, 46px);
+      text-transform: uppercase;
+      line-height: 0.95;
+    }
+    .footer-inner p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 6px;
+    }
+    .footer-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    /* Barra inferior fija para el pulgar (mobile) */
+    .thumb-dock { display: none; }
+
+    /* Tablet (~1024px) */
+    @media (max-width: 1024px) {
+      .hero-poster-grid,
+      .sec-head,
+      .press-sheet,
+      .taller-grid,
+      .config-grid {
+        grid-template-columns: 1fr;
+      }
+      .sec-head p { justify-self: start; }
+      .lead-frame-img { min-height: 290px; }
+    }
+
+    /* Mobile (~680px) */
+    @media (max-width: 680px) {
+      body {
+        padding-bottom: calc(80px + env(safe-area-inset-bottom));
+      }
+      .brand-meta,
+      .top-hide {
+        display: none;
+      }
+      .hero-plate { order: -1; }
+      .hero-proof { grid-template-columns: 1fr; gap: 8px; }
+      .proof-score { width: fit-content; }
+
+      .contact-stack {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 12px;
+        padding-bottom: 6px;
+      }
+      .contact-item {
+        flex: 0 0 78%;
+        scroll-snap-align: start;
+      }
+      .lead-frame-img { min-height: 230px; }
+
+      .ratio-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      .taller-photo-box img { height: 210px; }
+
+      .mobile-path-tabs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-bottom: 14px;
+      }
+      .paths-board { grid-template-columns: 1fr; }
+      .path-sheet.hidden-mobile { display: none; }
+
+      .sched-list { grid-template-columns: 1fr; }
+
+      .thumb-dock {
+        display: grid;
+        grid-template-columns: 1fr 1.4fr;
+        gap: 8px;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 50;
+        padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+        background: #0c0d12;
+        border-top: 2px solid var(--cyan);
+      }
+      .thumb-dock .btn {
+        min-height: 46px;
+        padding: 10px 12px;
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="press-top">
+    <div class="wrap press-top-inner">
+      <a class="brand" href="#inicio">
+        <img src="./assets/logo.png" alt="ACROJUMP" onerror="this.style.display='none'">
+        <div class="brand-meta">
+          <strong>ACROJUMP · ABASTO</strong>
+          <span>Sánchez de Bustamante 762, CABA</span>
+        </div>
+      </a>
+      <div class="top-actions">
+        <a class="btn top-hide" href="https://www.instagram.com/acro_jump/" target="_blank" rel="noopener">@acro_jump</a>
+        <a class="btn btn-cta" href="#configurador">Probar clase</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- 01. CARTEL TIPOGRÁFICO HERO -->
+    <section class="poster-hero" id="inicio">
+      <div class="wrap">
+        <div class="press-reg-bar mono">
+          <span>+ PLIEGO N° 01 · BUSTAMANTE 762</span>
+          <span class="stamp-badge">KIDS 3-16 &amp; ADULTXS DESDE CERO</span>
+        </div>
+
+        <div class="hero-poster-grid">
+          <div class="hero-type">
+            <div>
+              <span class="mono hero-kicker">Escuela de acrobacia · Abasto, CABA</span>
+              <h1 class="disp" style="margin-top:14px;">ANTES DE VOLAR,<br><span class="hl">APRENDÉS A CAER.</span></h1>
+            </div>
+
+            <p class="hero-lead">
+              Acrobacia real en un galpón de taller, sin gimnasios masivos ni poses. Cupos chicos, profes en la colchoneta y un lugar donde te conocen por tu nombre.
+            </p>
+
+            <div class="hero-cta-row">
+              <a class="btn btn-cta" href="#configurador">Armar mi clase de prueba</a>
+              <a class="btn" href="#espacio">Ver el galpón</a>
+            </div>
+
+            <div class="hero-proof">
+              <span class="proof-score">4,7 ★ GOOGLE (97)</span>
+              <p class="proof-quote">«<strong>El trato con los niños es muy bueno</strong>, técnica y juegos.»</p>
+            </div>
+          </div>
+
+          <div class="hero-plate">
+            <div class="hero-plate-head mono">
+              <span>ARCHIVO REAL · SIN STOCK</span>
+              <span>ABASTO</span>
+            </div>
+            <div class="hero-photo-frame hard-cut">
+              <img id="hero-img" src="./assets/frame_03.jpg" alt="Interior real de Acrojump en Abasto">
+            </div>
+            <div class="hero-switcher" id="hero-switcher">
+              <button type="button" class="sw-btn on" data-src="./assets/frame_03.jpg" data-alt="Vista general del galpón y colchonetas">El Galpón</button>
+              <button type="button" class="sw-btn" data-src="./assets/frame_01.jpg" data-alt="Puerta de ingreso a Sánchez de Bustamante 762">La Entrada</button>
+              <button type="button" class="sw-btn" data-src="./assets/frame_06.jpg" data-alt="Zona de Airtrack y telas aéreas">Airtrack</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="zebra-strip" aria-hidden="true"></div>
+
+    <!-- 02. HOJA DE CONTACTO — EL GALPÓN POR DENTRO -->
+    <section class="galpon" id="espacio">
+      <div class="wrap">
+        <div class="sec-head">
+          <div>
+            <span class="mono" style="color:var(--cyan);">01 · Hoja de contacto</span>
+            <h2 class="disp">Así se ve por dentro.</h2>
+          </div>
+          <p>En mobile deslizá las fotos de lado a lado. Cada metro está pensado para amortiguar caídas y perderle el miedo al aire.</p>
+        </div>
+
+        <div class="press-sheet">
+          <figure class="lead-frame">
+            <div class="lead-frame-img hard-cut-tr">
+              <img src="./assets/frame_06.jpg" alt="Pista Airtrack, telas y espaldar en Acrojump">
+            </div>
+            <figcaption class="lead-frame-cap">
+              <strong>Pista Airtrack, Telas &amp; Piso</strong>
+              <span>SUPERFICIES BLANDAS</span>
+            </figcaption>
+          </figure>
+
+          <div class="contact-stack">
+            <figure class="contact-item">
+              <img class="hard-cut-bl" src="./assets/frame_01.jpg" alt="Puerta de ingreso al galpón">
+              <figcaption class="contact-cap">
+                <strong>Ingreso Bustamante 762</strong>
+                <span>SIN MOLINETES</span>
+              </figcaption>
+            </figure>
+
+            <figure class="contact-item">
+              <img class="hard-cut-tr" src="./assets/frame_03.jpg" alt="Pasillo hacia colchonetas y cajón">
+              <figcaption class="contact-cap">
+                <strong>Cajón &amp; Fosa</strong>
+                <span>AMORTIGUACIÓN REAL</span>
+              </figcaption>
+            </figure>
+
+            <figure class="contact-item">
+              <img class="hard-cut-tr" src="./assets/frame_09.jpg" alt="Colchonetas perimetrales de seguridad">
+              <figcaption class="contact-cap">
+                <strong>Escape Limpio</strong>
+                <span>CAÍDAS CUIDADAS</span>
+              </figcaption>
+            </figure>
+
+            <figure class="contact-item">
+              <img class="hard-cut-bl" src="./assets/airtrack.jpg" alt="Detalle técnico de pista Airtrack">
+              <figcaption class="contact-cap">
+                <strong>Preparación Técnica</strong>
+                <span>CUIDADO ARTICULAR</span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03. MANIFIESTO DE TALLER — RATIO 1:6 -->
+    <section class="taller" id="familia">
+      <div class="wrap taller-grid">
+        <div>
+          <span class="mono" style="color:var(--cyan);">02 · Cómo trabajamos</span>
+          <h2 class="disp" style="font-size:clamp(38px,5vw,66px);margin:10px 0 22px;">No trabajamos a granel.</h2>
+
+          <div class="ratio-banner">
+            <div class="ratio-num">1:6</div>
+            <div class="ratio-desc">
+              <strong>Un profe cada seis u ocho alumnos</strong>
+              <p>Nadie queda suelto mirando desde atrás. Cuidamos cada apoyo desde el primer día.</p>
+            </div>
+          </div>
+
+          <ul class="taller-ledger">
+            <li>
+              <span class="ledger-idx">01/</span>
+              <div>
+                <h3>La familia primero</h3>
+                <p>Acá nadie es un número de socio ni un código de barras. Sabemos cómo se llama cada chico, cada madre o padre y cada adulto que entra al colchón.</p>
+              </div>
+            </li>
+            <li>
+              <span class="ledger-idx">02/</span>
+              <div>
+                <h3>Cuidado antes que truco</h3>
+                <p>Si alguien tiene miedo, no se lo apura. Se construye desde el suelo, fortaleciendo muñecas y espalda hasta que el cuerpo confía.</p>
+              </div>
+            </li>
+            <li>
+              <span class="ledger-idx">03/</span>
+              <div>
+                <h3>Error sin vergüenza</h3>
+                <p>Caerse en un colchón amortiguado no se penaliza: se resuelve con tiza en las manos, una risa compartida y otro intento asistido.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="taller-photos">
+          <figure class="taller-photo-box">
+            <img class="hard-cut" src="./assets/spotting.jpg" alt="Profesor cuidando muñeca en spotting activo">
+            <figcaption>REG. A · Spotting activo: manos firmes cuidando cada apoyo.</figcaption>
+          </figure>
+          <figure class="taller-photo-box">
+            <img class="hard-cut-bl" src="./assets/highfive.jpg" alt="Comunidad y festejo entre profe y alumna">
+            <figcaption>REG. B · Acá el avance individual lo festeja toda la ronda.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04. DOS CAMINOS — KIDS & ADULTXS -->
+    <section class="caminos" id="clases">
+      <div class="wrap">
+        <div class="sec-head">
+          <div>
+            <span class="mono" style="color:var(--cyan);">03 · Dos caminos</span>
+            <h2 class="disp">Elegí tu grupo.</h2>
+          </div>
+          <p>Clases pensadas para desconectar a los chicos de las pantallas y sacar a los adultos de las 9 horas de silla.</p>
+        </div>
+
+        <div class="mobile-path-tabs" id="mobile-path-tabs">
+          <button type="button" class="seg-btn on" data-path="kids">Kids &amp; Teens</button>
+          <button type="button" class="seg-btn" data-path="adultxs">Adultxs</button>
+        </div>
+
+        <div class="paths-board">
+          <article class="path-sheet kids" id="box-kids">
+            <div class="path-head">
+              <span class="mono" style="color:var(--cyan);">3 a 16 años</span>
+              <span class="mono" style="color:var(--muted);">Baby / MiniKids / Kids</span>
+            </div>
+            <h3>Kids &amp; Teens</h3>
+            <p>Juego motriz y técnica acrobática real para chicos que no paran de moverse (y también para los más tímidos).</p>
+            <ul class="path-list">
+              <li>Desconexión total de celulares y tabletas.</li>
+              <li>Grupos cuidados por edad para que ganen confianza.</li>
+              <li>Trato cercano y comunicación directa con las familias.</li>
+            </ul>
+          </article>
+
+          <article class="path-sheet adultxs hidden-mobile" id="box-adultxs">
+            <div class="path-head">
+              <span class="mono" style="color:var(--ink);">18 a 45+ años</span>
+              <span class="stamp-badge">DESDE CERO</span>
+            </div>
+            <h3>Adultxs</h3>
+            <p>Antídoto biológico al sedentarismo de oficina. «Nunca hice nada de chico» es la frase más bienvenida.</p>
+            <ul class="path-list">
+              <li>Acro Piso desde cero, giros, Flexibilidad y Telas.</li>
+              <li>Entrada en calor articular progresiva sin impacto seco.</li>
+              <li>Ambiente descontracturado, cero pose de gimnasio comercial.</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="first-class-strip">
+          <strong class="mono" style="color:var(--cyan);">Checklist 1ra clase:</strong>
+          <div class="fc-items">
+            <span>• Ropa cómoda sin cierres</span>
+            <span>• Pelo atado</span>
+            <span>• Botella de agua</span>
+            <span>• Llegar 10 min antes</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="zebra-strip zebra-strip--thin" aria-hidden="true"></div>
+
+    <!-- 05. CONFIGURADOR — COMANDA DE IMPRENTA -->
+    <section class="config" id="configurador">
+      <div class="wrap">
+        <div class="sec-head">
+          <div>
+            <span class="mono" style="color:var(--cyan);">04 · Pase de prueba</span>
+            <h2 class="disp">Armá tu consulta en 15 segundos.</h2>
+          </div>
+          <p>Elegí tu perfil y el horario que te queda cómodo. Te armamos el mensaje directo a WhatsApp para no perder tiempo.</p>
+        </div>
+
+        <div class="config-grid">
+          <div class="config-form">
+            <div class="seg-switch">
+              <button type="button" class="seg-btn on" data-branch="kids">Kids / Teens</button>
+              <button type="button" class="seg-btn" data-branch="adultxs">Adultxs</button>
+            </div>
+
+            <div id="f-kids">
+              <div style="margin-bottom:18px;">
+                <div class="lbl-row"><span>Edad</span><b id="val-edad">7 años</b></div>
+                <input type="range" id="rng-edad" min="3" max="16" value="7" aria-label="Edad">
+              </div>
+              <div style="margin-bottom:18px;">
+                <div class="lbl-row"><span>¿Cómo es?</span></div>
+                <div class="chip-wrap" data-k="perfil">
+                  <button type="button" class="chip on">No para de moverse</button>
+                  <button type="button" class="chip">Es tímido o tímida</button>
+                  <button type="button" class="chip">Le encanta dar vueltas</button>
+                </div>
+              </div>
+              <div>
+                <div class="lbl-row"><span>¿Hizo algo antes?</span></div>
+                <div class="chip-wrap" data-k="exp">
+                  <button type="button" class="chip on">Nada</button>
+                  <button type="button" class="chip">Gimnasia</button>
+                  <button type="button" class="chip">Otro deporte</button>
+                </div>
+              </div>
+            </div>
+
+            <div id="f-adultxs" style="display:none;">
+              <div style="margin-bottom:18px;">
+                <div class="lbl-row"><span>¿Qué te gustaría probar?</span></div>
+                <div class="chip-wrap" data-k="obj">
+                  <button type="button" class="chip on">Acro Piso desde cero</button>
+                  <button type="button" class="chip">Técnica y giros</button>
+                  <button type="button" class="chip">Flexibilidad</button>
+                  <button type="button" class="chip">Telas</button>
+                </div>
+              </div>
+              <div>
+                <div class="lbl-row"><span>Experiencia previa</span></div>
+                <div class="chip-wrap" data-k="expA">
+                  <button type="button" class="chip on">Nunca hice nada</button>
+                  <button type="button" class="chip">Entreno otra cosa</button>
+                  <button type="button" class="chip">Ya hice acrobacia</button>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="lbl-row"><span>Horarios sugeridos</span></div>
+              <div class="sched-list" id="sched-list"></div>
+            </div>
+          </div>
+
+          <aside class="pass-ticket">
+            <div class="pass-head">
+              <span class="mono" style="color:var(--cyan);">Tu mensaje listo</span>
+              <span class="mono" style="color:var(--muted);" id="pass-tag">KIDS · 7 AÑOS</span>
+            </div>
+            <div class="pass-preview" id="msg-preview"></div>
+            <a class="btn btn-cta" id="wa-btn" target="_blank" rel="noopener" style="width:100%;">
+              Enviar consulta por WhatsApp →
+            </a>
+            <p class="pass-note">
+              Te responde recepción directo por WhatsApp para confirmarte el cupo de la semana en Sánchez de Bustamante 762.
+            </p>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <div>
+        <h3>Sánchez de Bustamante 762</h3>
+        <p>Abasto, CABA · Escuela de Acrobacia ACROJUMP</p>
+      </div>
+      <div class="footer-actions">
+        <a class="btn" href="https://maps.google.com/?q=S%C3%A1nchez+de+Bustamante+762+CABA" target="_blank" rel="noopener">Google Maps</a>
+        <a class="btn" href="https://www.instagram.com/acro_jump/" target="_blank" rel="noopener">@acro_jump</a>
+      </div>
+    </div>
+  </footer>
+
+  <nav class="thumb-dock" aria-label="Accesos rápidos móviles">
+    <a class="btn" href="#espacio">El galpón</a>
+    <a class="btn btn-cta" href="#configurador">Probar clase</a>
+  </nav>
+
+  <script>
+    const CONFIG_ACRO = {
+      whatsapp: '5491176096294',
+      horarios: {
+        kids: [
+          { dia: 'Lun y Mié · 17:30', desc: 'Baby / MiniKids (3 a 6 años)', min: 3, max: 6 },
+          { dia: 'Mar y Jue · 18:00', desc: 'Kids Inicial (7 a 11 años)', min: 7, max: 11 },
+          { dia: 'Lun y Mié · 18:30', desc: 'Kids / Teens (10 a 16 años)', min: 10, max: 16 },
+          { dia: 'Sábados · 11:00', desc: 'Sábado Kids (5 a 14 años)', min: 3, max: 16 }
+        ],
+        adultxs: [
+          { dia: 'Lun y Mié · 19:30', desc: 'Acro Piso Adultxs (Desde cero)' },
+          { dia: 'Mar y Jue · 20:00', desc: 'Técnica, Giros & Airtrack' },
+          { dia: 'Viernes · 19:00', desc: 'Flexibilidad & Elongación' },
+          { dia: 'Sábados · 12:30', desc: 'Sábado Acro + Telas' }
+        ]
+      }
+    };
+
+    const st = {
+      branch: 'kids',
+      edad: 7,
+      perfil: 'No para de moverse',
+      exp: 'Nada',
+      obj: 'Acro Piso desde cero',
+      expA: 'Nunca hice nada',
+      horario: ''
+    };
+
+    document.querySelectorAll('#hero-switcher .sw-btn').forEach(b => {
+      b.addEventListener('click', () => {
+        document.querySelectorAll('#hero-switcher .sw-btn').forEach(x => x.classList.remove('on'));
+        b.classList.add('on');
+        const img = document.getElementById('hero-img');
+        img.src = b.dataset.src;
+        img.alt = b.dataset.alt;
+      });
+    });
+
+    document.querySelectorAll('#mobile-path-tabs .seg-btn').forEach(b => {
+      b.addEventListener('click', () => {
+        document.querySelectorAll('#mobile-path-tabs .seg-btn').forEach(x => x.classList.remove('on'));
+        b.classList.add('on');
+        const isKids = b.dataset.path === 'kids';
+        document.getElementById('box-kids').classList.toggle('hidden-mobile', !isKids);
+        document.getElementById('box-adultxs').classList.toggle('hidden-mobile', isKids);
+      });
+    });
+
+    function renderSchedules() {
+      const box = document.getElementById('sched-list');
+      let items = st.branch === 'kids'
+        ? CONFIG_ACRO.horarios.kids.filter(h => st.edad >= h.min && st.edad <= h.max)
+        : CONFIG_ACRO.horarios.adultxs;
+      if (!items.length) items = CONFIG_ACRO.horarios.kids.slice(0, 2);
+      if (!items.some(i => i.dia === st.horario)) st.horario = items[0].dia;
+
+      box.innerHTML = '';
+      items.forEach(i => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'sched-btn' + (i.dia === st.horario ? ' on' : '');
+        btn.innerHTML = `<strong>${i.dia}</strong><span>${i.desc}</span>`;
+        btn.onclick = () => { st.horario = i.dia; renderSchedules(); syncMsg(); };
+        box.appendChild(btn);
+      });
+    }
+
+    function syncMsg() {
+      let msg = '';
+      if (st.branch === 'kids') {
+        document.getElementById('pass-tag').textContent = `KIDS · ${st.edad} AÑOS`;
+        msg = `Hola! Vi la web de ACROJUMP y quería consultar por una clase de prueba para Kids.\n• Edad: ${st.edad} años\n• Perfil: ${st.perfil}\n• Experiencia: ${st.exp}\n• Horario elegido: ${st.horario}`;
+      } else {
+        document.getElementById('pass-tag').textContent = 'ADULTXS · DESDE CERO';
+        msg = `Hola! Vi la web de ACROJUMP y quería consultar por una clase de prueba para Adultxs.\n• Interés: ${st.obj}\n• Experiencia: ${st.expA}\n• Horario elegido: ${st.horario}`;
+      }
+      document.getElementById('msg-preview').textContent = msg;
+      document.getElementById('wa-btn').href = `https://wa.me/${CONFIG_ACRO.whatsapp}?text=${encodeURIComponent(msg)}`;
+    }
+
+    document.querySelectorAll('.seg-switch .seg-btn').forEach(b => {
+      b.addEventListener('click', () => {
+        document.querySelectorAll('.seg-switch .seg-btn').forEach(x => x.classList.remove('on'));
+        b.classList.add('on');
+        st.branch = b.dataset.branch;
+        document.getElementById('f-kids').style.display = st.branch === 'kids' ? 'block' : 'none';
+        document.getElementById('f-adultxs').style.display = st.branch === 'adultxs' ? 'block' : 'none';
+        renderSchedules();
+        syncMsg();
+      });
+    });
+
+    document.getElementById('rng-edad').addEventListener('input', e => {
+      st.edad = +e.target.value;
+      document.getElementById('val-edad').textContent = `${st.edad} años`;
+      renderSchedules();
+      syncMsg();
+    });
+
+    document.querySelectorAll('.chip-wrap').forEach(grp => {
+      const k = grp.dataset.k;
+      grp.querySelectorAll('.chip').forEach(c => {
+        c.addEventListener('click', () => {
+          grp.querySelectorAll('.chip').forEach(x => x.classList.remove('on'));
+          c.classList.add('on');
+          st[k] = c.textContent;
+          syncMsg();
+        });
+      });
+    });
+
+    renderSchedules();
+    syncMsg();
+  </script>
+</body>
+</html>

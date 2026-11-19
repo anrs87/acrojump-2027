@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acrojump • 10 Frames Reales 4K del Espacio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Abolition';
+      src: local('Abolition'), local('Abolition-Regular'), url('../assets/fonts/Abolition-Regular.woff2') format('woff2');
+      font-weight: normal;
+    }
+    :root {
+      --bg: #0c0d12;
+      --card: #141720;
+      --border: #232733;
+      --cyan: #00ffeb;
+      --text: #f3f4f6;
+      --muted: #9ca3af;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Archivo', sans-serif;
+      padding: 30px;
+    }
+    header {
+      max-width: 1400px;
+      margin: 0 auto 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 20px;
+    }
+    h1 {
+      font-family: 'Abolition', 'Archivo', sans-serif;
+      font-size: 40px;
+      letter-spacing: 1px;
+      color: #fff;
+    }
+    .badge {
+      background: var(--cyan);
+      color: #0c0d12;
+      font-weight: 900;
+      font-size: 12px;
+      padding: 4px 8px;
+      border-radius: 3px;
+      font-family: 'Space Mono', monospace;
+    }
+    .grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+      gap: 26px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+    }
+    .img-wrap {
+      width: 100%;
+      height: 280px;
+      position: relative;
+      background: #000;
+      overflow: hidden;
+    }
+    .img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+    .card:hover .img-wrap img {
+      transform: scale(1.03);
+    }
+    .card-body {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .card-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: var(--cyan);
+      letter-spacing: 1px;
+    }
+    .card-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .card-desc {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div>
+      <span class="badge">ACROJUMP REAL ESPACIO • 4K NATIVO</span>
+      <h1 style="margin-top: 8px;">RECORRIDO SECUENCIAL REAL (10 HITOS)</h1>
+      <p style="color: var(--muted); font-size: 14px; margin-top: 4px;">Capturas quirúrgicas del video real (recorrido-ingreso.mp4): entrada, recepción/buffet, sala longitudinal, telas, cocinita y fondo.</p>
+    </div>
+    <div style="font-family: 'Space Mono'; font-size: 12px; color: var(--muted); text-align: right;">
+      ARCHIVOS EN:<br><span style="color: var(--cyan);">assets/acro_real_assets/frames_recorrido/</span>
+    </div>
+  </header>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="img-wrap"><img src="../assets/acro_real_assets/frames_recorrido/frame_01_recorrido.jpg"></div>
+      <div class="card-body">
+        <span class="card-tag">HITO 01 • 00:02</span>
+        <h3 class="card-title">Puerta de ingreso desde la calle</h3>
+        <p class="card-desc">Acceso exterior, apertura de puerta y primeros pasos hacia el interior.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="../assets/acro_real_assets/frames_recorrido/frame_02_recorrido.jpg"></div>
+      <div class="card-body">
+        <span class="card-tag">HITO 02 • 00:08</span>
+        <h3 class="card-title">Recepción y Mini-Buffet</h3>
+        <p class="card-desc">Sillón, mesas de apoyo, mostrador de recepción y espacio cálido de bienvenida.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="../assets/acro_real_assets/frames_recorrido/frame_03_recorrido.jpg"></div>
+      <div class="card-body">
+        <span class="card-tag">HITO 03 • 00:15</span>
+        <h3 class="card-title">Paso de transición a la sala</h3>
+        <p class="card-desc">Pasillo y rampa con baranda que conecta la recepción hacia el desnivel de entrenamiento.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="../assets/acro_real_assets/frames_recorrido/frame_04_recorrido.jpg"></div>
+      <div class="card-body">
+        <span class="card-tag">HITO 04 • 00:22</span>
+        <h3 class="card-title">Pared lateral violeta con logo/arte</h3>
+        <p class="card-desc">Color de marca en pared lateral, espejo y primer contacto con las colchonetas azules.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="../assets/acro_real_assets/frames_recorrido/frame_05_recorrido.jpg"></div>
+      <div class="card-body">
+        <span class="card-tag">HITO 05 • 00:30</span>
+        <h3 class="card-title">Perspectiva longitudinal de la sala</h3>
+        <p class="card-desc">La sala alargada en profundidad: colchonetas apiladas, tatami y estructura de vigas en techo.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="../assets/acro_real_assets/frames_recorrido/frame_06_recorrido.jpg"></div>
+      <div class="card-body">
+        <span class="card-tag">HITO 06 • 00:38</span>
+        <h3 class="card-title">Zona central: Telas y altura</h3>
+        <p class="card-desc">Anclajes de telas aéreas colgadas del techo y área de amortiguación en el piso.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="../assets/acro_real_assets/frames_recorrido/frame_07_recorrido.jpg"></div>
+      <div class="card-body">
+        <span class="card-tag">HITO 07 • 00:45</span>
+        <h3 class="card-title">Profundidad y contención del espacio</h3>
+        <p class="card-desc">La proporción íntima que mantiene la atención enfocada, sin dispersión de gimnasios masivos.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="../assets/acro_real_assets/frames_recorrido/frame_08_recorrido.jpg"></div>
+      <div class="card-body">
+        <span class="card-tag">HITO 08 • 00:52</span>
+        <h3 class="card-title">Hacia la cocinita de profes</h3>
+        <p class="card-desc">Llegada al sector posterior de la sala, paso hacia el área técnica y de descanso de profesores.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="../assets/acro_real_assets/frames_recorrido/frame_09_recorrido.jpg"></div>
+      <div class="card-body">
+        <span class="card-tag">HITO 09 • 00:58</span>
+        <h3 class="card-title">Cocinita & Dispenser de agua</h3>
+        <p class="card-desc">El dispenser frío/caliente, mesada y espacio de hidratación y mate de los profes.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="img-wrap"><img src="../assets/acro_real_assets/frames_recorrido/frame_10_recorrido.jpg"></div>
+      <div class="card-body">
+        <span class="card-tag">HITO 10 • 01:02</span>
+        <h3 class="card-title">Sector baños y vestidores al fondo</h3>
+        <p class="card-desc">El remate del recorrido al final de la planta: puertas de baños, cambiadores y privacidad.</p>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

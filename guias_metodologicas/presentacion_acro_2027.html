@@ -1,0 +1,2414 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="day">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campaña 2027: ¿Cuántos momentos recordás de tu año? | Acrojump</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Abolition';
+      src: url('../marca/tipografias/Abolition-Regular.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'FreightBigCmpPro';
+      src: url('../marca/tipografias/FreightBigCmpProSemibold-Regular.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root,
+    [data-theme="day"] {
+      --bg-page: #e6f4f1;
+      --bg-page-alt: #d5eae5;
+      --bg-inset: #13211f;
+      --ink-inset: #f2faf8;
+      --ink-inset-muted: #bdd6d1;
+      --ink-main: #101d1b;
+      --ink-muted: #39504c;
+      --rule-line: #b4d4cd;
+      --rule-strong: #7ba89f;
+      --accent-gol: #b83616;
+      --accent-gol-text: #9e2b10;
+      --accent-gol-ink: #fdfaf5;
+      --acro-jade: #165e53;
+      --acro-jade-ink: #fdfaf5;
+      --acro-jade-on-dark: #7ad8c9;
+      --accent-gol-on-dark: #ff8e70;
+      --surface-input: #f2faf8;
+      --checker-a: #c6ded9;
+      --checker-b: #e6f4f1;
+      --logo-filter: grayscale(1) brightness(0.14) contrast(1.55);
+    }
+
+    [data-theme="night"] {
+      --bg-page: #131c1b;
+      --bg-page-alt: #1b2826;
+      --bg-inset: #1d2b29;
+      --ink-inset: #eef7f5;
+      --ink-inset-muted: #b6ccc7;
+      --ink-main: #eef7f5;
+      --ink-muted: #b6ccc7;
+      --rule-line: #2e4340;
+      --rule-strong: #4e6e69;
+      --accent-gol: #b83616;
+      --accent-gol-text: #ff8e70;
+      --accent-gol-ink: #fdfaf5;
+      --acro-jade: #7ad8c9;
+      --acro-jade-ink: #0f211e;
+      --acro-jade-on-dark: #7ad8c9;
+      --accent-gol-on-dark: #ff8e70;
+      --surface-input: #172321;
+      --checker-a: #243532;
+      --checker-b: #131c1b;
+      --logo-filter: sepia(0.35) saturate(0.65) brightness(0.96) contrast(1.08);
+    }
+
+    :root {
+      --font-display: 'Abolition', 'Archivo', sans-serif;
+      --font-editorial: 'FreightBigCmpPro', Georgia, serif;
+      --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    ::selection {
+      background: var(--accent-gol);
+      color: var(--accent-gol-ink);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scrollbar-color: var(--rule-strong) var(--bg-page);
+      scrollbar-width: thin;
+    }
+
+    body {
+      background-color: var(--bg-page);
+      color: var(--ink-main);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.62;
+      overflow-x: hidden;
+      transition: background-color 220ms var(--ease-out), color 220ms var(--ease-out);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-page);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--rule-strong);
+      border: 2px solid var(--bg-page);
+      border-radius: 2px;
+    }
+
+    a {
+      color: var(--acro-jade);
+      text-decoration: underline;
+      text-underline-offset: 0.24em;
+    }
+
+    a:hover {
+      color: var(--accent-gol-text);
+    }
+
+    button, input, textarea, select {
+      font-family: inherit;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent-gol);
+      outline-offset: 3px;
+    }
+
+    /* SHELL DE PLIEGO IMPRESO */
+    .broadsheet {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 28px 24px 96px;
+    }
+
+    /* CABECERA EDITORIAL */
+    .masthead {
+      border-top: 2px solid var(--ink-main);
+      border-bottom: 1px solid var(--rule-line);
+      padding: 22px 0 18px;
+      margin-bottom: 48px;
+    }
+
+    .masthead-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .brand-stamp {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      flex: 1 1 520px;
+    }
+
+    .logo-crop-box {
+      width: 56px;
+      height: 56px;
+      border: 1px solid var(--rule-strong);
+      background-color: var(--bg-page-alt);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+      margin-top: 6px;
+    }
+
+    .logo-crop-box img {
+      width: 48px;
+      height: 76px;
+      object-fit: cover;
+      object-position: center 42%;
+      filter: var(--logo-filter);
+      transition: filter 220ms var(--ease-out);
+    }
+
+    .masthead-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.15rem, 4.6vw, 4.35rem);
+      line-height: 1.12;
+      letter-spacing: 0.015em;
+      text-transform: uppercase;
+      color: var(--ink-main);
+    }
+
+    .title-line {
+      display: block;
+    }
+
+    .masthead-campaign-sub {
+      margin-top: 12px;
+      font-size: 16px;
+      line-height: 1.54;
+      color: var(--ink-muted);
+      max-width: 60ch;
+    }
+
+    .masthead-campaign-sub strong {
+      color: var(--accent-gol-text);
+    }
+
+    .masthead-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-sheet {
+      min-height: 44px;
+      padding: 10px 16px;
+      border: 1px solid var(--rule-strong);
+      border-radius: 3px;
+      background-color: var(--bg-page);
+      color: var(--ink-main);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background-color 160ms var(--ease-out), border-color 160ms var(--ease-out);
+    }
+
+    .btn-sheet:hover,
+    a.btn-sheet:hover {
+      background-color: var(--bg-page-alt);
+      border-color: var(--ink-main);
+      color: var(--ink-main);
+    }
+
+    .btn-gol {
+      min-height: 44px;
+      padding: 10px 18px;
+      border: 1px solid var(--accent-gol);
+      border-radius: 3px;
+      background-color: var(--accent-gol);
+      color: var(--accent-gol-ink);
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: opacity 160ms var(--ease-out);
+    }
+
+    .btn-gol:hover,
+    a.btn-gol:hover {
+      color: var(--accent-gol-ink);
+      opacity: 0.92;
+    }
+
+    .btn-jade {
+      min-height: 44px;
+      padding: 10px 16px;
+      border: 1px solid var(--acro-jade);
+      border-radius: 3px;
+      background-color: var(--acro-jade);
+      color: var(--acro-jade-ink);
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: opacity 160ms var(--ease-out);
+    }
+
+    .btn-jade:hover,
+    a.btn-jade:hover {
+      color: var(--acro-jade-ink);
+      opacity: 0.92;
+    }
+
+    .masthead-meta {
+      padding-top: 14px;
+      border-top: 1px solid var(--rule-line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 14px;
+      color: var(--ink-muted);
+    }
+
+    .sheet-index {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      list-style: none;
+    }
+
+    .sheet-index a {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink-main);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+    }
+
+    .sheet-index a:hover {
+      color: var(--accent-gol-text);
+      border-bottom-color: var(--accent-gol-text);
+    }
+
+    /* SECCIONES / PLIEGOS CON RITMO VARIADO */
+    .pliego {
+      padding-top: 56px;
+      margin-top: 56px;
+      border-top: 1px solid var(--rule-strong);
+    }
+
+    .pliego:first-of-type {
+      padding-top: 0;
+      margin-top: 0;
+      border-top: none;
+    }
+
+    .pliego-head {
+      display: grid;
+      grid-template-columns: 110px minmax(0, 1fr);
+      gap: 24px;
+      align-items: baseline;
+      margin-bottom: 28px;
+    }
+
+    .pliego-num {
+      font-family: var(--font-display);
+      font-size: 42px;
+      line-height: 1;
+      color: var(--accent-gol-text);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .pliego-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.1rem, 4.2vw, 3.6rem);
+      line-height: 1.04;
+      letter-spacing: 0.015em;
+      text-transform: uppercase;
+      color: var(--ink-main);
+      text-wrap: balance;
+      margin-bottom: 12px;
+    }
+
+    .pliego-lead {
+      font-size: 18px;
+      line-height: 1.58;
+      color: var(--ink-muted);
+      max-width: 65ch;
+    }
+
+    /* PLIEGO 1: MANIFIESTO + MARGINALIA + FOTO REAL */
+    .manifesto-spread {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr);
+      gap: 36px;
+      align-items: start;
+    }
+
+    .manifesto-folio {
+      background-color: var(--bg-inset);
+      color: var(--ink-inset);
+      padding: 40px 36px;
+      border: 1px solid var(--rule-strong);
+      border-radius: 2px;
+    }
+
+    .manifesto-folio-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      padding-bottom: 18px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid rgba(242, 250, 248, 0.22);
+      font-size: 13px;
+      color: var(--ink-inset-muted);
+    }
+
+    .manifesto-text {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      max-width: 60ch;
+    }
+
+    .manifesto-text p {
+      font-size: 18px;
+      line-height: 1.66;
+      color: var(--ink-inset);
+    }
+
+    .manifesto-master-beat {
+      font-family: var(--font-editorial);
+      font-size: clamp(1.9rem, 3vw, 2.5rem);
+      line-height: 1.36;
+      color: var(--accent-gol-on-dark);
+      padding: 16px 0;
+      border-top: 1px solid rgba(242, 250, 248, 0.24);
+      border-bottom: 1px solid rgba(242, 250, 248, 0.24);
+    }
+
+    .manifesto-close {
+      font-family: var(--font-editorial);
+      font-size: 24px;
+      line-height: 1.4;
+      color: var(--acro-jade-on-dark);
+    }
+
+    .marginalia-col {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .marginalia-block {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--rule-line);
+    }
+
+    .marginalia-block:first-child {
+      padding-top: 0;
+    }
+
+    .marginalia-title {
+      font-family: var(--font-editorial);
+      font-size: 25px;
+      line-height: 1.35;
+      color: var(--ink-main);
+      margin-bottom: 8px;
+    }
+
+    .marginalia-copy {
+      font-size: 15px;
+      line-height: 1.58;
+      color: var(--ink-muted);
+    }
+
+    .scene-picker {
+      margin-top: 24px;
+      padding-top: 12px;
+    }
+
+    .scene-picker-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink-main);
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .scene-btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .choice-btn {
+      min-height: 44px;
+      padding: 8px 14px;
+      border: 1px solid var(--rule-strong);
+      border-radius: 3px;
+      background-color: var(--bg-page);
+      color: var(--ink-main);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 160ms var(--ease-out), color 160ms var(--ease-out), border-color 160ms var(--ease-out);
+    }
+
+    .choice-btn:hover {
+      background-color: var(--bg-page-alt);
+    }
+
+    .choice-btn[aria-pressed="true"],
+    .choice-btn[aria-selected="true"] {
+      background-color: var(--ink-main);
+      border-color: var(--ink-main);
+      color: var(--bg-page);
+    }
+
+    .scene-note {
+      background-color: var(--bg-page-alt);
+      border: 1px solid var(--rule-strong);
+      border-radius: 2px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .scene-photo-frame {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      background-color: #13211f;
+      overflow: hidden;
+      border: 1px solid var(--rule-strong);
+    }
+
+    .scene-photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .scene-note-body {
+      font-size: 15px;
+      line-height: 1.56;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .scene-note-body strong {
+      color: var(--ink-main);
+    }
+
+    .scene-note-body span {
+      color: var(--ink-muted);
+    }
+
+    /* PLIEGO 2: GIRO VISUAL + INSPECTOR + VISOR EN VIVO DE ENSAYOS */
+    .compare-table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      padding: 16px;
+      background-color: var(--bg-page-alt);
+      border: 1px solid var(--rule-strong);
+      margin-bottom: 36px;
+    }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+      text-align: left;
+      background-color: var(--bg-page);
+    }
+
+    .compare-table th,
+    .compare-table td {
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--rule-line);
+      vertical-align: top;
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .compare-table th {
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--ink-muted);
+      background-color: var(--bg-page-alt);
+    }
+
+    .compare-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .swatch-inline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-right: 12px;
+      margin-top: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-main);
+    }
+
+    .swatch-square {
+      width: 16px;
+      height: 16px;
+      border: 1px solid var(--rule-strong);
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .asset-studio {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 28px;
+      align-items: start;
+      margin-bottom: 44px;
+    }
+
+    .asset-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .control-group-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink-main);
+      margin-bottom: 8px;
+    }
+
+    .asset-stage {
+      position: relative;
+      min-height: 360px;
+      border: 1px solid var(--rule-strong);
+      border-radius: 2px;
+      padding: 34px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 24px;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .asset-stage[data-surface="paper"] {
+      background-color: #e6f4f1;
+      color: #101d1b;
+      background-image: none;
+    }
+
+    .asset-stage[data-surface="charcoal"] {
+      background-color: #13211f;
+      color: #f2faf8;
+      background-image: none;
+    }
+
+    .asset-stage[data-surface="photo"] {
+      background-color: #13211f;
+      color: #f2faf8;
+    }
+
+    .asset-stage[data-surface="photo"]::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(16, 29, 27, 0.74) 0%, rgba(16, 29, 27, 0.56) 45%, rgba(16, 29, 27, 0.9) 100%);
+      pointer-events: none;
+    }
+
+    .asset-stage[data-surface="alpha"] {
+      background-color: var(--checker-b);
+      background-image:
+        linear-gradient(45deg, var(--checker-a) 25%, transparent 25%),
+        linear-gradient(-45deg, var(--checker-a) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, var(--checker-a) 75%),
+        linear-gradient(-45deg, transparent 75%, var(--checker-a) 75%);
+      background-size: 24px 24px;
+      background-position: 0 0, 0 12px, 12px -12px, -12px 0;
+      color: #101d1b;
+    }
+
+    .asset-stage-frame,
+    .asset-meta-row {
+      position: relative;
+      z-index: 2;
+    }
+
+    .asset-stage[data-surface="alpha"] .asset-stage-frame {
+      padding: 22px;
+      border: 1px solid rgba(123, 168, 159, 0.55);
+      background-color: rgba(19, 33, 31, 0.94);
+      color: #f2faf8;
+    }
+
+    .asset-headline {
+      font-family: var(--font-display);
+      font-size: clamp(2.3rem, 4vw, 3.6rem);
+      line-height: 1.02;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .asset-subline {
+      font-family: var(--font-editorial);
+      font-size: 23px;
+      line-height: 1.4;
+      max-width: 36ch;
+    }
+
+    .asset-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding-top: 14px;
+      border-top: 1px solid rgba(123, 168, 159, 0.45);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .asset-tag-jade {
+      color: #165e53;
+    }
+
+    .asset-stage[data-surface="charcoal"] .asset-tag-jade,
+    .asset-stage[data-surface="photo"] .asset-tag-jade,
+    .asset-stage[data-surface="alpha"] .asset-tag-jade {
+      color: #7ad8c9;
+    }
+
+    /* VISOR EN VIVO DE ENSAYOS Y PROTOTIPOS */
+    .prototypes-section {
+      border-top: 1px solid var(--rule-strong);
+      padding-top: 32px;
+    }
+
+    .prototypes-title {
+      font-family: var(--font-editorial);
+      font-size: 30px;
+      line-height: 1.35;
+      color: var(--ink-main);
+      margin-bottom: 8px;
+    }
+
+    .prototypes-sub {
+      font-size: 15px;
+      line-height: 1.56;
+      color: var(--ink-muted);
+      max-width: 68ch;
+      margin-bottom: 20px;
+    }
+
+    .proto-selector-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .proto-viewer-shell {
+      border: 1px solid var(--rule-strong);
+      background-color: var(--bg-page-alt);
+      padding: 18px;
+      border-radius: 2px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .proto-info-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .proto-info-text {
+      max-width: 72ch;
+    }
+
+    .proto-info-name {
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.35;
+      color: var(--ink-main);
+    }
+
+    .proto-info-desc {
+      font-size: 14px;
+      line-height: 1.52;
+      color: var(--ink-muted);
+      margin-top: 4px;
+    }
+
+    .proto-iframe-box {
+      width: 100%;
+      height: 680px;
+      border: 1px solid var(--rule-strong);
+      background-color: #101615;
+    }
+
+    .proto-iframe-box iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* PLIEGO 3: ARQUITECTURA DE TRABAJO */
+    .workflow-ledger {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      border-top: 2px solid var(--ink-main);
+      border-bottom: 1px solid var(--rule-strong);
+    }
+
+    .station-col {
+      padding: 28px 24px;
+      border-right: 1px solid var(--rule-line);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .station-col:last-child {
+      border-right: none;
+    }
+
+    .station-step {
+      font-family: var(--font-display);
+      font-size: 28px;
+      line-height: 1;
+      color: var(--acro-jade);
+    }
+
+    .station-title {
+      font-family: var(--font-editorial);
+      font-size: 26px;
+      line-height: 1.35;
+      color: var(--ink-main);
+    }
+
+    .station-copy {
+      font-size: 15px;
+      line-height: 1.56;
+      color: var(--ink-muted);
+    }
+
+    .station-list {
+      padding-left: 18px;
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--ink-main);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .bifurcation-bar {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .branch-box {
+      padding: 24px;
+      border: 1px solid var(--rule-strong);
+      background-color: var(--bg-page-alt);
+      border-radius: 2px;
+    }
+
+    .branch-box h3 {
+      font-size: 17px;
+      font-weight: 800;
+      line-height: 1.35;
+      color: var(--ink-main);
+      margin-bottom: 8px;
+    }
+
+    .branch-box p {
+      font-size: 15px;
+      line-height: 1.56;
+      color: var(--ink-muted);
+    }
+
+    /* PLIEGO 4: PROTOTIPO VISUAL COMPLETO DE WEB B2C + B2B */
+    .web-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .web-prototype-shell {
+      border: 1px solid var(--rule-strong);
+      background-color: var(--bg-page-alt);
+      padding: 20px;
+      border-radius: 2px;
+    }
+
+    .web-sim-nav {
+      background-color: var(--bg-inset);
+      color: var(--ink-inset);
+      padding: 14px 20px;
+      border: 1px solid var(--rule-strong);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .web-sim-brand {
+      font-family: var(--font-display);
+      font-size: 26px;
+      line-height: 1;
+      letter-spacing: 0.03em;
+      color: var(--ink-inset);
+    }
+
+    .web-sim-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .web-sim-link-btn {
+      min-height: 44px;
+      padding: 8px 12px;
+      border: 1px solid rgba(242, 250, 248, 0.22);
+      border-radius: 3px;
+      background: transparent;
+      color: var(--ink-inset);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .web-sim-link-btn:hover {
+      border-color: var(--acro-jade-on-dark);
+      color: var(--acro-jade-on-dark);
+    }
+
+    .web-panel {
+      display: none;
+    }
+
+    .web-panel.is-active {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* HERO WEB B2C */
+    .web-hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 24px;
+      background-color: var(--bg-inset);
+      color: var(--ink-inset);
+      padding: 28px;
+      border: 1px solid var(--rule-strong);
+      align-items: center;
+    }
+
+    .web-hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.1rem, 3.8vw, 3.4rem);
+      line-height: 1.05;
+      color: var(--ink-inset);
+      margin-bottom: 12px;
+    }
+
+    .web-hero-copy {
+      font-size: 16px;
+      line-height: 1.56;
+      color: var(--ink-inset-muted);
+      margin-bottom: 18px;
+    }
+
+    .web-hero-photo {
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      border: 1px solid rgba(242, 250, 248, 0.22);
+    }
+
+    .web-hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* TIRA DE 4 FOTOS REALES DEL ESPACIO */
+    .web-photo-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .strip-card {
+      background-color: var(--bg-page);
+      border: 1px solid var(--rule-strong);
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .strip-img {
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background-color: #13211f;
+    }
+
+    .strip-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .strip-caption {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.38;
+      color: var(--ink-main);
+    }
+
+    .strip-sub {
+      font-size: 13px;
+      line-height: 1.45;
+      color: var(--ink-muted);
+    }
+
+    /* GRILLA INTERACTIVA CONECTADA A SUITE */
+    .web-schedule-box {
+      background-color: var(--bg-page);
+      border: 1px solid var(--rule-strong);
+      padding: 24px;
+    }
+
+    .schedule-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .schedule-search {
+      min-height: 44px;
+      padding: 8px 14px;
+      border: 1px solid var(--rule-strong);
+      border-radius: 3px;
+      background-color: var(--surface-input);
+      color: var(--ink-main);
+      font-size: 14px;
+      min-width: 240px;
+    }
+
+    .schedule-rows {
+      border-top: 1px solid var(--rule-line);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .schedule-row {
+      display: grid;
+      grid-template-columns: 150px minmax(0, 1fr) auto;
+      gap: 16px;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--rule-line);
+    }
+
+    .schedule-day {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--acro-jade);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .schedule-class {
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--ink-main);
+    }
+
+    .schedule-meta {
+      font-size: 13px;
+      line-height: 1.45;
+      color: var(--ink-muted);
+    }
+
+    .schedule-empty {
+      padding: 20px;
+      background-color: var(--bg-page-alt);
+      border: 1px solid var(--rule-strong);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* VISTA WEB B2B ESCUELAS DE DANZA */
+    .b2b-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .b2b-left {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .b2b-packs {
+      border-top: 2px solid var(--ink-main);
+      background-color: var(--bg-page);
+      padding: 0 18px;
+      border-left: 1px solid var(--rule-strong);
+      border-right: 1px solid var(--rule-strong);
+      border-bottom: 1px solid var(--rule-strong);
+    }
+
+    .b2b-pack-row {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--rule-line);
+    }
+
+    .b2b-pack-row:last-child {
+      border-bottom: none;
+    }
+
+    .b2b-pack-row h4 {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.38;
+      color: var(--ink-main);
+      margin-bottom: 4px;
+    }
+
+    .b2b-pack-row p {
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--ink-muted);
+    }
+
+    .b2b-overlay-embed {
+      background-color: var(--bg-page);
+      border: 1px solid var(--rule-strong);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .b2b-overlay-frame {
+      width: 100%;
+      height: 540px;
+      border: 1px solid var(--rule-strong);
+      background-color: #12121a;
+    }
+
+    .b2b-overlay-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* PLIEGO 5: MESA DE DEBATE Y CUADERNO DE REUNION */
+    .debate-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding: 16px 20px;
+      background-color: var(--bg-page-alt);
+      border: 1px solid var(--rule-strong);
+      margin-bottom: 28px;
+    }
+
+    .save-status {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--acro-jade);
+    }
+
+    .save-status.is-error {
+      color: var(--accent-gol-text);
+    }
+
+    .debate-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .axes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .axis-block {
+      border-top: 2px solid var(--ink-main);
+      padding-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .axis-title {
+      font-family: var(--font-display);
+      font-size: 28px;
+      line-height: 1.1;
+      color: var(--ink-main);
+    }
+
+    .question-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .question-label {
+      font-family: var(--font-editorial);
+      font-size: 21px;
+      line-height: 1.4;
+      color: var(--ink-main);
+    }
+
+    .note-area {
+      width: 100%;
+      min-height: 92px;
+      padding: 12px 14px;
+      background-color: var(--surface-input);
+      border: 1px solid var(--rule-strong);
+      border-radius: 3px;
+      color: var(--ink-main);
+      font-size: 14px;
+      line-height: 1.5;
+      resize: vertical;
+    }
+
+    .note-area::placeholder {
+      color: var(--ink-muted);
+    }
+
+    .clear-confirm-row {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .clear-confirm-row.is-open {
+      display: inline-flex;
+    }
+
+    /* FOOTER DEL PLIEGO */
+    .colophon {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 2px solid var(--ink-main);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 14px;
+      color: var(--ink-muted);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 980px) {
+      .manifesto-spread,
+      .asset-studio,
+      .workflow-ledger,
+      .bifurcation-bar,
+      .web-hero-grid,
+      .b2b-grid,
+      .axes-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .web-photo-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .station-col {
+        border-right: none;
+        border-bottom: 1px solid var(--rule-line);
+        padding: 22px 0;
+      }
+
+      .station-col:last-child {
+        border-bottom: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .broadsheet {
+        padding: 18px 16px 64px;
+      }
+
+      .pliego-head {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .manifesto-folio {
+        padding: 26px 20px;
+      }
+
+      .web-prototype-shell {
+        padding: 14px;
+      }
+
+      .web-photo-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .schedule-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .proto-iframe-box {
+        height: 520px;
+      }
+
+      .compare-table-wrap {
+        padding: 10px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="broadsheet">
+    <header class="masthead">
+      <div class="masthead-top">
+        <div class="brand-stamp">
+          <div class="logo-crop-box">
+            <img src="../marca/logos/LOGO-COMPLETO-transparente.png" alt="Marca Acrojump">
+          </div>
+          <div>
+            <h1 class="masthead-title">
+              <span class="title-line">¿Cuántos momentos</span>
+              <span class="title-line">recordás de tu año?</span>
+            </h1>
+            <p class="masthead-campaign-sub">
+              <strong>Campaña Madre y Concepto Maestro Acrojump 2027 (@acro_jump):</strong> informe de dirección visual en verde agua clarito, visor en vivo de piezas, sistema de automatización con assets adaptables, prototipo de web doble propósito y mesa de debate para trabajar con Gra y equipo.
+            </p>
+          </div>
+        </div>
+
+        <div class="masthead-actions">
+          <a class="btn-jade" href="./prototipos_web_acro_2027.html">Abrir Mesa de Prototipos Web (V1 a V6)</a>
+
+          <button type="button" class="btn-sheet" id="btn-theme-toggle" aria-pressed="false">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2"></path>
+              <path d="M12 20v2"></path>
+              <path d="m4.93 4.93 1.41 1.41"></path>
+              <path d="m17.66 17.66 1.41 1.41"></path>
+              <path d="M2 12h2"></path>
+              <path d="M20 12h2"></path>
+              <path d="m6.34 17.66-1.41 1.41"></path>
+              <path d="m19.07 4.93-1.41 1.41"></path>
+            </svg>
+            <span id="theme-toggle-label">Pasar a Modo Sala de Noche</span>
+          </button>
+
+          <button type="button" class="btn-sheet" id="btn-print">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="6 9 6 2 18 2 18 9"></polyline>
+              <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+              <rect x="6" y="14" width="12" height="8"></rect>
+            </svg>
+            <span>Imprimir Pliego</span>
+          </button>
+
+          <button type="button" class="btn-gol" id="btn-export-md">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>Exportar Minuta (.md)</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="masthead-meta">
+        <span>Pliego vivo de trabajo · Campaña interna "¿Cuántos momentos recordás de tu año?" · Barrio Abasto</span>
+        <nav aria-label="Índice del pliego">
+          <ul class="sheet-index">
+            <li><a href="#pliego-1">I. Manifiesto</a></li>
+            <li><a href="#pliego-2">II. Visor de Piezas</a></li>
+            <li><a href="#pliego-3">III. Sistema y Assets</a></li>
+            <li><a href="#pliego-4">IV. Prototipo Web</a></li>
+            <li><a href="#pliego-5">V. Preguntas</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- PLIEGO I: CONCEPTO MAESTRO Y MANIFIESTO -->
+      <section class="pliego" id="pliego-1" aria-labelledby="titulo-pliego-1">
+        <div class="pliego-head">
+          <div class="pliego-num">01</div>
+          <div>
+            <h2 class="pliego-title" id="titulo-pliego-1">El concepto maestro y el abrazo de gol</h2>
+            <p class="pliego-lead">
+              "¿Cuántos momentos recordás de tu año?" funciona como nombre interno de campaña y columna vertebral de todo 2027. Digitalizamos la burocracia para que la gente de la sala tenga espacio para vivir y contar esos momentos reales.
+            </p>
+          </div>
+        </div>
+
+        <div class="manifesto-spread">
+          <article class="manifesto-folio" aria-label="Texto madre del Manifiesto 2027">
+            <div class="manifesto-folio-head">
+              <span>Manifiesto 2027 / Guía Madre de Campaña</span>
+              <span>@acro_jump</span>
+            </div>
+            <div class="manifesto-text">
+              <p>Este negocio depende de lo presencial, de lo humano, para crecer. No vende un producto, ofrece un servicio, pero no es eso por lo que la gente vuelve. Es la calidez de la experiencia lo que mantiene en movimiento a Acro.</p>
+              <p>Acro es, indudablemente, su gente. Sus profes, sus alumnxs: sin ellos, no hay Acrojump. Entonces, ¿qué venís a aprender acá? En cualquier lugar podés aprender a hacer acrobacias, a hacer una mortal y caer de pie. Pero no todos los lugares te invitan a compartir algo más que una clase.</p>
+              <p>Un momento, un mate, una caída, unas risas, un salto que parece eterno pero dura un instante. ¿Cuántos momentos recordás de tu año?</p>
+              <p>Un aplauso, una felicitación, un abrazo y festejo de gol.</p>
+              <p class="manifesto-master-beat">¿Cuántos momentos recordás de tu año?</p>
+              <p>Un día malo, un día gris, donde llueve afuera, pero se sana adentro, haciendo, entrenando. Cayéndote una y otra vez, solo para volver a levantarte.</p>
+              <p>Ese movimiento, ese truco, no te puede ganar.</p>
+              <p>Y no hay competencia, no es eso lo que te hace volver.</p>
+              <p>No estás solo cuando volás por los aires: hay muchas manos sosteniéndote, y no solo te cuidan, te ayudan a que llegues bien. Y te aplauden, te acompañan y te levantan cuando la caída no es la ideal. Y son esas mismas manos las que te empujan amablemente para que lo vuelvas a intentar.</p>
+              <p class="manifesto-close">Desafiar la gravedad no es tan sencillo. Pero ese impulso extra puede ser mágico.</p>
+            </div>
+          </article>
+
+          <aside class="marginalia-col" aria-label="Cómo se traduce a la comunicación diaria">
+            <div class="marginalia-block">
+              <h3 class="marginalia-title">La pregunta guía como eje anual</h3>
+              <p class="marginalia-copy">
+                "¿Cuántos momentos recordás de tu año?" ordena desde un reel de lluvia en julio hasta la web o el cierre de diciembre. No vendemos clases sueltas: acumulamos momentos que valen la pena recordar.
+              </p>
+            </div>
+
+            <div class="marginalia-block">
+              <h3 class="marginalia-title">Modismo rioplatense y abrazo de gol</h3>
+              <p class="marginalia-copy">
+                La calidez se nota en cómo hablamos: como en la recepción de Abasto, celebrando el intento fallido, las manos que cuidan en el aire y el grito grupal cuando el truco finalmente sale.
+              </p>
+            </div>
+
+            <div class="scene-picker">
+              <span class="scene-picker-label">Cómo se ve cada momento en la sala real de Acrojump:</span>
+              <div class="scene-btn-row" role="group" aria-label="Elegir escena real del Manifiesto">
+                <button type="button" class="choice-btn scene-btn" aria-pressed="true" data-scene="gol">Abrazo de gol</button>
+                <button type="button" class="choice-btn scene-btn" aria-pressed="false" data-scene="manos">Muchas manos</button>
+                <button type="button" class="choice-btn scene-btn" aria-pressed="false" data-scene="lluvia">Día de lluvia</button>
+                <button type="button" class="choice-btn scene-btn" aria-pressed="false" data-scene="mate">Mate y pausa</button>
+              </div>
+              <div class="scene-note" id="scene-output" aria-live="polite">
+                <div class="scene-photo-frame">
+                  <img id="scene-img" src="../assets/acro_real_assets/04_coach_student_highfive_acrojump_1794277408616.jpg" alt="Chocada de manos y festejo entre profe y alumna en Acrojump">
+                </div>
+                <div class="scene-note-body">
+                  <strong>Qué se graba en sala:</strong>
+                  <span id="scene-shoot">Dos o tres intentos donde el truco casi sale, caída en colchón, corrección corta del profe y la chocada de manos grupal cuando finalmente cae de pie.</span>
+                  <strong>Qué asset acompaña:</strong>
+                  <span id="scene-asset">Placa Alpha transparente ("¿Cuántos momentos recordás de tu año?" / "Ese truco no te puede ganar") lista para tirar encima en Premiere o CapCut.</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- PLIEGO II: EL GIRO VISUAL Y VISOR EN VIVO DE PIEZAS -->
+      <section class="pliego" id="pliego-2" aria-labelledby="titulo-pliego-2">
+        <div class="pliego-head">
+          <div class="pliego-num">02</div>
+          <div>
+            <h2 class="pliego-title" id="titulo-pliego-2">Giro visual en verde agua y visor de piezas en vivo</h2>
+            <p class="pliego-lead">
+              Dejamos atrás el negro con cian láser que hoy se percibe viejo y frío. Este documento adopta verde agua clarito como base limpia, junto con un visor directo para ver y recorrer tus ensayos reales en vivo.
+            </p>
+          </div>
+        </div>
+
+        <div class="compare-table-wrap">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th>Eje de diseño</th>
+                <th>Etapa 2025 / 2026 (Cumplida)</th>
+                <th>Propuesta Acrojump 2027</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Clima y soporte</strong></td>
+                <td>Negro frío de pantalla y estética HUD cyberpunk.</td>
+                <td>
+                  Fondo luminoso en verde agua clarito y bloques de sala en petróleo oscuro cálido.
+                  <div>
+                    <span class="swatch-inline"><span class="swatch-square" style="background-color: #e6f4f1;"></span>Verde agua #e6f4f1</span>
+                    <span class="swatch-inline"><span class="swatch-square" style="background-color: #13211f;"></span>Petróleo #13211f</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Color identitario</strong></td>
+                <td>Cian láser puro y violeta neón como fondo de todas las piezas.</td>
+                <td>
+                  Herencia verde petróleo madurada hacia <strong>Jade Mineral</strong> + acento humano <strong>Terracota Abrazo de Gol</strong>.
+                  <div>
+                    <span class="swatch-inline"><span class="swatch-square" style="background-color: #165e53;"></span>Jade #165e53</span>
+                    <span class="swatch-inline"><span class="swatch-square" style="background-color: #b83616;"></span>Terracota #b83616</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Tipografía y voz</strong></td>
+                <td>Titulares rígidos de tablero técnico.</td>
+                <td>Abolition (choque físico) + FreightBigCmpPro (calidez editorial) + Archivo (lectura clara en horarios y avisos).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="asset-studio">
+          <div class="asset-controls">
+            <div>
+              <div class="control-group-title">1. Elegí el tipo de pieza o asset de la campaña:</div>
+              <div class="scene-btn-row" role="group" aria-label="Tipo de pieza 2027">
+                <button type="button" class="choice-btn piece-btn" aria-pressed="true" data-piece="momentos">Campaña: Momentos del año</button>
+                <button type="button" class="choice-btn piece-btn" aria-pressed="false" data-piece="manos">Overlay: Muchas manos</button>
+                <button type="button" class="choice-btn piece-btn" aria-pressed="false" data-piece="lluvia">Aviso: Día de lluvia</button>
+                <button type="button" class="choice-btn piece-btn" aria-pressed="false" data-piece="grilla">Colchón: Horarios hoy</button>
+              </div>
+            </div>
+
+            <div>
+              <div class="control-group-title">2. Probá cómo rinde sobre fotos reales de la sala o fondos de placa:</div>
+              <div class="scene-btn-row" role="group" aria-label="Superficie de prueba">
+                <button type="button" class="choice-btn surface-btn" aria-pressed="true" data-surface-pick="photo">Sobre foto real 4K</button>
+                <button type="button" class="choice-btn surface-btn" aria-pressed="false" data-surface-pick="paper">Verde agua claro</button>
+                <button type="button" class="choice-btn surface-btn" aria-pressed="false" data-surface-pick="charcoal">Petróleo oscuro</button>
+                <button type="button" class="choice-btn surface-btn" aria-pressed="false" data-surface-pick="alpha">Capa Alpha (Premiere)</button>
+              </div>
+            </div>
+
+            <p style="font-size: 14px; line-height: 1.56; color: var(--ink-muted);" id="asset-usage-note">
+              El mismo sistema funciona sobre fotografía real de sala, en placa verde agua o como capa Alpha transparente para que AL monte encima de sus ediciones.
+            </p>
+          </div>
+
+          <div class="asset-stage" id="asset-stage" data-surface="photo" style="background-image: url('../assets/acro_real_assets/01_spotting_wrist_grip_v2_1794277180766.jpg');" aria-live="polite">
+            <div class="asset-stage-frame">
+              <div class="asset-headline" id="asset-headline">¿Cuántos momentos recordás de tu año?</div>
+              <div class="asset-subline" id="asset-subline">Un mate antes de entrar, una caída cuidada, unas risas y ese truco que al final se festeja como un gol.</div>
+            </div>
+            <div class="asset-meta-row">
+              <span class="asset-tag-jade" id="asset-tag">@acro_jump · Campaña 2027</span>
+              <span id="asset-format">Pieza Madre / Overlay Alpha 1080x1920</span>
+            </div>
+          </div>
+        </div>
+
+        <section class="prototypes-section" aria-label="Visor en vivo de ensayos y prototipos">
+          <h3 class="prototypes-title">Visor en vivo de los ensayos y piezas ya armadas</h3>
+          <p class="prototypes-sub">
+            Tocá cualquier botón para ver el prototipo real desplegado acá mismo sin salir del documento, recorrerlo y mostrárselo en detalle a Gra durante la reunión.
+          </p>
+
+          <div class="proto-selector-bar" role="group" aria-label="Selector de ensayo en vivo">
+            <button type="button" class="choice-btn proto-pick" aria-pressed="true" data-proto="manifiesto">Manifiesto de Galpón</button>
+            <button type="button" class="choice-btn proto-pick" aria-pressed="false" data-proto="caminos">Los 4 Caminos Visuales</button>
+            <button type="button" class="choice-btn proto-pick" aria-pressed="false" data-proto="consagrados">Estudios Consagrados</button>
+            <button type="button" class="choice-btn proto-pick" aria-pressed="false" data-proto="raw">Acro Raw Lab 2027</button>
+            <button type="button" class="choice-btn proto-pick" aria-pressed="false" data-proto="danza">Overlay Taller Danza</button>
+            <button type="button" class="choice-btn proto-pick" aria-pressed="false" data-proto="recorrido">Recorrido 4K Espacio</button>
+            <button type="button" class="choice-btn proto-pick" aria-pressed="false" data-proto="detalles">Detalles Humanos 4K</button>
+          </div>
+
+          <div class="proto-viewer-shell">
+            <div class="proto-info-bar">
+              <div class="proto-info-text">
+                <div class="proto-info-name" id="proto-info-name">Manifiesto de Galpón (Herencia Wudding / Suelo)</div>
+                <div class="proto-info-desc" id="proto-info-desc">Comparó el viejo volante neón contra fotografía real a sangre, verde petróleo original (#009084), grano analógico y ticket técnico de sala.</div>
+              </div>
+              <a class="btn-jade" id="proto-open-tab" href="../tools/acro_pieza_manifiesto_2027.html" target="_blank" rel="noopener">Abrir en pestaña completa</a>
+            </div>
+
+            <div class="proto-iframe-box">
+              <iframe id="proto-live-iframe" src="../tools/acro_pieza_manifiesto_2027.html" title="Visor en vivo de ensayos Acrojump 2027"></iframe>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <!-- PLIEGO III: SISTEMA AUTOMATIZADO + ASSETS -->
+      <section class="pliego" id="pliego-3" aria-labelledby="titulo-pliego-3">
+        <div class="pliego-head">
+          <div class="pliego-num">03</div>
+          <div>
+            <h2 class="pliego-title" id="titulo-pliego-3">Colchón automático y libertad para crear</h2>
+            <p class="pliego-lead">
+              Digitalizamos lo aburrido y burocrático en la app de recepción para alimentar un colchón base de Meta Business, mientras generamos assets modulares listos para acompañar las piezas humanas y espontáneas.
+            </p>
+          </div>
+        </div>
+
+        <div class="workflow-ledger">
+          <article class="station-col">
+            <div class="station-step">Paso 01</div>
+            <h3 class="station-title">La App de Sala (Acro Suite 2.0)</h3>
+            <p class="station-copy">
+              Lo interno que ya ordena la operación diaria de la escuela sin papeles sueltos ni planillas manuales:
+            </p>
+            <ul class="station-list">
+              <li>Presentes y faltas por clase en un clic.</li>
+              <li>Control de cuotas, packs y vencimientos.</li>
+              <li>Grilla viva de horarios, profes y cupos reales.</li>
+            </ul>
+          </article>
+
+          <article class="station-col">
+            <div class="station-step">Paso 02</div>
+            <h3 class="station-title">Colchón Base en Meta Business</h3>
+            <p class="station-copy">
+              Lo repetitivo sale solo desde la base de recepción y se programa con curaduría previa para sostener presencia constante:
+            </p>
+            <ul class="station-list">
+              <li>Placa de grilla semanal y stories de horarios del día.</li>
+              <li>Avisos puntuales de cupos libres o feriados.</li>
+              <li>Ventanas abiertas en la agenda semanal para lo espontáneo.</li>
+            </ul>
+          </article>
+
+          <article class="station-col">
+            <div class="station-step">Paso 03</div>
+            <h3 class="station-title">Fábrica de Assets Adaptables</h3>
+            <p class="station-copy">
+              El generador no escupe solamente placas cerradas. Produce piezas sueltas que respetan siempre la misma lógica:
+            </p>
+            <ul class="station-list">
+              <li>Rótulos de frases de la campaña en canal Alpha.</li>
+              <li>Sellos de disciplina, día de lluvia y cierre @acro_jump.</li>
+              <li>Plantillas ajustables según el ritmo de la semana.</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="bifurcation-bar">
+          <div class="branch-box">
+            <h3>Camino A: Acompañamiento a la edición de AL</h3>
+            <p>
+              Cuando AL edita un reel complejo de sala en Premiere o CapCut, el sistema le entrega los assets sueltos (overlays transparentes, títulos y placas de cierre) ya formateados en la paleta 2027 para montar encima sin diseñar de cero.
+            </p>
+          </div>
+          <div class="branch-box">
+            <h3>Camino B: Pieza completa ágil (Gra + nueva integrante)</h3>
+            <p>
+              Cuando surge un momento cotidiano en sala (un mate, una caída graciosa, un truco nuevo), se abre la plantilla modular, se carga el clip o foto con un texto cercano y se publica directo con coherencia de marca.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PLIEGO IV: PROTOTIPO VISUAL COMPLETO DE LA WEB DOBLE PROPOSITO -->
+      <section class="pliego" id="pliego-4" aria-labelledby="titulo-pliego-4">
+        <div class="pliego-head">
+          <div class="pliego-num">04</div>
+          <div>
+            <h2 class="pliego-title" id="titulo-pliego-4">Prototipo de la web: Zona Abasto y Escuelas de Danza</h2>
+            <p class="pliego-lead">
+              Acá podés navegar las dos caras completas de la página web nueva: atracción local en Abasto para quien quiere empezar, y alianzas con escuelas de danza como Julio Bocca o Reina Reech para packs combinados.
+            </p>
+          </div>
+        </div>
+
+        <div class="web-tabs" role="tablist" aria-label="Dos propósitos de la web 2027">
+          <button type="button" class="choice-btn web-tab" role="tab" id="web-tab-b2c" aria-selected="true" aria-controls="web-panel-b2c">
+            Vista 1: Atracción Local (Barrio Abasto / B2C)
+          </button>
+          <button type="button" class="choice-btn web-tab" role="tab" id="web-tab-b2b" aria-selected="false" aria-controls="web-panel-b2b">
+            Vista 2: Alianzas Escuelas de Danza (B2B)
+          </button>
+          <a class="btn-jade" href="./prototipos_web_acro_2027.html">Chequear los 6 Prototipos Web (V1 a V6) en página aparte</a>
+        </div>
+
+        <div class="web-prototype-shell" style="margin-bottom: 24px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin-bottom: 14px;">
+            <div>
+              <strong style="font-size: 15px; color: var(--ink-main);">Previsualizar rápido cualquiera de los 6 prototipos reales de tools/landing_acrojump/</strong>
+              <p style="font-size: 14px; color: var(--ink-muted);">Para compararlos en celular o lado a lado, abrí la <a href="./prototipos_web_acro_2027.html">Mesa de Chequeo de Prototipos Web</a>.</p>
+            </div>
+            <a class="btn-sheet" id="landing-open-direct" href="../tools/landing_acrojump/index.html" target="_blank" rel="noopener">Abrir versión en pestaña nueva</a>
+          </div>
+          <div class="scene-btn-row" role="group" aria-label="Selector rápido V1 a V6" style="margin-bottom: 14px;">
+            <button type="button" class="choice-btn landing-pick" aria-pressed="true" data-landing="../tools/landing_acrojump/index.html">V1 · Abasto Base</button>
+            <button type="button" class="choice-btn landing-pick" aria-pressed="false" data-landing="../tools/landing_acrojump/v2.html">V2 · Cupos Cuidados</button>
+            <button type="button" class="choice-btn landing-pick" aria-pressed="false" data-landing="../tools/landing_acrojump/v3.html">V3 · Sala 3D</button>
+            <button type="button" class="choice-btn landing-pick" aria-pressed="false" data-landing="../tools/landing_acrojump/v4.html">V4 · Imprenta Atlética</button>
+            <button type="button" class="choice-btn landing-pick" aria-pressed="false" data-landing="../tools/landing_acrojump/v5.html">V5 · Recorrido Real</button>
+            <button type="button" class="choice-btn landing-pick" aria-pressed="false" data-landing="../tools/landing_acrojump/v6.html">V6 · Híbrida 3D + Real</button>
+          </div>
+          <div class="proto-iframe-box" style="height: 540px;">
+            <iframe id="landing-live-iframe" src="../tools/landing_acrojump/index.html" title="Visor rápido de prototipos web V1 a V6"></iframe>
+          </div>
+        </div>
+
+        <div class="web-prototype-shell">
+          <div class="web-sim-nav">
+            <span class="web-sim-brand">ACROJUMP ABASTO · @ACRO_JUMP</span>
+            <div class="web-sim-links">
+              <button type="button" class="web-sim-link-btn" data-web-jump="b2c" data-scroll-target="web-b2c-recorrido">Recorrido de la sala</button>
+              <button type="button" class="web-sim-link-btn" data-web-jump="b2c" data-scroll-target="web-b2c-horarios">Horarios Acro Suite</button>
+              <button type="button" class="web-sim-link-btn" data-web-jump="b2b">Alianzas Escuelas de Danza</button>
+            </div>
+          </div>
+
+          <!-- PANEL B2C -->
+          <div class="web-panel is-active" id="web-panel-b2c" role="tabpanel" aria-labelledby="web-tab-b2c">
+            <div class="web-hero-grid">
+              <div>
+                <h3 class="web-hero-title">¿Cuántos momentos recordás de tu año?</h3>
+                <p class="web-hero-copy">
+                  Entrená acrobacia, flexi y movimiento en Barrio Abasto desde cero. No hace falta saber hacer una vertical: hay muchas manos cuidándote en cada intento y un grupo que festeja cuando el truco sale.
+                </p>
+                <button type="button" class="btn-gol" data-web-jump="b2c" data-scroll-target="web-b2c-horarios">Ver horarios disponibles hoy</button>
+              </div>
+              <div class="web-hero-photo">
+                <img src="../assets/acro_real_assets/frames_recorrido/frame_05_recorrido.jpg" alt="Vista longitudinal real de la sala Acrojump con colchonetas">
+              </div>
+            </div>
+
+            <div id="web-b2c-recorrido">
+              <div class="control-group-title" style="margin-bottom: 12px;">Recorrido real antes de pisar la puerta (4 planos reales de la sala):</div>
+              <div class="web-photo-strip">
+                <article class="strip-card">
+                  <div class="strip-img">
+                    <img src="../assets/acro_real_assets/frames_recorrido/frame_02_recorrido.jpg" alt="Recepción y mini-buffet de bienvenida">
+                  </div>
+                  <div class="strip-caption">Recepción y bienvenida</div>
+                  <div class="strip-sub">Entrás sin frío ni pose de gimnasio comercial.</div>
+                </article>
+                <article class="strip-card">
+                  <div class="strip-img">
+                    <img src="../assets/acro_real_assets/01_spotting_wrist_grip_v2_1794277180766.jpg" alt="Agarre muñeca a muñeca de spotting">
+                  </div>
+                  <div class="strip-caption">Manos que sostienen</div>
+                  <div class="strip-sub">Cuidado técnico real en cada despegue.</div>
+                </article>
+                <article class="strip-card">
+                  <div class="strip-img">
+                    <img src="../assets/acro_real_assets/04_coach_student_highfive_acrojump_1794277408616.jpg" alt="Festejo tras aterrizar bien">
+                  </div>
+                  <div class="strip-caption">Abrazo y festejo de gol</div>
+                  <div class="strip-sub">Cuando un truco sale después de intentar.</div>
+                </article>
+                <article class="strip-card">
+                  <div class="strip-img">
+                    <img src="../assets/acro_real_assets/frames_recorrido/frame_09_recorrido.jpg" alt="Cocinita y sector de mate">
+                  </div>
+                  <div class="strip-caption">Mate y comunidad</div>
+                  <div class="strip-sub">La pausa compartida que te hace volver.</div>
+                </article>
+              </div>
+            </div>
+
+            <div class="web-schedule-box" id="web-b2c-horarios">
+              <div class="schedule-bar">
+                <div>
+                  <h4 style="font-size: 18px; font-weight: 800; color: var(--ink-main);">Muestra de horarios en vivo desde Acro Suite 2.0</h4>
+                  <p style="font-size: 14px; color: var(--ink-muted);">Ejemplo de cómo la web consulta la misma base de turnos que usa recepción.</p>
+                </div>
+                <input type="search" class="schedule-search" id="schedule-search" aria-label="Filtrar turnos de ejemplo" placeholder="Filtrar disciplina (ej. Inicial, Flexi, Kids)...">
+              </div>
+
+              <div class="scene-btn-row" role="group" aria-label="Filtros rápidos de horario">
+                <button type="button" class="choice-btn sched-filter-btn" aria-pressed="true" data-filter="all">Todos</button>
+                <button type="button" class="choice-btn sched-filter-btn" aria-pressed="false" data-filter="inicial">Desde cero / Inicial</button>
+                <button type="button" class="choice-btn sched-filter-btn" aria-pressed="false" data-filter="flexi">Acro + Flexi</button>
+                <button type="button" class="choice-btn sched-filter-btn" aria-pressed="false" data-filter="kids">AcroDance y Kids</button>
+              </div>
+
+              <div id="schedule-list-container" aria-live="polite"></div>
+            </div>
+          </div>
+
+          <!-- PANEL B2B ESCUELAS DE DANZA -->
+          <div class="web-panel" id="web-panel-b2b" role="tabpanel" aria-labelledby="web-tab-b2b">
+            <div class="b2b-grid">
+              <div class="b2b-left">
+                <div class="web-hero-grid" style="grid-template-columns: 1fr;">
+                  <div>
+                    <h3 class="web-hero-title">Entrenamiento acrobático para escuelas de danza</h3>
+                    <p class="web-hero-copy">
+                      Espacio pensado para escuelas como Julio Bocca, Reina Reech y estudios de danza o comedia musical. Sus alumnos ganan inversión, rechazo, saltos y caída segura sin competir con su formación artística.
+                    </p>
+                    <a class="btn-gol" href="#pliego-5">Definir tarifa convenio con Gra</a>
+                  </div>
+                </div>
+
+                <div class="b2b-packs">
+                  <div class="b2b-pack-row">
+                    <h4>1. Pack Combinado Alumnos de Danza (4 u 8 clases por mes)</h4>
+                    <p>Diseñado para acoplarse a las cursadas de danza usando franjas horarias de menor ocupación en nuestra sala.</p>
+                  </div>
+                  <div class="b2b-pack-row">
+                    <h4>2. Clínica Específica de Inversión, Salto y Caída Segura</h4>
+                    <p>Módulos intensivos por trimestre para elencos y grupos que preparan coreografías con pasadas acrobáticas.</p>
+                  </div>
+                  <div class="b2b-pack-row">
+                    <h4>3. Práctica Asistida con Spotting</h4>
+                    <p>Acompañamiento técnico de profes de Acrojump para que el bailarín resuelva el truco sin riesgo de lesión antes de escena.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="b2b-overlay-embed">
+                <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap;">
+                  <strong style="font-size: 15px; color: var(--ink-main);">Ensayo Overlay Taller de Danza (Ya centrado)</strong>
+                  <a href="../tools/overlay_taller_danza.html" target="_blank" rel="noopener" style="font-size: 14px; font-weight: 700;">Abrir completo</a>
+                </div>
+                <div class="b2b-overlay-frame">
+                  <iframe src="../tools/overlay_taller_danza.html" title="Prototipo centrado de Overlay para Taller de Danza"></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PLIEGO V: MESA DE DEBATE Y PREGUNTAS PARA LA REUNION -->
+      <section class="pliego" id="pliego-5" aria-labelledby="titulo-pliego-5">
+        <div class="pliego-head">
+          <div class="pliego-num">05</div>
+          <div>
+            <h2 class="pliego-title" id="titulo-pliego-5">Mesa de debate: preguntas para trabajar con Gra</h2>
+            <p class="pliego-lead">
+              Guía abierta para la reunión entre AL, Gra y la nueva integrante de contenido. Lo que escriban acá queda guardado en este navegador y se exporta limpio en Markdown con el botón superior.
+            </p>
+          </div>
+        </div>
+
+        <div class="debate-toolbar">
+          <div class="save-status" id="save-status" aria-live="polite">Sin notas guardadas todavía.</div>
+          <div class="debate-actions">
+            <button type="button" class="btn-jade" id="btn-export-md-bottom">Descargar Minuta (.md)</button>
+            <button type="button" class="btn-sheet" id="btn-clear-ask">Limpiar notas</button>
+            <div class="clear-confirm-row" id="clear-confirm-row">
+              <button type="button" class="btn-gol" id="btn-clear-confirm">Confirmar borrado</button>
+              <button type="button" class="btn-sheet" id="btn-clear-cancel">Cancelar</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="axes-grid">
+          <section class="axis-block" aria-label="Eje 1: Campaña, modismos y Manifiesto">
+            <h3 class="axis-title">Eje 1: Campaña y modismo diario</h3>
+
+            <div class="question-item">
+              <label class="question-label" for="q1">1. ¿Les cierra "¿Cuántos momentos recordás de tu año?" como concepto maestro y nombre interno para hilar toda la campaña 2027?</label>
+              <textarea class="note-area" id="q1" data-key="q1" placeholder="Escribí acá lo que acuerden en la reunión..."></textarea>
+            </div>
+
+            <div class="question-item">
+              <label class="question-label" for="q2">2. ¿Qué momentos reales de esta semana representan el "abrazo de gol" y qué escenas (mate, días de lluvia, caídas) vamos a empezar a registrar?</label>
+              <textarea class="note-area" id="q2" data-key="q2" placeholder="Escribí acá lo que acuerden en la reunión..."></textarea>
+            </div>
+          </section>
+
+          <section class="axis-block" aria-label="Eje 2: Equipo, rutina y assets">
+            <h3 class="axis-title">Eje 2: Reparto de roles y flujo con assets</h3>
+
+            <div class="question-item">
+              <label class="question-label" for="q3">3. ¿Qué piezas quedan fijas en el colchón automático de Meta Business y qué días va a filmar en sala la nueva integrante?</label>
+              <textarea class="note-area" id="q3" data-key="q3" placeholder="Escribí acá lo que acuerden en la reunión..."></textarea>
+            </div>
+
+            <div class="question-item">
+              <label class="question-label" for="q4">4. ¿En qué casos publican directo con plantilla y cuándo le pasan el material crudo a AL para que edite con overlays Alpha?</label>
+              <textarea class="note-area" id="q4" data-key="q4" placeholder="Escribí acá lo que acuerden en la reunión..."></textarea>
+            </div>
+          </section>
+
+          <section class="axis-block" aria-label="Eje 3: Alianzas con escuelas de danza">
+            <h3 class="axis-title">Eje 3: Web B2B y escuelas de danza</h3>
+
+            <div class="question-item">
+              <label class="question-label" for="q5">5. ¿Cómo armamos el pack combinado para alumnos de danza (clases por mes, franjas de menor ocupación en sala y tarifa convenio)?</label>
+              <textarea class="note-area" id="q5" data-key="q5" placeholder="Escribí acá lo que acuerden en la reunión..."></textarea>
+            </div>
+
+            <div class="question-item">
+              <label class="question-label" for="q6">6. Más allá de referentes como Julio Bocca o Reina Reech, ¿a qué cinco escuelas o estudios cercanos contactamos primero?</label>
+              <textarea class="note-area" id="q6" data-key="q6" placeholder="Escribí acá lo que acuerden en la reunión..."></textarea>
+            </div>
+          </section>
+
+          <section class="axis-block" aria-label="Eje 4: Integración con Acro Suite">
+            <h3 class="axis-title">Eje 4: Prioridades de la App y Meta Business</h3>
+
+            <div class="question-item">
+              <label class="question-label" for="q7">7. De la gestión interna (presentes, faltas, cobros, avisos), ¿qué tarea hoy les saca más tiempo y conviene automatizar primero hacia redes?</label>
+              <textarea class="note-area" id="q7" data-key="q7" placeholder="Escribí acá lo que acuerden en la reunión..."></textarea>
+            </div>
+
+            <div class="question-item">
+              <label class="question-label" for="q8">8. ¿Quién valida y aprueba la cola programada de Meta Business antes de cada semana para mantener la curaduría sin frenar?</label>
+              <textarea class="note-area" id="q8" data-key="q8" placeholder="Escribí acá lo que acuerden en la reunión..."></textarea>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="colophon">
+      <span>Acrojump · @acro_jump · Campaña 2027: ¿Cuántos momentos recordás de tu año?</span>
+      <span>Barrio Abasto, Buenos Aires</span>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      /* 1. TEMA VERDE AGUA CLARITO (DEFAULT) / SALA DE NOCHE */
+      var root = document.documentElement;
+      var btnThemeToggle = document.getElementById('btn-theme-toggle');
+      var themeToggleLabel = document.getElementById('theme-toggle-label');
+      var THEME_KEY = 'acro_2027_pliego_theme_v2';
+
+      function applyTheme(theme) {
+        var next = theme === 'night' ? 'night' : 'day';
+        root.setAttribute('data-theme', next);
+        btnThemeToggle.setAttribute('aria-pressed', next === 'night' ? 'true' : 'false');
+        themeToggleLabel.textContent = next === 'night' ? 'Volver a Verde Agua Clarito' : 'Pasar a Modo Sala de Noche';
+        try {
+          localStorage.setItem(THEME_KEY, next);
+        } catch (err) {
+          /* Modo silencioso si el navegador bloquea storage */
+        }
+      }
+
+      try {
+        var savedTheme = localStorage.getItem(THEME_KEY);
+        if (savedTheme === 'night' || savedTheme === 'day') {
+          applyTheme(savedTheme);
+        }
+      } catch (err) {
+        applyTheme('day');
+      }
+
+      btnThemeToggle.addEventListener('click', function () {
+        var current = root.getAttribute('data-theme');
+        applyTheme(current === 'night' ? 'day' : 'night');
+      });
+
+      /* 2. IMPRIMIR PLIEGO */
+      document.getElementById('btn-print').addEventListener('click', function () {
+        window.print();
+      });
+
+      /* 3. TRADUCTOR DE ESCENAS REALES (PLIEGO 1) */
+      var sceneMap = {
+        gol: {
+          img: '../assets/acro_real_assets/04_coach_student_highfive_acrojump_1794277408616.jpg',
+          alt: 'Chocada de manos y festejo entre profe y alumna en Acrojump',
+          shoot: 'Dos o tres intentos donde el truco casi sale, caída en colchón, corrección corta del profe y la chocada de manos grupal cuando finalmente cae de pie.',
+          asset: 'Placa Alpha transparente ("¿Cuántos momentos recordás de tu año?" / "Ese truco no te puede ganar") lista para tirar encima en Premiere o CapCut.'
+        },
+        manos: {
+          img: '../assets/acro_real_assets/01_spotting_wrist_grip_v2_1794277180766.jpg',
+          alt: 'Agarre protector muñeca a muñeca en Acrojump',
+          shoot: 'Plano corto de muñecas firmes, manos cuidando en el aire y la sonrisa de alivio al aterrizar sin miedo.',
+          asset: 'Overlay vertical 9:16 ("No estás solo cuando volás por los aires") con sello de @acro_jump.'
+        },
+        lluvia: {
+          img: '../assets/acro_real_assets/frames_recorrido/frame_05_recorrido.jpg',
+          alt: 'Perspectiva longitudinal de la sala de Acrojump con colchonetas',
+          shoot: 'Plano desde la puerta o ventana con lluvia afuera y corte inmediato al movimiento, música y grupo adentro.',
+          asset: 'Plantilla ágil de Story "Llueve afuera, se sana adentro" disparada en un clic cuando cambia el clima.'
+        },
+        mate: {
+          img: '../assets/acro_real_assets/frames_recorrido/frame_09_recorrido.jpg',
+          alt: 'Sector de cocinita, dispenser y mate de Acrojump en Abasto',
+          shoot: 'Ronda en el descanso entre series, charla real entre alumnos y el clima de la recepción antes de arrancar.',
+          asset: 'Subtítulo limpio en FreightBigCmpPro sobre cuadro real sin música invasiva ni filtros fríos.'
+        }
+      };
+
+      var sceneBtns = Array.prototype.slice.call(document.querySelectorAll('.scene-btn'));
+      var sceneImg = document.getElementById('scene-img');
+      var sceneShoot = document.getElementById('scene-shoot');
+      var sceneAsset = document.getElementById('scene-asset');
+
+      sceneBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var key = btn.getAttribute('data-scene');
+          var item = sceneMap[key];
+          if (!item) return;
+          sceneBtns.forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+          btn.setAttribute('aria-pressed', 'true');
+          sceneImg.src = item.img;
+          sceneImg.alt = item.alt;
+          sceneShoot.textContent = item.shoot;
+          sceneAsset.textContent = item.asset;
+        });
+      });
+
+      /* 4. INSPECTOR DE PIEZA + VISOR EN VIVO DE ENSAYOS (PLIEGO 2) */
+      var pieceMap = {
+        momentos: {
+          headline: '¿Cuántos momentos recordás de tu año?',
+          subline: 'Un mate antes de entrar, una caída cuidada, unas risas y ese truco que al final se festeja como un gol.',
+          tag: '@acro_jump · Campaña 2027',
+          format: 'Pieza Madre / Overlay Alpha 1080x1920',
+          photo: '../assets/acro_real_assets/01_spotting_wrist_grip_v2_1794277180766.jpg'
+        },
+        manos: {
+          headline: 'Hay muchas manos sosteniéndote',
+          subline: 'No estás solo cuando volás por los aires: te cuidan, te aplauden y te levantan para volver a intentar.',
+          tag: '@acro_jump · Spotting real en Abasto',
+          format: 'Overlay Alpha 1080x1920 para Premiere',
+          photo: '../assets/acro_real_assets/03_reassuring_coach_touch_1794277361022.jpg'
+        },
+        lluvia: {
+          headline: 'Llueve afuera, se sana adentro',
+          subline: 'Un día gris cambia cuando te ponés en movimiento. Los horarios de hoy en la sala siguen firmes.',
+          tag: '@acro_jump · Pulso diario',
+          format: 'Story ágil 9:16 (Gra / equipo contenido)',
+          photo: '../assets/acro_real_assets/frames_recorrido/frame_05_recorrido.jpg'
+        },
+        grilla: {
+          headline: 'Horarios y cupos de esta semana',
+          subline: 'Acro desde cero, Flexi y AcroDance en Abasto. Cupos leídos directo desde Acro Suite 2.0.',
+          tag: '@acro_jump · Colchón Base Meta Business',
+          format: 'Placa automatizada Feed 4:5 y Story 9:16',
+          photo: '../assets/acro_real_assets/frames_recorrido/frame_02_recorrido.jpg'
+        }
+      };
+
+      var currentPiece = 'momentos';
+      var currentSurface = 'photo';
+
+      var assetStage = document.getElementById('asset-stage');
+      var assetHeadline = document.getElementById('asset-headline');
+      var assetSubline = document.getElementById('asset-subline');
+      var assetTag = document.getElementById('asset-tag');
+      var assetFormat = document.getElementById('asset-format');
+      var pieceBtns = Array.prototype.slice.call(document.querySelectorAll('.piece-btn'));
+      var surfaceBtns = Array.prototype.slice.call(document.querySelectorAll('.surface-btn'));
+
+      function syncAssetStage() {
+        var data = pieceMap[currentPiece];
+        if (!data) return;
+        assetHeadline.textContent = data.headline;
+        assetSubline.textContent = data.subline;
+        assetTag.textContent = data.tag;
+        assetFormat.textContent = data.format;
+        assetStage.setAttribute('data-surface', currentSurface);
+        if (currentSurface === 'photo') {
+          assetStage.style.backgroundImage = 'url("' + data.photo + '")';
+        } else {
+          assetStage.style.backgroundImage = '';
+        }
+      }
+
+      pieceBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          currentPiece = btn.getAttribute('data-piece');
+          pieceBtns.forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+          btn.setAttribute('aria-pressed', 'true');
+          syncAssetStage();
+        });
+      });
+
+      surfaceBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          currentSurface = btn.getAttribute('data-surface-pick');
+          surfaceBtns.forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+          btn.setAttribute('aria-pressed', 'true');
+          syncAssetStage();
+        });
+      });
+
+      /* VISOR IFRAME DE ENSAYOS */
+      var protoMap = {
+        manifiesto: {
+          name: 'Manifiesto de Galpón (Herencia Wudding / Suelo)',
+          desc: 'Comparó el viejo volante neón contra fotografía real a sangre, verde petróleo original (#009084), grano analógico y ticket técnico de sala.',
+          src: '../tools/acro_pieza_manifiesto_2027.html'
+        },
+        caminos: {
+          name: 'Los 4 Caminos Visuales 2027',
+          desc: 'Exploración comparativa sobre blanco hueso, verde petróleo y ciruela profundo para equilibrar brutalismo coreográfico y calidez.',
+          src: '../tools/acro_cuatro_estilos.html'
+        },
+        consagrados: {
+          name: 'Dirección de Arte y Estudios Consagrados',
+          desc: 'Sistema multimedial de dirección creativa y comparación entre tres corrientes visuales pensadas para 2027.',
+          src: '../tools/acro_estudios_consagrados.html'
+        },
+        raw: {
+          name: 'Acro Raw Lab 2027 (Foley y Anatomía de la Caída)',
+          desc: 'Laboratorio experimental con simulador 9:16, audio real del galpón (impacto en colchonetón, zapatilla) y narrativa Fail-to-Mastery.',
+          src: '../tools/acro_raw_experience/index.html'
+        },
+        danza: {
+          name: 'Prototipo Overlay Taller de Danza (Centrado y Escalado)',
+          desc: 'Ensayo técnico de placas 9:16 para grupos de danza y competición. Ya centrado y escalado al viewport del navegador.',
+          src: '../tools/overlay_taller_danza.html'
+        },
+        recorrido: {
+          name: 'Recorrido Secuencial 4K del Espacio (10 Hitos)',
+          desc: 'Los 10 frames reales desde la puerta de Abasto hasta la recepción, las colchonetas, las telas y la cocinita del mate.',
+          src: '../tools/galeria_recorrido_real.html'
+        },
+        detalles: {
+          name: 'Colección de Detalles Humanos y Spotting 4K',
+          desc: 'Planos reales de agarre muñeca a muñeca, mano del profe en el hombro, chocada de manos y caída segura.',
+          src: '../tools/galeria_assets_reales.html'
+        }
+      };
+
+      var protoBtns = Array.prototype.slice.call(document.querySelectorAll('.proto-pick'));
+      var protoInfoName = document.getElementById('proto-info-name');
+      var protoInfoDesc = document.getElementById('proto-info-desc');
+      var protoOpenTab = document.getElementById('proto-open-tab');
+      var protoLiveIframe = document.getElementById('proto-live-iframe');
+
+      protoBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var key = btn.getAttribute('data-proto');
+          var item = protoMap[key];
+          if (!item) return;
+          protoBtns.forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+          btn.setAttribute('aria-pressed', 'true');
+          protoInfoName.textContent = item.name;
+          protoInfoDesc.textContent = item.desc;
+          protoOpenTab.href = item.src;
+          protoLiveIframe.src = item.src;
+        });
+      });
+
+      /* SELECTOR RAPIDO V1 A V6 EN PLIEGO 4 */
+      var landingBtns = Array.prototype.slice.call(document.querySelectorAll('.landing-pick'));
+      var landingLiveIframe = document.getElementById('landing-live-iframe');
+      var landingOpenDirect = document.getElementById('landing-open-direct');
+
+      landingBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var src = btn.getAttribute('data-landing');
+          if (!src) return;
+          landingBtns.forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+          btn.setAttribute('aria-pressed', 'true');
+          landingLiveIframe.src = src;
+          landingOpenDirect.href = src;
+        });
+      });
+
+      /* 5. CONMUTADOR WEB B2C / B2B + GRILLA DE EJEMPLO (PLIEGO 4) */
+      var webTabs = Array.prototype.slice.call(document.querySelectorAll('.web-tab'));
+      var webPanels = Array.prototype.slice.call(document.querySelectorAll('.web-panel'));
+
+      function switchWebView(viewKey) {
+        var targetId = viewKey === 'b2b' ? 'web-panel-b2b' : 'web-panel-b2c';
+        webTabs.forEach(function (t) {
+          t.setAttribute('aria-selected', t.getAttribute('aria-controls') === targetId ? 'true' : 'false');
+        });
+        webPanels.forEach(function (panel) {
+          panel.classList.toggle('is-active', panel.id === targetId);
+        });
+      }
+
+      webTabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          var targetId = tab.getAttribute('aria-controls');
+          switchWebView(targetId === 'web-panel-b2b' ? 'b2b' : 'b2c');
+        });
+      });
+
+      document.querySelectorAll('[data-web-jump]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          switchWebView(btn.getAttribute('data-web-jump'));
+          var scrollTargetId = btn.getAttribute('data-scroll-target');
+          if (scrollTargetId) {
+            var targetEl = document.getElementById(scrollTargetId);
+            if (targetEl) targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+
+      var sampleSchedule = [
+        { cat: 'inicial', day: 'Lun y Mié · 19:00', name: 'Acro Desde Cero (Ejemplo)', meta: 'Progresión en colchón y spotting asistido' },
+        { cat: 'flexi', day: 'Sábados · 11:30', name: 'Flexibilidad Inteligente + Dúo (Ejemplo)', meta: 'Movilidad articular y elongación cuidada' },
+        { cat: 'kids', day: 'Mar y Jue · 17:30', name: 'AcroDance & Kids (Ejemplo)', meta: 'Juego motriz, rolidos y coordinación grupal' }
+      ];
+
+      var activeScheduleFilter = 'all';
+      var scheduleSearchInput = document.getElementById('schedule-search');
+      var schedFilterBtns = Array.prototype.slice.call(document.querySelectorAll('.sched-filter-btn'));
+      var scheduleListContainer = document.getElementById('schedule-list-container');
+
+      function renderScheduleSample() {
+        var query = (scheduleSearchInput.value || '').trim().toLowerCase();
+        var filtered = sampleSchedule.filter(function (row) {
+          var matchCat = activeScheduleFilter === 'all' || row.cat === activeScheduleFilter;
+          var matchQuery = !query || (row.name + ' ' + row.meta + ' ' + row.day).toLowerCase().indexOf(query) !== -1;
+          return matchCat && matchQuery;
+        });
+
+        scheduleListContainer.innerHTML = '';
+
+        if (filtered.length === 0) {
+          var emptyDiv = document.createElement('div');
+          emptyDiv.className = 'schedule-empty';
+          emptyDiv.innerHTML =
+            '<span style="font-size: 14px; color: var(--ink-main);">No hay turnos de ejemplo que coincidan con "' + query + '".</span>';
+          var resetBtn = document.createElement('button');
+          resetBtn.type = 'button';
+          resetBtn.className = 'choice-btn';
+          resetBtn.textContent = 'Mostrar todos los turnos';
+          resetBtn.addEventListener('click', function () {
+            scheduleSearchInput.value = '';
+            activeScheduleFilter = 'all';
+            schedFilterBtns.forEach(function (b) {
+              b.setAttribute('aria-pressed', b.getAttribute('data-filter') === 'all' ? 'true' : 'false');
+            });
+            renderScheduleSample();
+          });
+          emptyDiv.appendChild(resetBtn);
+          scheduleListContainer.appendChild(emptyDiv);
+          return;
+        }
+
+        var rowsWrap = document.createElement('div');
+        rowsWrap.className = 'schedule-rows';
+        filtered.forEach(function (item) {
+          var rowEl = document.createElement('div');
+          rowEl.className = 'schedule-row';
+          rowEl.innerHTML =
+            '<div class="schedule-day">' + item.day + '</div>' +
+            '<div>' +
+              '<div class="schedule-class">' + item.name + '</div>' +
+              '<div class="schedule-meta">' + item.meta + '</div>' +
+            '</div>' +
+            '<span style="font-size: 13px; font-weight: 700; color: var(--accent-gol-text);">Sync Acro Suite</span>';
+          rowsWrap.appendChild(rowEl);
+        });
+        scheduleListContainer.appendChild(rowsWrap);
+      }
+
+      schedFilterBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          activeScheduleFilter = btn.getAttribute('data-filter');
+          schedFilterBtns.forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+          btn.setAttribute('aria-pressed', 'true');
+          renderScheduleSample();
+        });
+      });
+
+      scheduleSearchInput.addEventListener('input', renderScheduleSample);
+      renderScheduleSample();
+
+      /* 6. CUADERNO DE REUNION CON LOCALSTORAGE + EXPORT .MD (PLIEGO 5) */
+      var NOTES_KEY = 'acro_2027_minuta_gra';
+      var noteAreas = Array.prototype.slice.call(document.querySelectorAll('.note-area'));
+      var saveStatus = document.getElementById('save-status');
+      var btnClearAsk = document.getElementById('btn-clear-ask');
+      var clearConfirmRow = document.getElementById('clear-confirm-row');
+      var btnClearConfirm = document.getElementById('btn-clear-confirm');
+      var btnClearCancel = document.getElementById('btn-clear-cancel');
+
+      function updateSaveIndicator(count) {
+        saveStatus.classList.remove('is-error');
+        if (count === 0) {
+          saveStatus.textContent = 'Sin notas guardadas todavía. Escribí en cualquier pregunta para guardar.';
+        } else {
+          saveStatus.textContent = 'Guardado localmente en este navegador (' + count + ' de 8 respuestas completas).';
+        }
+      }
+
+      function readNotesState() {
+        var filled = 0;
+        var data = {};
+        noteAreas.forEach(function (area) {
+          var val = area.value.trim();
+          data[area.getAttribute('data-key')] = area.value;
+          if (val.length > 0) filled += 1;
+        });
+        return { data: data, filled: filled };
+      }
+
+      function saveNotes() {
+        var state = readNotesState();
+        try {
+          localStorage.setItem(NOTES_KEY, JSON.stringify(state.data));
+          updateSaveIndicator(state.filled);
+        } catch (err) {
+          saveStatus.classList.add('is-error');
+          saveStatus.textContent = 'No se pudo escribir en localStorage. Usá "Exportar Minuta (.md)" para no perder los apuntes.';
+        }
+      }
+
+      try {
+        var raw = localStorage.getItem(NOTES_KEY);
+        if (raw) {
+          var parsed = JSON.parse(raw);
+          noteAreas.forEach(function (area) {
+            var k = area.getAttribute('data-key');
+            if (parsed && typeof parsed[k] === 'string') {
+              area.value = parsed[k];
+            }
+          });
+        }
+        updateSaveIndicator(readNotesState().filled);
+      } catch (err) {
+        saveStatus.classList.add('is-error');
+        saveStatus.textContent = 'Almacenamiento local no disponible en este navegador. Exportá en Markdown antes de cerrar.';
+      }
+
+      noteAreas.forEach(function (area) {
+        area.addEventListener('input', saveNotes);
+      });
+
+      btnClearAsk.addEventListener('click', function () {
+        btnClearAsk.style.display = 'none';
+        clearConfirmRow.classList.add('is-open');
+        btnClearCancel.focus();
+      });
+
+      btnClearCancel.addEventListener('click', function () {
+        clearConfirmRow.classList.remove('is-open');
+        btnClearAsk.style.display = 'inline-flex';
+        btnClearAsk.focus();
+      });
+
+      btnClearConfirm.addEventListener('click', function () {
+        noteAreas.forEach(function (area) {
+          area.value = '';
+        });
+        saveNotes();
+        clearConfirmRow.classList.remove('is-open');
+        btnClearAsk.style.display = 'inline-flex';
+      });
+
+      function exportMarkdown() {
+        var lines = [
+          '# Minuta Acrojump 2027: Campaña "¿Cuántos momentos recordás de tu año?"',
+          '',
+          'Participantes: AL, Gra y Equipo de Contenido',
+          'Cuenta oficial: @acro_jump',
+          'Fecha de exportación: ' + new Date().toLocaleDateString('es-AR'),
+          '',
+          '## Acuerdos y Respuestas de Debate',
+          ''
+        ];
+
+        noteAreas.forEach(function (area) {
+          var label = document.querySelector('label[for="' + area.id + '"]');
+          var qText = label ? label.textContent : area.id;
+          var ans = area.value.trim() || '[Pendiente de definir en reunión]';
+          lines.push('### ' + qText);
+          lines.push(ans);
+          lines.push('');
+        });
+
+        var blob = new Blob([lines.join('\n')], { type: 'text/markdown;charset=utf-8' });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'minuta_acrojump_2027.md';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }
+
+      document.getElementById('btn-export-md').addEventListener('click', exportMarkdown);
+      document.getElementById('btn-export-md-bottom').addEventListener('click', exportMarkdown);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ACROJUMP · Experiencia Híbrida 3D + Sala Real · Abasto</title>
+<meta name="description" content="Recorrido 3D combinado con fotos y video real del galpón de Acrojump, Sánchez de Bustamante 762, Abasto. Acrobacia para Kids y Adultxs.">
+<meta property="og:title" content="ACROJUMP · Entrá al galpón (3D + Sala Real)">
+<meta property="og:description" content="Antes de volar, aprendés a caer. Recorré la sala en 3D y compará cada estación con el espacio real.">
+<meta property="og:image" content="./assets/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SportsActivityLocation",
+  "name": "ACROJUMP",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Sánchez de Bustamante 762",
+    "addressLocality": "Ciudad Autónoma de Buenos Aires",
+    "addressRegion": "CABA",
+    "addressCountry": "AR"
+  },
+  "telephone": "+5491176096294",
+  "sameAs": ["https://www.instagram.com/acro_jump/"],
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.7", "reviewCount": "97" }
+}
+</script>
+<style>
+  :root{--bg:#0c0d12;--surface:#13151e;--ink:#f4f4f7;--muted:#9da3b6;--line:rgba(255,255,255,.14);--cyan:#00ffeb;--violet:#bd00ff;
+    --display:'Abolition','Archivo',sans-serif;--sans:'Archivo',system-ui,sans-serif;--mono:'Space Mono',monospace}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  body{overflow-x:clip}
+  :focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+  .mono{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+  .disp{font-family:var(--display);font-weight:900;text-transform:uppercase;line-height:.92;letter-spacing:.01em}
+
+  /* Dual background canvases (3D + Real video frames) */
+  #scene,#real-canvas{position:fixed;inset:0;width:100%;height:100dvh;display:block;touch-action:pan-y;transition:opacity .35s ease}
+  #scene{z-index:0}
+  #real-canvas{z-index:1;opacity:0;pointer-events:none}
+  body.mode-real #real-canvas{opacity:1}
+  body.mode-real #scene{opacity:.15}
+  .scrim{position:fixed;inset:0;z-index:2;pointer-events:none;
+    background:linear-gradient(180deg,rgba(12,13,18,.52) 0%,rgba(12,13,18,.12) 45%,rgba(12,13,18,.84) 100%)}
+
+  /* Loader */
+  #loader{position:fixed;inset:0;z-index:60;background:var(--bg);display:grid;place-items:center;transition:opacity .5s}
+  #loader.out{opacity:0;pointer-events:none}
+  #loader .door{width:120px;height:170px;border:1px solid var(--line);border-left:3px solid var(--cyan);display:grid;place-items:end center;padding:12px}
+
+  /* Top bar with 3D / Sala Real toggle */
+  .top{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;justify-content:space-between;align-items:center;gap:10px;
+    padding:calc(10px + env(safe-area-inset-top)) 14px 10px;background:linear-gradient(180deg,rgba(12,13,18,.9),rgba(12,13,18,0))}
+  .top img{height:26px;width:auto}
+  .mode-switch{display:inline-flex;background:var(--bg);border:1px solid var(--line);padding:2px;gap:2px}
+  .mode-switch button{min-height:40px;padding:0 11px;border:0;background:transparent;color:var(--muted);
+    font-family:var(--mono);font-size:11px;cursor:pointer;text-transform:uppercase}
+  .mode-switch button.on{background:var(--cyan);color:#0c0d12;font-weight:700}
+
+  /* Progress rail (desktop only) */
+  .rail{display:none}
+  @media (min-width:900px){
+    .rail{position:fixed;left:16px;top:50%;transform:translateY(-50%);z-index:25;display:flex;flex-direction:column;gap:6px}
+    .rail button{width:44px;height:44px;background:transparent;border:0;cursor:pointer;display:grid;place-items:center}
+    .rail button i{display:block;width:3px;height:18px;background:var(--line);transition:background .2s,height .2s}
+    .rail button.on i{background:var(--cyan);height:30px}
+  }
+
+  /* Hotspot labels (projected from 3D) */
+  .hot{position:fixed;z-index:15;left:0;top:0;pointer-events:none;opacity:0;transition:opacity .25s;white-space:nowrap}
+  .hot span{display:inline-block;background:var(--bg);border:1px solid var(--line);border-left:2px solid var(--cyan);padding:4px 8px;color:var(--ink)}
+  .hot::before{content:"";position:absolute;left:-4px;top:-4px;width:8px;height:8px;border-radius:50%;background:var(--cyan)}
+  body.mode-real .hot{opacity:0!important}
+
+  /* Scroll stations + embedded real photo strip per card */
+  main{position:relative;z-index:10}
+  .st{min-height:100dvh;display:flex;align-items:flex-end;padding:74px 14px calc(86px + env(safe-area-inset-bottom))}
+  .card{width:100%;max-width:480px;background:rgba(12,13,18,.93);border:1px solid var(--line);border-top:2px solid var(--cyan);padding:18px}
+  .card .kicker{color:var(--cyan);display:block;margin-bottom:8px}
+  .card h1{font-size:clamp(34px,9.5vw,74px);margin-bottom:10px}
+  .card h2{font-size:clamp(30px,8vw,54px);margin-bottom:8px}
+  .card h1 em,.card h2 em{font-style:normal;color:var(--cyan)}
+  .card p{color:#d3d6e0;font-size:14.5px;line-height:1.48}
+
+  /* Real photo inlay inside each card (hybrid bridge) */
+  .real-inlay{margin-top:12px;display:grid;grid-template-columns:112px 1fr;gap:10px;align-items:center;
+    background:var(--surface);border:1px solid var(--line);padding:6px}
+  .real-inlay img{width:112px;height:74px;object-fit:cover;display:block}
+  .real-inlay .meta{display:flex;flex-direction:column;gap:4px;min-width:0}
+  .real-inlay .meta strong{font-size:12px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .real-inlay .meta span{font-size:11px;color:var(--muted)}
+  .real-inlay.two{grid-template-columns:1fr 1fr;gap:6px;padding:6px}
+  .real-inlay.two figure{background:var(--bg);border:1px solid var(--line)}
+  .real-inlay.two img{width:100%;height:78px;object-fit:cover}
+  .real-inlay.two figcaption{padding:5px 7px;font-size:11px;color:var(--muted)}
+
+  .proof{margin-top:12px;padding-top:10px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+  .proof b{color:var(--ink)}
+  .stat{display:flex;align-items:baseline;gap:12px;margin:4px 0 8px}
+  .stat b{font-family:var(--display);font-size:54px;line-height:.9;color:var(--cyan)}
+  .stat span{font-size:13.5px;color:#d3d6e0}
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+  .duo div{border:1px solid var(--line);padding:10px;font-size:12.5px;color:var(--muted);background:var(--surface)}
+  .duo div strong{display:block;color:var(--ink);font-size:14px;margin-bottom:3px}
+  .duo div.k{border-top:2px solid var(--cyan)} .duo div.a{border-top:2px solid var(--violet)}
+
+  /* Configurator */
+  .seg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+  .seg button,.chip,.sch{font-family:var(--sans);cursor:pointer;color:var(--ink);background:var(--surface);border:1px solid var(--line)}
+  .seg button{min-height:44px;font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+  .seg button.on{background:var(--cyan);color:#0c0d12;border-color:var(--cyan)}
+  .lbl{display:flex;justify-content:space-between;align-items:baseline;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:8px 0 5px}
+  .lbl b{font-family:var(--display);font-size:22px;color:var(--cyan)}
+  input[type=range]{width:100%;min-height:44px;accent-color:var(--cyan);cursor:pointer}
+  .chips{display:flex;flex-wrap:wrap;gap:7px}
+  .chip{min-height:44px;padding:8px 12px;font-size:13px;font-weight:600}
+  .chip.on,.sch.on{border-color:var(--cyan);color:var(--cyan);background:rgba(0,255,235,.1)}
+  .schs{display:grid;gap:7px}
+  .sch{min-height:48px;text-align:left;padding:8px 11px}
+  .sch strong{display:block;font-size:13px}.sch span{font-size:11.5px;color:var(--muted)}
+  .wa{display:flex;align-items:center;justify-content:center;min-height:48px;margin-top:12px;background:var(--cyan);color:#0c0d12;
+    font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:13.5px;text-decoration:none}
+
+  /* Bottom dock */
+  .dock{position:fixed;left:0;right:0;bottom:0;z-index:30;display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center;
+    padding:9px 14px calc(9px + env(safe-area-inset-bottom));background:rgba(12,13,18,.96);border-top:1px solid var(--line)}
+  .dock button{min-height:46px;min-width:46px;border:1px solid var(--line);background:var(--surface);color:var(--ink);
+    font-family:var(--sans);font-weight:800;font-size:15px;cursor:pointer}
+  .dock .lab{text-align:center;color:var(--muted)}
+  .dock .lab b{display:block;color:var(--ink);font-size:13px;font-family:var(--sans);letter-spacing:.04em}
+
+  @media (min-width:900px){
+    .st{padding:80px 6vw 100px 90px}
+    .card{padding:24px}
+    .dock{left:auto;right:24px;bottom:24px;width:400px;border:1px solid var(--line)}
+  }
+  @media (max-width:380px){
+    .real-inlay{grid-template-columns:88px 1fr}
+    .real-inlay img{width:88px;height:66px}
+    .duo{grid-template-columns:1fr}
+  }
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<div id="loader"><div class="door"><span class="mono" style="color:var(--cyan)">Entrando…</span></div></div>
+
+<canvas id="scene" aria-hidden="true"></canvas>
+<canvas id="real-canvas" aria-hidden="true"></canvas>
+<div class="scrim"></div>
+
+<header class="top">
+  <img src="./assets/logo.png" alt="ACROJUMP" onerror="this.outerHTML='<b class=disp style=font-size:22px>ACROJUMP</b>'">
+  <div class="mode-switch" role="group" aria-label="Modo de vista">
+    <button type="button" class="on" id="btn-3d" aria-pressed="true">3D + Real</button>
+    <button type="button" id="btn-real" aria-pressed="false">Video Sala</button>
+  </div>
+</header>
+
+<nav class="rail" id="rail" aria-label="Estaciones del recorrido"></nav>
+
+<div class="hot" data-hot="airtrack"><span class="mono">Pista Airtrack</span></div>
+<div class="hot" data-hot="telas"><span class="mono">Telas aéreas</span></div>
+<div class="hot" data-hot="fosa"><span class="mono">Colchonetones</span></div>
+<div class="hot" data-hot="cajon"><span class="mono">Cajón de salto</span></div>
+
+<main>
+  <section class="st" data-name="La puerta">
+    <div class="card">
+      <span class="mono kicker">01 · Sánchez de Bustamante 762</span>
+      <h1 class="disp">Antes de volar,<br><em>aprendés a caer.</em></h1>
+      <p>Caminás el modelo 3D del galpón y en cada parada ves cómo es el espacio real. Arriba podés cambiar a <b>Video Sala</b> en cualquier momento.</p>
+      <div class="real-inlay">
+        <img src="./assets/frame_01.jpg" alt="Puerta real de entrada a Acrojump">
+        <div class="meta">
+          <strong>Foto real · La puerta</strong>
+          <span>Abrís y dejás la calle atrás.</span>
+        </div>
+      </div>
+      <div class="proof"><b>4,7 ★</b> en Google · 97 reseñas · «El trato con los niños es muy bueno, técnica y juegos.»</div>
+    </div>
+  </section>
+
+  <section class="st" data-name="El galpón">
+    <div class="card">
+      <span class="mono kicker">02 · El Galpón Real</span>
+      <h2 class="disp">Un taller vivo,<br>no una vidriera.</h2>
+      <p>Airtrack, telas, cajón y colchonetones de alta densidad. Cada metro está pensado para que la caída sea aire, no golpe.</p>
+      <div class="real-inlay two">
+        <figure>
+          <img src="./assets/frame_03.jpg" alt="Pasillo y cajón real de Acrojump">
+          <figcaption>Pasillo y cajón</figcaption>
+        </figure>
+        <figure>
+          <img src="./assets/frame_06.jpg" alt="Airtrack azul y telas aéreas reales">
+          <figcaption>Airtrack y telas</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="st" data-name="Profes &amp; Familia">
+    <div class="card">
+      <span class="mono kicker">03 · Cómo trabajamos</span>
+      <h2 class="disp">No trabajamos<br>a granel.</h2>
+      <div class="stat"><b>1:6</b><span>Un profe cada seis u ocho alumnos, abajo tuyo cuidando cada apoyo.</span></div>
+      <p>Acá nadie es un número. Sabemos cómo se llama cada chico, cada familia y cada adulto que pisa el colchón.</p>
+      <div class="real-inlay two">
+        <figure>
+          <img src="./assets/spotting.jpg" alt="Spotting activo de muñeca">
+          <figcaption>Spotting real</figcaption>
+        </figure>
+        <figure>
+          <img src="./assets/highfive.jpg" alt="Festejo entre profe y alumna">
+          <figcaption>Comunidad en ronda</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="st" data-name="Tu grupo">
+    <div class="card">
+      <span class="mono kicker">04 · Dos Caminos</span>
+      <h2 class="disp">Elegí tu grupo.</h2>
+      <div class="duo">
+        <div class="k"><strong>Kids &amp; Teens</strong>3 a 16 años. Juego motriz, técnica real y cero pantallas.</div>
+        <div class="a"><strong>Adultxs</strong>Desde cero. Acro piso, giros, flexi y telas.</div>
+      </div>
+      <div class="real-inlay">
+        <img src="./assets/airtrack.jpg" alt="Detalle real de pista Airtrack">
+        <div class="meta">
+          <strong>1ra clase · Qué traer</strong>
+          <span>Ropa sin cierres · pelo atado · agua · 10 min antes</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="st" id="clase" data-name="Tu clase">
+    <div class="card">
+      <span class="mono kicker">05 · Subite al colchón</span>
+      <h2 class="disp">Armá tu<br><em>clase de prueba.</em></h2>
+      <div class="seg" id="seg">
+        <button type="button" class="on" data-b="kids" aria-pressed="true">Kids / Teens</button>
+        <button type="button" class="on-no" data-b="adultxs" aria-pressed="false">Adultxs</button>
+      </div>
+      <div id="fk">
+        <div class="lbl"><span>Edad</span><b id="ev">7 años</b></div>
+        <input type="range" id="er" min="3" max="16" value="7" aria-label="Edad">
+        <div class="lbl"><span>¿Cómo es?</span></div>
+        <div class="chips" data-k="perfil">
+          <button type="button" class="chip on" aria-pressed="true">No para de moverse</button>
+          <button type="button" class="chip" aria-pressed="false">Es tímido o tímida</button>
+          <button type="button" class="chip" aria-pressed="false">Le encanta girar</button>
+        </div>
+      </div>
+      <div id="fa" hidden>
+        <div class="lbl"><span>¿Qué querés probar?</span></div>
+        <div class="chips" data-k="obj">
+          <button type="button" class="chip on" aria-pressed="true">Acro piso desde cero</button>
+          <button type="button" class="chip" aria-pressed="false">Técnica y giros</button>
+          <button type="button" class="chip" aria-pressed="false">Flexibilidad</button>
+          <button type="button" class="chip" aria-pressed="false">Telas</button>
+        </div>
+      </div>
+      <div class="lbl"><span>Horarios</span></div>
+      <div class="schs" id="schs"></div>
+      <a class="wa" id="wa" target="_blank" rel="noopener">Consultar por WhatsApp →</a>
+      <div class="proof" style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;">
+        <a href="https://maps.google.com/?q=S%C3%A1nchez+de+Bustamante+762+CABA" target="_blank" rel="noopener" style="text-decoration:none;">Bustamante 762 · Maps</a>
+        <a href="https://www.instagram.com/acro_jump/" target="_blank" rel="noopener" style="text-decoration:none;">@acro_jump</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<nav class="dock" aria-label="Navegación del recorrido">
+  <button type="button" id="prev" aria-label="Estación anterior">←</button>
+  <div class="lab mono"><span id="dockN">01 / 05</span><b id="dockT">La puerta</b></div>
+  <button type="button" id="next" aria-label="Estación siguiente">→</button>
+</nav>
+
+<!-- Independent UI & Real Video Scrubbing Script -->
+<script>
+  const secs = [...document.querySelectorAll('.st')];
+  const rail = document.getElementById('rail');
+  secs.forEach((s, i) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('aria-label', s.dataset.name);
+    b.innerHTML = '<i></i>';
+    b.onclick = () => go(i);
+    rail.appendChild(b);
+  });
+  const railBtns = [...rail.children];
+
+  window.__scrollState = { target: 0, curSec: 0 };
+  function go(i) {
+    i = Math.max(0, Math.min(secs.length - 1, i));
+    secs[i].scrollIntoView({ behavior: 'smooth' });
+  }
+  document.getElementById('prev').onclick = () => go(window.__scrollState.curSec - 1);
+  document.getElementById('next').onclick = () => go(window.__scrollState.curSec + 1);
+
+  /* Mode Switch: 3D + Real vs Video Sala */
+  const btn3d = document.getElementById('btn-3d');
+  const btnReal = document.getElementById('btn-real');
+  let isRealMode = false;
+  function setMode(real) {
+    isRealMode = real;
+    document.body.classList.toggle('mode-real', real);
+    btn3d.classList.toggle('on', !real);
+    btnReal.classList.toggle('on', real);
+    btn3d.setAttribute('aria-pressed', String(!real));
+    btnReal.setAttribute('aria-pressed', String(real));
+  }
+  btn3d.onclick = () => setMode(false);
+  btnReal.onclick = () => setMode(true);
+
+  /* Real 72-frame video canvas synced to scroll */
+  const TOTAL_FRAMES = 72;
+  const rCanvas = document.getElementById('real-canvas');
+  const rCtx = rCanvas.getContext('2d');
+  const rFrames = new Array(TOTAL_FRAMES);
+  let rLastDrawn = -1, rCurrent = 0, rTarget = 0;
+
+  function resizeReal() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    rCanvas.width = Math.floor(window.innerWidth * dpr);
+    rCanvas.height = Math.floor(window.innerHeight * dpr);
+    rLastDrawn = -1;
+  }
+  window.addEventListener('resize', resizeReal);
+  resizeReal();
+
+  function drawCoverReal(img) {
+    if (!img || !img.complete || !img.naturalWidth) return;
+    const cw = rCanvas.width, ch = rCanvas.height;
+    const scale = Math.max(cw / img.naturalWidth, ch / img.naturalHeight);
+    const w = img.naturalWidth * scale, h = img.naturalHeight * scale;
+    rCtx.drawImage(img, (cw - w) / 2, (ch - h) / 2, w, h);
+  }
+
+  for (let i = 0; i < TOTAL_FRAMES; i++) {
+    setTimeout(() => {
+      const img = new Image();
+      img.src = `./assets/tour/f_${String(i + 1).padStart(3, '0')}.jpg`;
+      img.onload = () => { if (i === 0 && rLastDrawn === -1) { drawCoverReal(img); rLastDrawn = 0; } };
+      rFrames[i] = img;
+    }, i * 25);
+  }
+
+  function updateScroll() {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const ratio = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+    window.__scrollState.target = ratio * (secs.length - 1);
+    rTarget = ratio * (TOTAL_FRAMES - 1);
+    const near = Math.min(secs.length - 1, Math.round(window.__scrollState.target));
+    if (near !== window.__scrollState.curSec) {
+      window.__scrollState.curSec = near;
+      railBtns.forEach((b, k) => b.classList.toggle('on', k === near));
+      document.getElementById('dockN').textContent = `0${near + 1} / 0${secs.length}`;
+      document.getElementById('dockT').textContent = secs[near].dataset.name;
+    }
+  }
+  window.addEventListener('scroll', updateScroll, { passive: true });
+  updateScroll();
+
+  function realLoop() {
+    if (!document.hidden && isRealMode) {
+      rCurrent += (rTarget - rCurrent) * 0.16;
+      const idx = Math.min(TOTAL_FRAMES - 1, Math.max(0, Math.round(rCurrent)));
+      if (idx !== rLastDrawn) {
+        let pick = rFrames[idx];
+        if (!pick || !pick.complete || !pick.naturalWidth) {
+          for (let d = 1; d < TOTAL_FRAMES; d++) {
+            if (idx - d >= 0 && rFrames[idx - d]?.complete) { pick = rFrames[idx - d]; break; }
+            if (idx + d < TOTAL_FRAMES && rFrames[idx + d]?.complete) { pick = rFrames[idx + d]; break; }
+          }
+        }
+        if (pick && pick.complete && pick.naturalWidth) { drawCoverReal(pick); rLastDrawn = idx; }
+      }
+    }
+    requestAnimationFrame(realLoop);
+  }
+  realLoop();
+
+  /* Fallback loader clear */
+  setTimeout(() => document.getElementById('loader').classList.add('out'), 1600);
+
+  /* Configurator WhatsApp */
+  const CONFIG = {
+    wa: '5491176096294',
+    kids: [
+      { d: 'Lun y Mié · 17:30', x: 'Baby / MiniKids (3–6)', a: 3, b: 6 },
+      { d: 'Mar y Jue · 18:00', x: 'Kids inicial (7–11)', a: 7, b: 11 },
+      { d: 'Lun y Mié · 18:30', x: 'Kids / Teens (10–16)', a: 10, b: 16 },
+      { d: 'Sábados · 11:00', x: 'Sábado Kids (5–14)', a: 5, b: 14 }
+    ],
+    adultxs: [
+      { d: 'Lun y Mié · 19:30', x: 'Acro piso desde cero' },
+      { d: 'Mar y Jue · 20:00', x: 'Técnica, giros y airtrack' },
+      { d: 'Viernes · 19:00', x: 'Flexibilidad' },
+      { d: 'Sábados · 12:30', x: 'Acro + telas' }
+    ]
+  };
+  const st = { b: 'kids', edad: 7, perfil: 'No para de moverse', obj: 'Acro piso desde cero', h: '' };
+  const $ = id => document.getElementById(id);
+
+  function renderSch() {
+    let l = st.b === 'kids' ? CONFIG.kids.filter(o => st.edad >= o.a && st.edad <= o.b) : CONFIG.adultxs;
+    if (!l.length) l = CONFIG.kids.slice(0, 2);
+    if (!l.some(o => o.d === st.h)) st.h = l[0].d;
+    $('schs').innerHTML = '';
+    l.forEach(o => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      const on = o.d === st.h;
+      b.className = 'sch' + (on ? ' on' : '');
+      b.setAttribute('aria-pressed', on);
+      b.innerHTML = `<strong>${o.d}</strong><span>${o.x}</span>`;
+      b.onclick = () => { st.h = o.d; renderSch(); updateWa(); };
+      $('schs').appendChild(b);
+    });
+  }
+  function updateWa() {
+    const m = st.b === 'kids'
+      ? `Hola! Recorrí la sala de ACROJUMP en la web y quiero una clase de prueba para Kids.\n• Edad: ${st.edad} años\n• Cómo es: ${st.perfil}\n• Horario: ${st.h}`
+      : `Hola! Recorrí la sala de ACROJUMP en la web y quiero una clase de prueba para Adultxs.\n• Interés: ${st.obj}\n• Horario: ${st.h}`;
+    $('wa').href = `https://wa.me/${CONFIG.wa}?text=${encodeURIComponent(m)}`;
+  }
+  document.querySelectorAll('#seg button').forEach(b => b.onclick = () => {
+    document.querySelectorAll('#seg button').forEach(x => { x.classList.remove('on'); x.setAttribute('aria-pressed', 'false'); });
+    b.classList.add('on'); b.setAttribute('aria-pressed', 'true');
+    st.b = b.dataset.b; $('fk').hidden = st.b !== 'kids'; $('fa').hidden = st.b !== 'adultxs';
+    renderSch(); updateWa();
+  });
+  $('er').oninput = e => { st.edad = +e.target.value; $('ev').textContent = `${st.edad} años`; renderSch(); updateWa(); };
+  document.querySelectorAll('.chips').forEach(g => g.querySelectorAll('.chip').forEach(c => c.onclick = () => {
+    g.querySelectorAll('.chip').forEach(x => { x.classList.remove('on'); x.setAttribute('aria-pressed', 'false'); });
+    c.classList.add('on'); c.setAttribute('aria-pressed', 'true');
+    st[g.dataset.k] = c.textContent; updateWa();
+  }));
+  renderSch(); updateWa();
+</script>
+
+<!-- 3D Three.js Scene with Real Photo Panels Mounted Inside the Hall -->
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js"}}</script>
+<script type="module">
+import * as THREE from 'three';
+
+try {
+  const canvas = document.getElementById('scene');
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.08;
+  const isMobile = innerWidth < 768;
+  renderer.shadowMap.enabled = !isMobile;
+  if (!isMobile) renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x0c0d12);
+  scene.fog = new THREE.Fog(0x0c0d12, 14, 34);
+  const camera = new THREE.PerspectiveCamera(62, 1, 0.1, 80);
+
+  const M = c => new THREE.MeshStandardMaterial({ color: c, roughness: .85 });
+  const wall = M(0xbfc2c9), floor = M(0x3a3d47), blue = M(0x1f4fa8), red = M(0xb3333b),
+        pink = M(0xd77fc0), wood = M(0x7a5532), purple = M(0x5a1f8a), dark = M(0x15161c);
+  const cyanGlow = new THREE.MeshStandardMaterial({ color: 0x00ffeb, emissive: 0x00ffeb, emissiveIntensity: 1.3 });
+  const lampMat = new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xffe9f6, emissiveIntensity: 1.5 });
+  const box = (w, h, d, mat, x, y, z, cast = true) => {
+    const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat);
+    m.position.set(x, y, z); m.castShadow = cast && !isMobile; m.receiveShadow = !isMobile;
+    scene.add(m); return m;
+  };
+
+  /* Galpón 8x5.2x30m */
+  const W = 8, H = 5.2, L = 30;
+  box(W, .1, L, floor, 0, -.05, 0, false);
+  box(.1, H, L, wall, -W / 2, H / 2, 0, false);
+  box(.1, H, L, wall, W / 2, H / 2, 0, false);
+  box(W, .1, L, M(0xd9dbe0), 0, H, 0, false);
+  box(W, H, .1, dark, 0, H / 2, -L / 2, false);
+  box(1.3, 2.4, .12, M(0xc6d92b), 0, 1.2, L / 2 - .05);
+  box(1.6, 2.7, .1, purple, 0, 1.35, L / 2 - .02, false);
+  for (let i = 0; i < 3; i++) { box(.12, 2.6, 1.4, purple, W / 2 - .06, 1.3, 8 - i * 6); box(.08, 1.6, 2.2, M(0x8fa3b3), W / 2 - .05, 3.4, 6 - i * 6, false); }
+  box(1.6, .04, 22, M(0xa4343e), 2.6, .02, 2, false);
+
+  /* Real photo frames mounted on the 3D walls of the hall */
+  const texLoader = new THREE.TextureLoader();
+  function photoPanel(url, w, h, x, y, z, ry = 0) {
+    const tex = texLoader.load(url);
+    tex.colorSpace = THREE.SRGBColorSpace;
+    const frame = new THREE.Mesh(new THREE.BoxGeometry(w + .12, h + .12, .05), new THREE.MeshBasicMaterial({ color: 0x00ffeb }));
+    frame.position.set(x, y, z); frame.rotation.y = ry;
+    const plane = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ map: tex }));
+    plane.position.z = .03;
+    frame.add(plane);
+    scene.add(frame);
+  }
+  photoPanel('./assets/frame_01.jpg', 2.2, 1.25, -2.5, 2.2, 10.5, 0.35);
+  photoPanel('./assets/frame_06.jpg', 2.4, 1.35, -3.85, 2.5, 2.0, Math.PI / 2);
+  photoPanel('./assets/spotting.jpg', 2.3, 1.3, -3.85, 2.4, -3.5, Math.PI / 2);
+  photoPanel('./assets/highfive.jpg', 2.3, 1.3, 3.85, 2.4, -5.5, -Math.PI / 2);
+
+  /* Equipamiento */
+  box(2.2, .22, 11, blue, -1.6, .11, -1);
+  box(2.2, .012, 11, M(0xe8e3c8), -1.6, .226, -1, false).scale.set(.04, 1, 1);
+  box(1.2, .9, 6, blue, -3.35, .45, 4);
+  box(1.2, .9, 6, blue, -3.35, .45, -4);
+  box(1.8, .45, 1.4, red, -1.4, .22, 7.5);
+  box(1.8, .3, 1.4, blue, -1.4, .6, 7.5);
+  box(1.4, 1.1, .7, wood, .6, .55, 6.2);
+  box(1.4, .08, .7, dark, .6, 1.14, 6.2, false);
+  box(1.6, 1.2, .15, pink, -3.6, .9, -7.4).rotation.y = .25;
+  const roll = new THREE.Mesh(new THREE.CylinderGeometry(.42, .42, 1.3, 20), red); roll.rotation.z = Math.PI / 2; roll.position.set(1.2, .42, -6); scene.add(roll);
+  box(.9, 2.8, .12, wood, -3.9, 1.4, -10);
+  box(5, .5, 2.4, purple, 0, .25, -13.6);
+
+  const silks = [];
+  [[-1.2, -2, 0x7a1830], [.4, -5, 0x1f45b8], [-2, -8, 0x3a0f24]].forEach(([x, z, c]) => {
+    const s = new THREE.Mesh(new THREE.BoxGeometry(.12, H - .4, .05), new THREE.MeshStandardMaterial({ color: c, roughness: .6 }));
+    s.position.set(x, (H - .4) / 2 + .2, z); scene.add(s); silks.push(s);
+    const knot = new THREE.Mesh(new THREE.TorusGeometry(.35, .1, 8, 20), s.material); knot.rotation.x = Math.PI / 2; knot.position.set(x, .12, z); scene.add(knot);
+  });
+  [[-1, -11], [0, -11.4], [1, -11], [-.5, -10.4], [.5, -10.4], [0, -12]].forEach(([x, z], i) => {
+    const l = new THREE.Mesh(new THREE.CylinderGeometry(.3, .3, .22, 16, 1, true), lampMat); l.position.set(x, 3.1 + (i % 2) * .4, z); scene.add(l);
+  });
+
+  function person(h = 1.7, mat = M(0xe9e9ee)) {
+    const g = new THREE.Group();
+    const body = new THREE.Mesh(new THREE.CapsuleGeometry(h * .11, h * .42, 6, 10), mat); body.position.y = h * .46;
+    const head = new THREE.Mesh(new THREE.SphereGeometry(h * .085, 14, 10), mat); head.position.y = h * .86;
+    g.add(body, head); scene.add(g); return g;
+  }
+  const acro = person(1.55, cyanGlow); acro.position.set(-1.6, .22, 0);
+  const coach = person(1.8, M(0x2a2d38)); coach.position.set(-.2, 0, .3); coach.rotation.y = -1.2;
+  const kid1 = person(1.05, M(0xd8dae2)); kid1.position.set(-1.9, .22, -4);
+  const kid2 = person(1.15, M(0xd8dae2)); kid2.position.set(-1.1, .22, -5.2);
+  const aerial = person(1.5, M(0xd8dae2)); aerial.position.set(.4, 1.8, -5); aerial.rotation.z = .3;
+  const ring = new THREE.Mesh(new THREE.RingGeometry(1.1, 1.16, 48), new THREE.MeshBasicMaterial({ color: 0x00ffeb, side: THREE.DoubleSide }));
+  ring.rotation.x = -Math.PI / 2; ring.position.set(0, .52, -13.4); scene.add(ring);
+
+  scene.add(new THREE.HemisphereLight(0xe8ecff, 0x1a1420, .6));
+  const key = new THREE.DirectionalLight(0xffffff, 1.1); key.position.set(3, 8, 6); scene.add(key);
+  const warm = new THREE.PointLight(0xffd9ee, 16, 12, 2); warm.position.set(0, 3, -11); scene.add(warm);
+  const focus = new THREE.PointLight(0x00ffeb, 6, 5, 2); scene.add(focus);
+
+  const S = [
+    { p: [0, 1.65, 15.6], t: [0, 1.6, 0] },
+    { p: [2.6, 2.3, 8.5], t: [-1.4, .6, 0] },
+    { p: [1.6, 1.35, 2.6], t: [-1.4, 1, 0] },
+    { p: [3, 3.6, -2.5], t: [-.4, .4, -7] },
+    { p: [0, 1.7, -8.2], t: [0, 1.4, -13.5] }
+  ].map(s => ({ p: new THREE.Vector3(...s.p), t: new THREE.Vector3(...s.t) }));
+
+  const hots = {
+    airtrack: { v: new THREE.Vector3(-1.6, .4, 3), st: 1 },
+    telas: { v: new THREE.Vector3(-1.2, 3, -2), st: 1 },
+    fosa: { v: new THREE.Vector3(-3.35, 1, 4), st: 1 },
+    cajon: { v: new THREE.Vector3(.6, 1.3, 6.2), st: 1 }
+  };
+  const hotEls = [...document.querySelectorAll('.hot')];
+
+  const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  const camP = new THREE.Vector3(), camT = new THREE.Vector3(), tmp = new THREE.Vector3();
+  let prog = 0, lookX = 0, lookY = 0;
+
+  function resize() {
+    const w = innerWidth, h = innerHeight;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.fov = w < h ? 68 : 55;
+    camera.updateProjectionMatrix();
+  }
+  addEventListener('resize', resize);
+  resize();
+
+  addEventListener('pointermove', e => { lookX = (e.clientX / innerWidth - .5); lookY = (e.clientY / innerHeight - .5); }, { passive: true });
+  addEventListener('deviceorientation', e => {
+    if (e.gamma != null) { lookX = THREE.MathUtils.clamp(e.gamma / 45, -.5, .5); lookY = THREE.MathUtils.clamp((e.beta - 50) / 60, -.5, .5); }
+  }, { passive: true });
+
+  const clock = new THREE.Clock();
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function frame() {
+    if (!document.hidden) {
+      const t = clock.getElapsedTime();
+      const target = window.__scrollState.target;
+      prog += (target - prog) * (reduce ? 1 : .08);
+      const i = Math.min(Math.floor(prog), S.length - 2), f = ease(prog - i);
+      camP.lerpVectors(S[i].p, S[i + 1].p, f);
+      camT.lerpVectors(S[i].t, S[i + 1].t, f);
+      if (!reduce) camP.y += Math.sin(t * 1.3) * .014;
+      camera.position.copy(camP);
+      tmp.copy(camT).add(new THREE.Vector3(lookX * 1.1, -lookY * .55, 0));
+      camera.lookAt(tmp);
+
+      if (!reduce) {
+        const cyc = (t * 1.1) % 3, b = Math.abs(Math.sin(t * 1.1 * Math.PI));
+        acro.position.y = .22 + b * 1.45;
+        acro.rotation.x = cyc > 2 ? -(cyc - 2) * Math.PI * 2 : 0;
+        coach.rotation.y = -1.2 + Math.sin(t * 1.1 * Math.PI) * .08;
+        focus.position.set(acro.position.x, acro.position.y + 1, acro.position.z + .6);
+        kid1.position.y = .22 + Math.abs(Math.sin(t * 2.2)) * .42;
+        kid2.position.y = .22 + Math.abs(Math.sin(t * 2.2 + 1.4)) * .32;
+        aerial.rotation.y = t * .6; aerial.position.y = 1.8 + Math.sin(t * .8) * .14;
+        silks.forEach((s, k) => s.rotation.y = Math.sin(t * .5 + k) * .08);
+      }
+
+      hotEls.forEach(el => {
+        const h = hots[el.dataset.hot];
+        const show = Math.abs(prog - h.st) < .35;
+        tmp.copy(h.v).project(camera);
+        if (show && tmp.z < 1) {
+          el.style.opacity = 1;
+          el.style.transform = `translate(${(tmp.x * .5 + .5) * innerWidth}px,${(-tmp.y * .5 + .5) * innerHeight}px)`;
+        } else { el.style.opacity = 0; }
+      });
+
+      renderer.render(scene, camera);
+    }
+    requestAnimationFrame(frame);
+  }
+  frame();
+  document.getElementById('loader').classList.add('out');
+} catch (err) {
+  document.body.classList.add('mode-real');
+  document.getElementById('loader').classList.add('out');
+}
+</script>
+</body>
+</html>

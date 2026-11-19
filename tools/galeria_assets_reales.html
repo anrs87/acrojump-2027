@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acrojump • Galería de Assets Reales 2027</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Abolition';
+      src: local('Abolition'), local('Abolition-Regular'), url('../assets/fonts/Abolition-Regular.woff2') format('woff2');
+      font-weight: normal;
+    }
+    :root {
+      --bg: #0c0d12;
+      --card: #141720;
+      --border: #232733;
+      --turquesa: #009084;
+      --cyan: #00ffeb;
+      --text: #f3f4f6;
+      --muted: #9ca3af;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Archivo', sans-serif;
+      padding: 30px;
+    }
+    header {
+      max-width: 1400px;
+      margin: 0 auto 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 20px;
+    }
+    h1 {
+      font-family: 'Abolition', 'Archivo', sans-serif;
+      font-size: 42px;
+      letter-spacing: 1px;
+      color: #fff;
+    }
+    .badge {
+      background: var(--cyan);
+      color: #0c0d12;
+      font-weight: 900;
+      font-size: 12px;
+      padding: 4px 8px;
+      border-radius: 3px;
+      font-family: 'Space Mono', monospace;
+    }
+    .grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+      gap: 26px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+    }
+    .img-wrap {
+      width: 100%;
+      height: 380px;
+      position: relative;
+      background: #000;
+      overflow: hidden;
+    }
+    .img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+    .card:hover .img-wrap img {
+      transform: scale(1.03);
+    }
+    .card-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .card-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: var(--cyan);
+      letter-spacing: 1px;
+    }
+    .card-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .card-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+    .btn-download {
+      margin-top: 10px;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .btn-download:hover {
+      background: var(--cyan);
+      color: #0c0d12;
+      border-color: var(--cyan);
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div>
+      <span class="badge">ACROJUMP REAL ASSETS 2027</span>
+      <h1 style="margin-top: 8px;">COLECCIÓN DE DETALLES Y FOTOGRAFÍA REAL</h1>
+      <p style="color: var(--muted); font-size: 14px; margin-top: 4px;">Foco humano, familiar, cero magnesia, y fondos desenfocados con la luz y paleta de Acro.</p>
+    </div>
+    <div style="font-family: 'Space Mono'; font-size: 12px; color: var(--muted); text-align: right;">
+      UBICACIÓN: <span style="color: var(--cyan);">assets/acro_real_assets/</span>
+    </div>
+  </header>
+
+  <div class="grid">
+
+    <!-- Card 1: Gesto de contención del profe -->
+    <div class="card">
+      <div class="img-wrap">
+        <img src="../assets/acro_real_assets/03_reassuring_coach_touch_1794277361022.jpg" alt="Mano del profe en el hombro">
+      </div>
+      <div class="card-body">
+        <span class="card-tag">DETALLE // CUIDADO & CONFIANZA</span>
+        <h3 class="card-title">Mano de apoyo y corrección cercana</h3>
+        <p class="card-desc">Candid cálido: mano de apoyo del profe en el hombro antes de un salto. Miradas relajadas, fondo del taller Acro con pared carbón, luces cálidas y colchonetas turquesa en bokeh suave.</p>
+        <a href="../assets/acro_real_assets/03_reassuring_coach_touch_1794277361022.jpg" download class="btn-download">💾 DESCARGAR JPG ALTA CALIDAD</a>
+      </div>
+    </div>
+
+    <!-- Card 2: Chocada de manos / complicidad -->
+    <div class="card">
+      <div class="img-wrap">
+        <img src="../assets/acro_real_assets/04_coach_student_highfive_acrojump_1794277408616.jpg" alt="High five entre profe y alumna">
+      </div>
+      <div class="card-body">
+        <span class="card-tag">COMUNIDAD // FAMILIA ACRO</span>
+        <h3 class="card-title">Chocada de manos y festejo tras caer bien</h3>
+        <p class="card-desc">Conexión humana genuina, risas y festejo luego de una recepción limpia. El ambiente de taller donde no hay presión ni rigidez de gimnasio olímpico.</p>
+        <a href="../assets/acro_real_assets/04_coach_student_highfive_acrojump_1794277408616.jpg" download class="btn-download">💾 DESCARGAR JPG ALTA CALIDAD</a>
+      </div>
+    </div>
+
+    <!-- Card 3: Agarre seguro de muñeca en el aire -->
+    <div class="card">
+      <div class="img-wrap">
+        <img src="../assets/acro_real_assets/01_spotting_wrist_grip_v2_1794277180766.jpg" alt="Agarre de muñeca acrobático">
+      </div>
+      <div class="card-body">
+        <span class="card-tag">SEGURIDAD // SPOTTING MANUAL</span>
+        <h3 class="card-title">Agarre protector muñeca a muñeca</h3>
+        <p class="card-desc">Plano macro del agarre de seguridad con muñequeras de tela, piel limpia sin una pizca de polvo de tiza, luz de recorte cálida y bokeh del espacio en carbón y cian.</p>
+        <a href="../assets/acro_real_assets/01_spotting_wrist_grip_v2_1794277180766.jpg" download class="btn-download">💾 DESCARGAR JPG ALTA CALIDAD</a>
+      </div>
+    </div>
+
+    <!-- Card 4: Recepción suave en colchoneta -->
+    <div class="card">
+      <div class="img-wrap">
+        <img src="../assets/acro_real_assets/02_safe_landing_mat_1794277220448.jpg" alt="Caída en colchoneta azul/turquesa">
+      </div>
+      <div class="card-body">
+        <span class="card-tag">MATERIAL // CAÍDA AMORTIGUADA</span>
+        <h3 class="card-title">Recepción limpia en colchoneta técnica</h3>
+        <p class="card-desc">Ángulo bajo mostrando la textura de vinilo azul/carbón, costuras reforzadas y la amortiguación del impacto al apoyar los pies con seguridad y estabilidad.</p>
+        <a href="../assets/acro_real_assets/02_safe_landing_mat_1794277220448.jpg" download class="btn-download">💾 DESCARGAR JPG ALTA CALIDAD</a>
+      </div>
+    </div>
+
+    <!-- Card 5: Preparación relajada en airtrack -->
+    <div class="card">
+      <div class="img-wrap">
+        <img src="../assets/acro_real_assets/05_airtrack_prep_detail_1794277461258.jpg" alt="Atleta sentada en airtrack turquesa">
+      </div>
+      <div class="card-body">
+        <span class="card-tag">MOMENTO PREVIO // ENTRADA EN CALOR</span>
+        <h3 class="card-title">Detalle de calzado y airtrack turquesa</h3>
+        <p class="card-desc">Momento tranquilo antes de arrancar, acomodándose las medias sobre la superficie texturada turquesa del airtrack, con iluminación de estudio limpia y acogedora.</p>
+        <a href="../assets/acro_real_assets/05_airtrack_prep_detail_1794277461258.jpg" download class="btn-download">💾 DESCARGAR JPG ALTA CALIDAD</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

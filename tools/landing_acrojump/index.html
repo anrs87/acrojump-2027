@@ -1,0 +1,1137 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ACROJUMP · Escuela de Acrobacia en Abasto · Sánchez de Bustamante 762</title>
+  <meta name="description" content="Acrojump en Sánchez de Bustamante 762, Abasto (CABA). Escuela de acrobacia para Kids y Adultxs. Cupos cuidados, profes en colchoneta y 4,7 ★ en Google (97 reseñas).">
+  <meta property="og:title" content="ACROJUMP · Antes de volar, aprendés a caer">
+  <meta property="og:description" content="Recorré el galpón de Abasto, elegí tu perfil (Kids o Adultxs) y probá tu primera clase.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SportsActivityLocation",
+    "name": "ACROJUMP",
+    "description": "Escuela de acrobacia para Kids y Adultxs en Abasto, CABA. Cupos limitados y técnica segura.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Sánchez de Bustamante 762",
+      "addressLocality": "Ciudad Autónoma de Buenos Aires",
+      "addressRegion": "CABA",
+      "addressCountry": "AR"
+    },
+    "telephone": "+5491176096294",
+    "sameAs": ["https://www.instagram.com/acro_jump/"],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.7",
+      "reviewCount": "97"
+    }
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #0c0d12;
+      --surface: #14161f;
+      --surface-2: #1a1d29;
+      --border: rgba(255, 255, 255, 0.10);
+      --border-strong: rgba(255, 255, 255, 0.22);
+      --cyan: #00ffeb;
+      --violet: #bd00ff;
+      --text: #f4f4f7;
+      --muted: #9ea3b5;
+      --display: 'Abolition', 'Archivo', sans-serif;
+      --sans: 'Archivo', system-ui, -apple-system, sans-serif;
+      --mono: 'Space Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; background: var(--bg); color: var(--text); }
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.55;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+
+    /* Typography */
+    .disp {
+      font-family: var(--display);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.015em;
+      line-height: 0.94;
+    }
+    .mono {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Top Nav */
+    .topnav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 40;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 28px;
+      background: rgba(12, 13, 18, 0.92);
+      border-bottom: 1px solid var(--border);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .brand img {
+      height: 34px;
+      width: auto;
+      object-fit: contain;
+    }
+    .brand-meta {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+    .brand-meta strong { font-size: 14px; letter-spacing: 0.06em; }
+    .brand-meta span { font-size: 11px; color: var(--muted); }
+
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 22px;
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      border: 1px solid var(--border-strong);
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+      transition: background-color 0.16s ease, color 0.16s ease, border-color 0.16s ease, transform 0.16s ease;
+    }
+    .btn:hover { border-color: var(--cyan); transform: translateY(-1px); }
+    .btn-primary {
+      background: var(--cyan);
+      color: #0c0d12;
+      border-color: var(--cyan);
+    }
+    .btn-primary:hover { background: #5afff2; border-color: #5afff2; color: #0c0d12; }
+    .btn-sm { padding: 9px 14px; font-size: 12px; }
+
+    /* Tour Rail (Visita Guiada) */
+    .tour-rail {
+      position: fixed;
+      right: 22px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 35;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      background: rgba(12, 13, 18, 0.90);
+      border: 1px solid var(--border);
+      padding: 10px 8px;
+      border-radius: 2px;
+    }
+    .tour-step {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      padding: 6px 8px;
+      border-left: 2px solid transparent;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 11px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .tour-step span.lbl { display: none; }
+    .tour-rail:hover .tour-step span.lbl { display: inline; }
+    .tour-step.active {
+      color: var(--cyan);
+      border-left-color: var(--cyan);
+    }
+
+    /* Immersive Scene Sections */
+    .scene {
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      padding: 108px 28px 84px;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .scene-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .scene-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      filter: contrast(1.06) saturate(0.92);
+    }
+    .scene-scrim {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(
+        90deg,
+        rgba(12, 13, 18, 0.95) 0%,
+        rgba(12, 13, 18, 0.84) 48%,
+        rgba(12, 13, 18, 0.56) 100%
+      );
+    }
+    .scene-scrim.dark-bottom {
+      background: linear-gradient(
+        180deg,
+        rgba(12, 13, 18, 0.72) 0%,
+        rgba(12, 13, 18, 0.82) 55%,
+        rgba(12, 13, 18, 0.96) 100%
+      );
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 12px;
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-left: 3px solid var(--cyan);
+      color: var(--text);
+      margin-bottom: 22px;
+    }
+    .kicker .dot {
+      width: 7px; height: 7px;
+      background: var(--cyan);
+      border-radius: 50%;
+    }
+
+    /* Hero */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 40px;
+      align-items: end;
+    }
+    .hero h1 {
+      font-size: clamp(46px, 6.8vw, 92px);
+      margin-bottom: 20px;
+    }
+    .hero h1 .accent { color: var(--cyan); }
+    .hero-lead {
+      font-size: clamp(17px, 1.5vw, 20px);
+      color: #d6d9e4;
+      max-width: 580px;
+      margin-bottom: 28px;
+    }
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    .google-card {
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-top: 2px solid var(--violet);
+      padding: 22px;
+    }
+    .google-card .score {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .google-card .score strong {
+      font-family: var(--display);
+      font-size: 46px;
+      line-height: 1;
+      color: var(--cyan);
+    }
+    .google-card .score span { color: var(--muted); font-size: 13px; }
+    .google-card blockquote {
+      font-size: 15px;
+      color: var(--text);
+      border-left: 2px solid var(--border-strong);
+      padding-left: 12px;
+      margin: 12px 0;
+    }
+    .google-card .src { font-size: 12px; color: var(--muted); }
+
+    /* Station 02: Galpon Interactive Tour */
+    .galpon-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 36px;
+      align-items: center;
+    }
+    .station-title {
+      font-size: clamp(36px, 4.8vw, 62px);
+      margin-bottom: 16px;
+    }
+    .station-copy {
+      color: #d6d9e4;
+      font-size: 17px;
+      margin-bottom: 22px;
+      max-width: 500px;
+    }
+    .zone-tabs {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .zone-btn {
+      text-align: left;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 14px 16px;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      transition: border-color 0.15s, background-color 0.15s;
+    }
+    .zone-btn strong { display: block; font-size: 15px; }
+    .zone-btn small { color: var(--muted); font-size: 13px; }
+    .zone-btn.active {
+      background: var(--surface-2);
+      border-color: var(--cyan);
+    }
+    .zone-btn.active .idx { color: var(--cyan); }
+    .zone-btn .idx { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+
+    .galpon-viewer {
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      padding: 10px;
+    }
+    .galpon-viewer img {
+      width: 100%;
+      height: 410px;
+      object-fit: cover;
+    }
+    .viewer-cap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 6px 4px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* Station 03: Profes & Familia */
+    .split-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 28px;
+    }
+    .pillar {
+      background: rgba(20, 22, 31, 0.94);
+      border: 1px solid var(--border-strong);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .pillar .tag {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--cyan);
+    }
+    .pillar h3 {
+      font-family: var(--display);
+      font-size: 28px;
+      text-transform: uppercase;
+      line-height: 1.05;
+    }
+    .pillar p { color: #d0d4e0; font-size: 15px; }
+    .photo-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 20px;
+    }
+    .photo-strip figure {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .photo-strip img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+    }
+    .photo-strip figcaption {
+      padding: 10px 14px;
+      font-size: 13px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    /* Station 04: Kids & Adultxs + 1ra Clase */
+    .paths-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 26px;
+    }
+    .path-card {
+      background: rgba(20, 22, 31, 0.94);
+      border: 1px solid var(--border-strong);
+      padding: 28px;
+    }
+    .path-card.kids { border-top: 2px solid var(--cyan); }
+    .path-card.adultxs { border-top: 2px solid var(--violet); }
+    .path-card h3 {
+      font-family: var(--display);
+      font-size: 36px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .path-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 16px;
+      color: #d6d9e4;
+      font-size: 15px;
+    }
+    .path-card li::before {
+      content: "→ ";
+      color: var(--cyan);
+      font-weight: 700;
+    }
+
+    .checklist-bar {
+      margin-top: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      padding: 20px 24px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 24px;
+      align-items: center;
+    }
+    .checklist-items {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      font-size: 14px;
+    }
+    .checklist-items div strong { display: block; color: var(--text); }
+    .checklist-items div span { color: var(--muted); font-size: 13px; }
+
+    /* Station 05: Configurador Cinético */
+    .config-section {
+      background: var(--bg);
+      padding: 96px 28px;
+      border-bottom: 1px solid var(--border);
+    }
+    .config-wrap {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 36px;
+      margin-top: 28px;
+      align-items: stretch;
+    }
+    .kinetic-box {
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      position: relative;
+      min-height: 430px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 18px;
+      background-image:
+        linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .kinetic-hud {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 2;
+    }
+    .hud-pill {
+      background: var(--bg);
+      border: 1px solid var(--border-strong);
+      padding: 5px 10px;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--cyan);
+    }
+    .kinetic-stage {
+      position: relative;
+      flex: 1;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 28px;
+    }
+    #acro-svg {
+      position: relative;
+      z-index: 2;
+      transform-origin: 50% 60%;
+      will-change: transform;
+    }
+    .mat-floor {
+      position: absolute;
+      left: 10%; right: 10%; bottom: 16px;
+      height: 12px;
+      background: var(--surface-2);
+      border: 1px solid var(--cyan);
+      transition: transform 0.1s ease;
+    }
+    .kinetic-caption {
+      font-size: 13px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+    }
+
+    .config-panel {
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .branch-switch {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .branch-btn {
+      padding: 13px;
+      background: var(--bg);
+      border: 1px solid var(--border-strong);
+      color: var(--muted);
+      font-family: var(--sans);
+      font-weight: 800;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+    }
+    .branch-btn.active {
+      background: var(--cyan);
+      color: #0c0d12;
+      border-color: var(--cyan);
+    }
+
+    .field-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .field-label b {
+      font-family: var(--display);
+      font-size: 28px;
+      color: var(--cyan);
+      line-height: 1;
+    }
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--cyan);
+      cursor: pointer;
+    }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      padding: 9px 14px;
+      background: var(--bg);
+      border: 1px solid var(--border-strong);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .chip.on {
+      background: rgba(0, 255, 235, 0.14);
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+    .schedule-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .sched-item {
+      text-align: left;
+      padding: 11px 12px;
+      background: var(--bg);
+      border: 1px solid var(--border-strong);
+      color: var(--text);
+      cursor: pointer;
+    }
+    .sched-item strong { display: block; font-size: 13px; }
+    .sched-item span { font-size: 12px; color: var(--muted); }
+    .sched-item.on {
+      border-color: var(--cyan);
+      background: rgba(0, 255, 235, 0.10);
+    }
+    .sched-item.on strong { color: var(--cyan); }
+
+    /* Footer */
+    footer {
+      padding: 64px 28px 96px;
+      background: #090a0e;
+    }
+    .footer-grid {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+    .footer-info h3 {
+      font-family: var(--display);
+      font-size: 40px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .footer-info p { color: var(--muted); font-size: 15px; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    /* Floating WhatsApp */
+    .wa-fab {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 45;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 18px;
+      background: #25d366;
+      color: #09140d;
+      font-weight: 800;
+      font-size: 13px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      border: 1px solid rgba(255,255,255,0.25);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.45);
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid, .galpon-grid, .paths-grid, .config-wrap { grid-template-columns: 1fr; }
+      .split-cards { grid-template-columns: 1fr; }
+      .checklist-bar { grid-template-columns: 1fr; gap: 14px; }
+      .checklist-items { grid-template-columns: 1fr 1fr; }
+      .tour-rail { display: none; }
+      .scene { min-height: auto; padding: 96px 18px 64px; }
+      .config-section { padding: 64px 18px; }
+    }
+    @media (max-width: 560px) {
+      .topnav { padding: 12px 16px; }
+      .brand-meta { display: none; }
+      .photo-strip, .checklist-items, .schedule-grid { grid-template-columns: 1fr; }
+      .galpon-viewer img { height: 270px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="topnav">
+    <a class="brand" href="#llegada">
+      <img src="./assets/logo.png" alt="ACROJUMP" onerror="this.style.display='none'">
+      <div class="brand-meta">
+        <strong>ACROJUMP</strong>
+        <span>Sánchez de Bustamante 762 · Abasto</span>
+      </div>
+    </a>
+    <div class="nav-actions">
+      <a class="btn btn-sm" href="https://www.instagram.com/acro_jump/" target="_blank" rel="noopener">@acro_jump</a>
+      <a class="btn btn-primary btn-sm" href="#configurador">Probar una clase</a>
+    </div>
+  </nav>
+
+  <aside class="tour-rail" aria-label="Recorrido por la sala">
+    <a class="tour-step active" href="#llegada" data-sec="llegada"><span>01</span><span class="lbl">Llegada</span></a>
+    <a class="tour-step" href="#galpon" data-sec="galpon"><span>02</span><span class="lbl">El Galpón</span></a>
+    <a class="tour-step" href="#familia" data-sec="familia"><span>03</span><span class="lbl">Profes &amp; Familia</span></a>
+    <a class="tour-step" href="#caminos" data-sec="caminos"><span>04</span><span class="lbl">Kids &amp; Adultxs</span></a>
+    <a class="tour-step" href="#configurador" data-sec="configurador"><span>05</span><span class="lbl">Tu Clase</span></a>
+  </aside>
+
+  <!-- 01. LLEGADA -->
+  <section class="scene hero" id="llegada">
+    <div class="scene-bg">
+      <img src="./assets/frame_03.jpg" alt="Interior real del galpón de Acrojump en Sánchez de Bustamante 762">
+    </div>
+    <div class="scene-scrim"></div>
+    <div class="container">
+      <div class="kicker mono"><span class="dot"></span> Estación 01 · Sánchez de Bustamante 762, Abasto</div>
+      <div class="hero-grid">
+        <div>
+          <h1 class="disp">Antes de volar,<br><span class="accent">aprendés a caer.</span></h1>
+          <p class="hero-lead">
+            Escuela de acrobacia real para <strong>Kids</strong> y <strong>Adultxs</strong>. Sin experiencia previa, sin gimnasios masivos y con profes al lado tuyo en cada colchoneta.
+          </p>
+          <div class="hero-ctas">
+            <a class="btn btn-primary" href="#configurador">Armar mi clase de prueba</a>
+            <a class="btn" href="#galpon">Recorrer la sala por dentro ↓</a>
+          </div>
+        </div>
+        <aside class="google-card">
+          <div class="score">
+            <strong>4,7 ★</strong>
+            <span>97 reseñas reales en Google</span>
+          </div>
+          <blockquote>«El trato con los niños es muy bueno, técnica y juegos.»</blockquote>
+          <p class="src">Comunidad del barrio de Abasto · @acro_jump</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02. EL GALPÓN -->
+  <section class="scene" id="galpon">
+    <div class="scene-bg">
+      <img id="galpon-bg" src="./assets/frame_06.jpg" alt="Vista del área de colchonetas, airtrack y telas en Acrojump">
+    </div>
+    <div class="scene-scrim"></div>
+    <div class="container">
+      <div class="kicker mono"><span class="dot"></span> Estación 02 · Visita Guiada por el Espacio</div>
+      <div class="galpon-grid">
+        <div>
+          <h2 class="disp station-title">Un taller vivo,<br>no una vidriera.</h2>
+          <p class="station-copy">
+            Recorré las zonas reales de la sala. Cada metro está armado para amortiguar impactos y perderle el miedo al aire desde el primer día.
+          </p>
+          <div class="zone-tabs" id="zone-tabs">
+            <button class="zone-btn active" data-img="./assets/frame_01.jpg" data-cap="01 · Abrís la puerta en Bustamante 762 y dejás el ruido afuera.">
+              <div><strong>La Puerta de Entrada</strong><small>Recepción directa por nombre y apellido</small></div>
+              <span class="idx">01/04</span>
+            </button>
+            <button class="zone-btn" data-img="./assets/frame_03.jpg" data-cap="02 · El pasillo hacia el galpón: cajón de salto, colchonetas y telas.">
+              <div><strong>Pasillo &amp; Zona de Salto</strong><small>Colchonetones de alta densidad y fosa amortiguada</small></div>
+              <span class="idx">02/04</span>
+            </button>
+            <button class="zone-btn" data-img="./assets/frame_06.jpg" data-cap="03 · Pista Airtrack, telas aéreas, espaldar y piso técnico.">
+              <div><strong>Airtrack, Telas &amp; Piso</strong><small>Superficies blandas para repetir sin golpear articulaciones</small></div>
+              <span class="idx">03/04</span>
+            </button>
+            <button class="zone-btn" data-img="./assets/frame_09.jpg" data-cap="04 · Detalle de caída segura sobre colchonetas perimetrales.">
+              <div><strong>Zona de Caída Segura</strong><small>Áreas de escape limpias para probar sin miedo</small></div>
+              <span class="idx">04/04</span>
+            </button>
+          </div>
+        </div>
+        <div class="galpon-viewer">
+          <img id="galpon-img" src="./assets/frame_01.jpg" alt="Recorrido por el interior de Acrojump">
+          <div class="viewer-cap">
+            <span id="galpon-cap">01 · Abrís la puerta en Bustamante 762 y dejás el ruido afuera.</span>
+            <span class="mono" style="color:var(--cyan)">SALA REAL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03. PROFES & FAMILIA -->
+  <section class="scene" id="familia">
+    <div class="scene-bg">
+      <img src="./assets/spotting.jpg" alt="Acompañamiento técnico de muñeca en Acrojump">
+    </div>
+    <div class="scene-scrim dark-bottom"></div>
+    <div class="container">
+      <div class="kicker mono"><span class="dot"></span> Estación 03 · Cupos Cuidados &amp; Comunidad</div>
+      <h2 class="disp station-title">No trabajamos a granel.</h2>
+      <p class="station-copy">
+        En otros lugares meten 35 personas por turno. Acá cuidamos el grupo porque la confianza se construye sosteniéndose en el aire.
+      </p>
+      <div class="split-cards">
+        <article class="pillar">
+          <span class="tag">RATIO 1:6–8</span>
+          <h3>Profes en la colchoneta</h3>
+          <p>El profe no dirige desde una tarima: está abajo cuidando tu muñeca, tu espalda y frenando el error un segundo antes.</p>
+        </article>
+        <article class="pillar">
+          <span class="tag">LA FAMILIA</span>
+          <h3>Acá nadie es un número</h3>
+          <p>Sabemos cómo se llama cada chico, cada padre y cada adulto. Si te caés en el colchón, se resuelve con tiza y una risa compartida.</p>
+        </article>
+        <article class="pillar">
+          <span class="tag">SEGURIDAD REAL</span>
+          <h3>Respeto biológico</h3>
+          <p>Nadie nace sabiendo girar. Arrancamos desde el suelo, fortaleciendo apoyos y respetando el ritmo de cada cuerpo.</p>
+        </article>
+      </div>
+      <div class="photo-strip">
+        <figure>
+          <img src="./assets/spotting.jpg" alt="Spotting activo del profesor">
+          <figcaption>Spotting activo: presencia física real en cada intento.</figcaption>
+        </figure>
+        <figure>
+          <img src="./assets/highfive.jpg" alt="Comunidad y trato cercano en Acrojump">
+          <figcaption>El logro individual se festeja en ronda.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04. KIDS & ADULTXS + PRIMERA CLASE -->
+  <section class="scene" id="caminos">
+    <div class="scene-bg">
+      <img src="./assets/airtrack.jpg" alt="Preparación en pista Airtrack">
+    </div>
+    <div class="scene-scrim dark-bottom"></div>
+    <div class="container">
+      <div class="kicker mono"><span class="dot"></span> Estación 04 · Dos Caminos Reales</div>
+      <h2 class="disp station-title">Elegí tu terreno.</h2>
+      <div class="paths-grid">
+        <article class="path-card kids">
+          <span class="mono" style="color:var(--cyan)">3 A 16 AÑOS · BABY / MINIKIDS / KIDS</span>
+          <h3>Kids &amp; Teens</h3>
+          <p style="color:#d0d4e0">Desconexión total de pantallas a través del juego motriz, el salto seguro y la técnica real.</p>
+          <ul>
+            <li>Grupos separados por edad y confianza corporal.</li>
+            <li>Equilibrio entre juego para engancharse y técnica seria.</li>
+            <li>Comunicación directa y clara con madres, padres y tutores.</li>
+          </ul>
+        </article>
+        <article class="path-card adultxs">
+          <span class="mono" style="color:var(--muted)">18 A 45+ AÑOS · DESDE CERO</span>
+          <h3>Adultxs</h3>
+          <p style="color:#d0d4e0">Antídoto biológico al sedentarismo de pasar 9 horas frente a un monitor.</p>
+          <ul>
+            <li>Acro Piso desde cero, giros, Flexibilidad &amp; Telas.</li>
+            <li>«Nunca hice nada de chico» es la frase más bienvenida.</li>
+            <li>Entrenamiento real, humor y cero pose de gimnasio de cadena.</li>
+          </ul>
+        </article>
+      </div>
+      <div class="checklist-bar">
+        <div class="mono" style="color:var(--cyan)">TU 1RA CLASE</div>
+        <div class="checklist-items">
+          <div><strong>Ropa cómoda</strong><span>Sin cierres ni hebillas duras.</span></div>
+          <div><strong>Pelo atado</strong><span>Para ver limpio en cada giro.</span></div>
+          <div><strong>Agua + Toalla</strong><span>Botella personal para hidratar.</span></div>
+          <div><strong>10 min antes</strong><span>Para entrar en calor tranquilo.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05. CONFIGURADOR CINÉTICO -->
+  <section class="config-section" id="configurador">
+    <div class="container">
+      <div class="kicker mono"><span class="dot"></span> Estación 05 · Armá tu primera clase</div>
+      <h2 class="disp station-title">Contanos cómo llegás<br>y elegí tu horario.</h2>
+      <div class="config-wrap">
+        <div class="kinetic-box">
+          <div class="kinetic-hud">
+            <span class="hud-pill" id="hud-mode">RAMA: KIDS / TEENS</span>
+            <span class="hud-pill" id="hud-state">IMPULSO ALTO</span>
+          </div>
+          <div class="kinetic-stage">
+            <svg id="acro-svg" width="90" height="126" viewBox="0 0 90 126" aria-hidden="true">
+              <g stroke="#00ffeb" stroke-width="6" stroke-linecap="round" fill="none">
+                <path d="M45 42 L45 80"/>
+                <path id="acro-arms" d="M45 50 L20 26 M45 50 L70 26"/>
+                <path d="M45 80 L30 116 M45 80 L60 116"/>
+              </g>
+              <circle cx="45" cy="24" r="13" fill="#f4f4f7" stroke="#00ffeb" stroke-width="2"/>
+            </svg>
+            <div class="mat-floor" id="mat-floor"></div>
+          </div>
+          <div class="kinetic-caption" id="kinetic-caption">
+            Simulación cinética según tu perfil. Cuando tocás WhatsApp, nos llega tu consulta ya armada.
+          </div>
+        </div>
+
+        <div class="config-panel">
+          <div class="branch-switch">
+            <button class="branch-btn active" data-branch="kids">Kids / Teens</button>
+            <button class="branch-btn" data-branch="adultxs">Adultxs</button>
+          </div>
+
+          <div id="kids-fields">
+            <div style="margin-bottom:18px;">
+              <div class="field-label"><span>Edad</span><b id="edad-val">7 años</b></div>
+              <input type="range" id="edad-range" min="3" max="16" value="7">
+            </div>
+            <div style="margin-bottom:18px;">
+              <div class="field-label"><span>¿Cómo es?</span></div>
+              <div class="chips" data-group="perfil">
+                <button class="chip on">No para de moverse</button>
+                <button class="chip">Es tímido o tímida</button>
+                <button class="chip">Le encanta dar vueltas</button>
+              </div>
+            </div>
+            <div>
+              <div class="field-label"><span>¿Hizo algo antes?</span></div>
+              <div class="chips" data-group="exp">
+                <button class="chip on">Nada</button>
+                <button class="chip">Gimnasia</button>
+                <button class="chip">Otro deporte</button>
+              </div>
+            </div>
+          </div>
+
+          <div id="adultxs-fields" style="display:none;">
+            <div style="margin-bottom:18px;">
+              <div class="field-label"><span>¿Qué te gustaría probar?</span></div>
+              <div class="chips" data-group="obj">
+                <button class="chip on">Acro Piso desde cero</button>
+                <button class="chip">Técnica y giros</button>
+                <button class="chip">Flexibilidad</button>
+                <button class="chip">Telas</button>
+              </div>
+            </div>
+            <div>
+              <div class="field-label"><span>Experiencia previa</span></div>
+              <div class="chips" data-group="expA">
+                <button class="chip on">Nunca hice nada</button>
+                <button class="chip">Entreno otra cosa</button>
+                <button class="chip">Ya hice acrobacia</button>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="field-label"><span>Horarios sugeridos para tu perfil</span></div>
+            <div class="schedule-grid" id="schedule-grid"></div>
+          </div>
+
+          <a class="btn btn-primary" id="wa-submit" target="_blank" rel="noopener" style="width:100%;padding:16px;">
+            Consultar este horario por WhatsApp →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-info">
+        <h3>Sánchez de Bustamante 762</h3>
+        <p>Abasto, Ciudad Autónoma de Buenos Aires · Escuela de Acrobacia ACROJUMP</p>
+      </div>
+      <div class="footer-links">
+        <a class="btn" href="https://maps.google.com/?q=S%C3%A1nchez+de+Bustamante+762+CABA" target="_blank" rel="noopener">Ver en Google Maps</a>
+        <a class="btn" href="https://www.instagram.com/acro_jump/" target="_blank" rel="noopener">Instagram @acro_jump</a>
+        <a class="btn btn-primary" href="https://wa.me/5491176096294?text=Hola!%20Vi%20la%20web%20de%20ACROJUMP%20y%20quer%C3%ADa%20consultar%20por%20una%20clase%20de%20prueba." target="_blank" rel="noopener">WhatsApp directo</a>
+      </div>
+    </div>
+  </footer>
+
+  <a class="wa-fab" href="https://wa.me/5491176096294?text=Hola!%20Quería%20consultar%20por%20clases%20en%20ACROJUMP." target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp">
+    WhatsApp
+  </a>
+
+  <script>
+    const CONFIG_ACRO = {
+      whatsapp: '5491176096294',
+      horarios: {
+        kids: [
+          { id: 'k1', dia: 'Lun y Mié · 17:30', detalle: 'Baby / MiniKids (3 a 6 años)', min: 3, max: 6 },
+          { id: 'k2', dia: 'Mar y Jue · 18:00', detalle: 'Kids Inicial (7 a 11 años)', min: 7, max: 11 },
+          { id: 'k3', dia: 'Lun y Mié · 18:30', detalle: 'Kids / Teens (10 a 16 años)', min: 10, max: 16 },
+          { id: 'k4', dia: 'Sábados · 11:00', detalle: 'Grupo Sábado Kids (5 a 14 años)', min: 3, max: 16 }
+        ],
+        adultxs: [
+          { id: 'a1', dia: 'Lun y Mié · 19:30', detalle: 'Acro Piso Adultxs (Desde cero)' },
+          { id: 'a2', dia: 'Mar y Jue · 20:00', detalle: 'Técnica, Giros & Airtrack' },
+          { id: 'a3', dia: 'Viernes · 19:00', detalle: 'Flexibilidad & Elongación' },
+          { id: 'a4', dia: 'Sábados · 12:30', detalle: 'Sábado Acro + Telas' }
+        ]
+      }
+    };
+
+    const state = {
+      branch: 'kids',
+      edad: 7,
+      perfil: 'No para de moverse',
+      exp: 'Nada',
+      obj: 'Acro Piso desde cero',
+      expA: 'Nunca hice nada',
+      horario: ''
+    };
+
+    // Tour zone switcher (Estación 02)
+    document.querySelectorAll('.zone-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.zone-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('galpon-img').src = btn.dataset.img;
+        document.getElementById('galpon-bg').src = btn.dataset.img;
+        document.getElementById('galpon-cap').textContent = btn.dataset.cap;
+      });
+    });
+
+    // Tour rail active section tracking
+    const sections = ['llegada', 'galpon', 'familia', 'caminos', 'configurador'];
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          document.querySelectorAll('.tour-step').forEach(s => {
+            s.classList.toggle('active', s.dataset.sec === entry.target.id);
+          });
+        }
+      });
+    }, { threshold: 0.45 });
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) io.observe(el);
+    });
+
+    // Configurator logic
+    function renderSchedules() {
+      const grid = document.getElementById('schedule-grid');
+      let list = [];
+      if (state.branch === 'kids') {
+        list = CONFIG_ACRO.horarios.kids.filter(h => state.edad >= h.min && state.edad <= h.max);
+        if (!list.length) list = CONFIG_ACRO.horarios.kids.slice(0, 2);
+      } else {
+        list = CONFIG_ACRO.horarios.adultxs;
+      }
+
+      if (!list.some(item => item.dia === state.horario)) {
+        state.horario = list[0].dia;
+      }
+
+      grid.innerHTML = '';
+      list.forEach(item => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'sched-item' + (item.dia === state.horario ? ' on' : '');
+        b.innerHTML = `<strong>${item.dia}</strong><span>${item.detalle}</span>`;
+        b.onclick = () => {
+          state.horario = item.dia;
+          renderSchedules();
+          updateWhatsApp();
+        };
+        grid.appendChild(b);
+      });
+    }
+
+    function updateWhatsApp() {
+      let msg = '';
+      if (state.branch === 'kids') {
+        document.getElementById('hud-mode').textContent = `RAMA: KIDS (${state.edad} AÑOS)`;
+        document.getElementById('hud-state').textContent = state.perfil.toUpperCase();
+        msg = `Hola! Recorrí la web de ACROJUMP y quiero consultar por una clase de prueba para Kids.\n• Edad: ${state.edad} años\n• Perfil: ${state.perfil}\n• Experiencia previa: ${state.exp}\n• Horario que me sirve: ${state.horario}`;
+      } else {
+        document.getElementById('hud-mode').textContent = 'RAMA: ADULTXS';
+        document.getElementById('hud-state').textContent = state.obj.toUpperCase();
+        msg = `Hola! Recorrí la web de ACROJUMP y quiero consultar por una clase de prueba para Adultxs.\n• Interés: ${state.obj}\n• Experiencia: ${state.expA}\n• Horario que me sirve: ${state.horario}`;
+      }
+      document.getElementById('wa-submit').href =
+        `https://wa.me/${CONFIG_ACRO.whatsapp}?text=${encodeURIComponent(msg)}`;
+    }
+
+    document.querySelectorAll('.branch-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.branch-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        state.branch = btn.dataset.branch;
+        document.getElementById('kids-fields').style.display = state.branch === 'kids' ? 'block' : 'none';
+        document.getElementById('adultxs-fields').style.display = state.branch === 'adultxs' ? 'block' : 'none';
+        renderSchedules();
+        updateWhatsApp();
+      });
+    });
+
+    document.getElementById('edad-range').addEventListener('input', e => {
+      state.edad = +e.target.value;
+      document.getElementById('edad-val').textContent = `${state.edad} años`;
+      renderSchedules();
+      updateWhatsApp();
+    });
+
+    document.querySelectorAll('.chips').forEach(group => {
+      const key = group.dataset.group;
+      group.querySelectorAll('.chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+          group.querySelectorAll('.chip').forEach(c => c.classList.remove('on'));
+          chip.classList.add('on');
+          state[key] = chip.textContent;
+          updateWhatsApp();
+        });
+      });
+    });
+
+    // Kinetic visualizer loop
+    let tick = 0;
+    const svg = document.getElementById('acro-svg');
+    const floor = document.getElementById('mat-floor');
+    const arms = document.getElementById('acro-arms');
+    function animate() {
+      tick += 0.04;
+      const y = Math.abs(Math.sin(tick));
+      let height = 165;
+      let spin = false;
+      let scale = 1;
+
+      if (state.branch === 'kids') {
+        const base = state.perfil === 'Es tímido o tímida' ? 95 : state.perfil === 'Le encanta dar vueltas' ? 175 : 195;
+        height = base * (0.65 + (state.edad / 16) * 0.45);
+        scale = 0.78 + (state.edad / 16) * 0.35;
+        spin = state.perfil === 'Le encanta dar vueltas' && y > 0.35;
+      } else {
+        height = state.obj === 'Flexibilidad' ? 85 : state.obj === 'Técnica y giros' ? 190 : 145;
+        scale = 1.08;
+        spin = state.obj === 'Técnica y giros' && y > 0.32;
+      }
+
+      const rot = spin ? ((tick % Math.PI) / Math.PI) * 360 : 0;
+      svg.style.transform = `translateY(${-y * height}px) scale(${scale}) rotate(${rot}deg)`;
+      floor.style.transform = `scaleY(${y < 0.12 ? 1.7 : 1}) translateY(${y < 0.12 ? 4 : 0}px)`;
+      arms.setAttribute('d', y > 0.5 ? 'M45 50 L20 26 M45 50 L70 26' : 'M45 50 L24 68 M45 50 L66 68');
+      requestAnimationFrame(animate);
+    }
+
+    renderSchedules();
+    updateWhatsApp();
+    animate();
+  </script>
+</body>
+</html>
