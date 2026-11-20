@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="es-AR" data-theme="day">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Propuesta Grilla Semanal 2027 · Acrojump (@acro_jump)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Abolition';
+      src: url('../marca/tipografias/Abolition-Regular.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'FreightBigCmpPro';
+      src: url('../marca/tipografias/FreightBigCmpProSemibold-Regular.otf') format('opentype');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      --bg-page: #e6f4f1;
+      --bg-page-alt: #d5eae5;
+      --bg-card: #f2faf8;
+      --bg-inset: #13211f;
+      --ink-main: #13211f;
+      --ink-muted: #395550;
+      --ink-inset: #f2faf8;
+      --ink-inset-muted: #c2dad5;
+      --rule-line: #b2d2cb;
+      --rule-strong: #87b5ab;
+      --acro-jade: #165e53;
+      --acro-jade-hover: #0f473e;
+      --acro-jade-on-dark: #6cdbc9;
+      --accent-gol: #b83616;
+      --accent-gol-hover: #962a0f;
+      --accent-gol-text: #9c2b0f;
+      --surface-btn: #f2faf8;
+      --surface-btn-hover: #dfefeb;
+      --surface-input: #f7fcfb;
+      --logo-filter: brightness(0) saturate(100%) invert(11%) sepia(14%) saturate(850%) hue-rotate(122deg) brightness(95%) contrast(94%);
+      --font-display: 'Abolition', Impact, 'Arial Narrow', sans-serif;
+      --font-editorial: 'FreightBigCmpPro', Georgia, 'Times New Roman', serif;
+      --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+    }
+
+    [data-theme="night"] {
+      --bg-page: #131c1b;
+      --bg-page-alt: #1b2826;
+      --bg-card: #1f2e2c;
+      --bg-inset: #0c1312;
+      --ink-main: #eef7f5;
+      --ink-muted: #b1cbc6;
+      --ink-inset: #eef7f5;
+      --ink-inset-muted: #b1cbc6;
+      --rule-line: #2a3e3b;
+      --rule-strong: #3e5b56;
+      --acro-jade: #6cdbc9;
+      --acro-jade-hover: #8be6d7;
+      --acro-jade-on-dark: #6cdbc9;
+      --accent-gol: #e3623d;
+      --accent-gol-hover: #ee7c5b;
+      --accent-gol-text: #f38a6b;
+      --surface-btn: #1f2e2c;
+      --surface-btn-hover: #283b38;
+      --surface-input: #172321;
+      --logo-filter: brightness(0) saturate(100%) invert(96%) sepia(8%) saturate(260%) hue-rotate(120deg) brightness(102%) contrast(96%);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-page);
+      color: var(--ink-main);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.56;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--acro-jade);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    a:hover {
+      color: var(--accent-gol-text);
+    }
+
+    button,
+    input,
+    select {
+      font-family: inherit;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent-gol);
+      outline-offset: 2px;
+    }
+
+    .broadsheet {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 28px 24px 80px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding-bottom: 18px;
+      border-bottom: 2px solid var(--ink-main);
+      margin-bottom: 28px;
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .logo-crop-box {
+      width: 64px;
+      height: 64px;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 1px solid var(--rule-strong);
+      background-color: var(--bg-card);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+    }
+
+    .logo-crop-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center 42%;
+      filter: var(--logo-filter);
+      display: block;
+    }
+
+    .page-subtitle {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink-muted);
+      line-height: 1.45;
+      margin-top: 6px;
+    }
+
+    .page-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 4.8vw, 3.8rem);
+      line-height: 1.02;
+      letter-spacing: 0.02em;
+      color: var(--ink-main);
+      margin-top: 4px;
+    }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-sheet,
+    .btn-jade,
+    .btn-gol,
+    .choice-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 9px 16px;
+      border-radius: 3px;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.35;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.14s ease, border-color 0.14s ease, color 0.14s ease;
+    }
+
+    .btn-sheet,
+    .choice-btn {
+      background-color: var(--surface-btn);
+      border: 1px solid var(--rule-strong);
+      color: var(--ink-main);
+    }
+
+    .btn-sheet:hover,
+    a.btn-sheet:hover,
+    .choice-btn:hover {
+      background-color: var(--surface-btn-hover);
+      border-color: var(--ink-main);
+      color: var(--ink-main);
+    }
+
+    .choice-btn[aria-pressed="true"] {
+      background-color: var(--ink-main);
+      border-color: var(--ink-main);
+      color: var(--bg-page);
+    }
+
+    .btn-jade {
+      background-color: var(--acro-jade);
+      border: 1px solid var(--acro-jade);
+      color: #f2faf8;
+    }
+
+    [data-theme="night"] .btn-jade {
+      color: #0d1615;
+    }
+
+    .btn-jade:hover,
+    a.btn-jade:hover {
+      background-color: var(--acro-jade-hover);
+      border-color: var(--acro-jade-hover);
+      color: #f2faf8;
+    }
+
+    [data-theme="night"] .btn-jade:hover,
+    [data-theme="night"] a.btn-jade:hover {
+      color: #0d1615;
+    }
+
+    .btn-gol {
+      background-color: var(--accent-gol);
+      border: 1px solid var(--accent-gol);
+      color: #fff7f4;
+    }
+
+    .btn-gol:hover,
+    a.btn-gol:hover {
+      background-color: var(--accent-gol-hover);
+      border-color: var(--accent-gol-hover);
+      color: #fff7f4;
+    }
+
+    .intro-band {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr);
+      gap: 24px;
+      margin-bottom: 32px;
+      align-items: start;
+    }
+
+    .intro-lead {
+      font-family: var(--font-editorial);
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      line-height: 1.38;
+      color: var(--ink-main);
+      margin-bottom: 12px;
+    }
+
+    .intro-copy {
+      font-size: 16px;
+      line-height: 1.58;
+      color: var(--ink-muted);
+      max-width: 64ch;
+    }
+
+    .diagnosis-card {
+      background-color: var(--bg-page-alt);
+      border: 1px solid var(--rule-strong);
+      padding: 20px 22px;
+      border-radius: 2px;
+    }
+
+    .diagnosis-card h2 {
+      font-family: var(--font-display);
+      font-size: 26px;
+      line-height: 1.1;
+      color: var(--ink-main);
+      margin-bottom: 10px;
+    }
+
+    .diagnosis-list {
+      padding-left: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 14px;
+      line-height: 1.52;
+      color: var(--ink-main);
+    }
+
+    /* CONTROLES DEL LABORATORIO */
+    .lab-controls {
+      background-color: var(--bg-page-alt);
+      border: 1px solid var(--rule-strong);
+      padding: 20px;
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .controls-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .controls-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .controls-label {
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ink-muted);
+      margin-right: 4px;
+      line-height: 1.35;
+    }
+
+    .filter-input {
+      min-height: 44px;
+      padding: 8px 14px;
+      border: 1px solid var(--rule-strong);
+      border-radius: 3px;
+      background-color: var(--surface-input);
+      color: var(--ink-main);
+      font-size: 14px;
+      min-width: 240px;
+    }
+
+    /* ANIMACION BAR */
+    .anim-status-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      padding-top: 12px;
+      border-top: 1px solid var(--rule-line);
+    }
+
+    .anim-progress-wrap {
+      flex: 1 1 220px;
+      height: 8px;
+      background-color: var(--bg-page);
+      border: 1px solid var(--rule-strong);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .anim-progress-fill {
+      height: 100%;
+      width: 0%;
+      background-color: var(--accent-gol);
+      transition: width 0.12s linear;
+    }
+
+    .anim-status-text {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--acro-jade);
+      line-height: 1.4;
+    }
+
+    /* ESCENARIO DE PLACAS */
+    .stage-wrapper {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      justify-items: center;
+      margin-bottom: 40px;
+    }
+
+    .stage-wrapper.is-dual {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      justify-items: stretch;
+      align-items: start;
+    }
+
+    .plate-frame {
+      width: 100%;
+      max-width: 720px;
+      background-color: var(--bg-card);
+      border: 2px solid var(--ink-main);
+      padding: 26px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      transition: opacity 0.22s ease, transform 0.22s ease;
+    }
+
+    .stage-wrapper.is-dual .plate-frame {
+      max-width: none;
+    }
+
+    .plate-frame.format-916 {
+      max-width: 440px;
+      padding: 24px 18px;
+    }
+
+    .plate-frame.is-fading {
+      opacity: 0.22;
+      transform: translateY(6px);
+    }
+
+    .plate-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--ink-main);
+    }
+
+    .plate-eyebrow {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent-gol-text);
+      line-height: 1.38;
+    }
+
+    .plate-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.6vw, 3rem);
+      line-height: 1.02;
+      color: var(--ink-main);
+      margin-top: 2px;
+    }
+
+    .plate-step-pill {
+      font-family: var(--font-display);
+      font-size: 22px;
+      line-height: 1.15;
+      padding: 6px 12px;
+      background-color: var(--bg-inset);
+      color: var(--ink-inset);
+      letter-spacing: 0.04em;
+    }
+
+    .days-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .plate-frame.format-916 .days-grid {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .day-column {
+      background-color: var(--bg-page);
+      border: 1px solid var(--rule-strong);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .day-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--acro-jade);
+    }
+
+    .day-name {
+      font-family: var(--font-display);
+      font-size: 28px;
+      line-height: 1.05;
+      color: var(--ink-main);
+      letter-spacing: 0.03em;
+    }
+
+    .day-count {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink-muted);
+      line-height: 1.35;
+    }
+
+    .slot-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .slot-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--rule-line);
+      border-left: 4px solid var(--acro-jade);
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .slot-card.is-kids {
+      border-left-color: var(--accent-gol);
+    }
+
+    .slot-card.is-free {
+      border-left-color: var(--rule-strong);
+      background-color: var(--bg-page-alt);
+    }
+
+    .slot-card.is-dimmed {
+      opacity: 0.34;
+    }
+
+    .slot-card.is-match {
+      border-color: var(--accent-gol);
+      box-shadow: inset 0 0 0 1px var(--accent-gol);
+    }
+
+    .slot-top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .slot-time {
+      font-family: var(--font-display);
+      font-size: 24px;
+      line-height: 1.05;
+      color: var(--acro-jade);
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.02em;
+    }
+
+    .slot-card.is-kids .slot-time {
+      color: var(--accent-gol-text);
+    }
+
+    .slot-level {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--ink-muted);
+      line-height: 1.35;
+    }
+
+    .slot-activity {
+      font-size: 15px;
+      font-weight: 800;
+      line-height: 1.35;
+      color: var(--ink-main);
+    }
+
+    .slot-prof {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--ink-main);
+      word-break: break-word;
+    }
+
+    .sunday-banner {
+      background-color: var(--bg-inset);
+      color: var(--ink-inset);
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .sunday-banner strong {
+      font-family: var(--font-display);
+      font-size: 22px;
+      letter-spacing: 0.03em;
+      color: var(--acro-jade-on-dark);
+      line-height: 1.15;
+    }
+
+    .sunday-banner span {
+      font-size: 14px;
+      line-height: 1.45;
+      color: var(--ink-inset-muted);
+    }
+
+    .plate-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding-top: 12px;
+      border-top: 1px solid var(--rule-strong);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink-muted);
+      line-height: 1.4;
+    }
+
+    /* SECCION COMPARATIVA */
+    .compare-section {
+      border-top: 2px solid var(--ink-main);
+      padding-top: 28px;
+      margin-bottom: 36px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 34px;
+      line-height: 1.08;
+      color: var(--ink-main);
+      margin-bottom: 14px;
+    }
+
+    .compare-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .compare-card {
+      background-color: var(--bg-page-alt);
+      border: 1px solid var(--rule-strong);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .compare-card h3 {
+      font-family: var(--font-editorial);
+      font-size: 24px;
+      line-height: 1.35;
+      color: var(--ink-main);
+    }
+
+    .compare-card p {
+      font-size: 15px;
+      line-height: 1.55;
+      color: var(--ink-muted);
+    }
+
+    .colophon {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--rule-strong);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 14px;
+      color: var(--ink-muted);
+    }
+
+    @media (max-width: 960px) {
+      .intro-band,
+      .stage-wrapper.is-dual,
+      .compare-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .days-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .broadsheet {
+        padding: 18px 14px 60px;
+      }
+
+      .plate-frame {
+        padding: 18px 14px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="broadsheet">
+    <header class="topbar">
+      <div class="brand-row">
+        <div class="logo-crop-box">
+          <img src="../marca/logos/LOGO-COMPLETO-transparente.png" alt="Logo Acrojump">
+        </div>
+        <div>
+          <h1 class="page-title">Grilla Semanal en 2 Tiempos</h1>
+          <p class="page-subtitle">Propuesta Editorial 2027 · @acro_jump · Base: horarios reales de Grilla v4</p>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <a class="btn-sheet" href="./presentacion_acro_2027.html#pliego-3">Volver al Pliego 2027</a>
+        <button type="button" class="btn-sheet" id="theme-toggle" aria-pressed="false">Cambiar a Modo Noche</button>
+      </div>
+    </header>
+
+    <section class="intro-band" aria-label="Diagnóstico del cambio de formato">
+      <div>
+        <p class="intro-lead">
+          La sábana de 6 días en una sola placa achica demasiado los horarios y los profes. Partir el semanal en dos bloques (o animarlo en dos tiempos) hace que se lea sin zoom desde cualquier celular.
+        </p>
+        <p class="intro-copy">
+          Este documento toma exactamente los horarios y profesores de la grilla base (sin modificar la herramienta original) y los readapta a la estética editorial 2027 para decidir con Gra si vamos por carrusel partido en 2 placas, por una secuencia animada de 2 tiempos, o por ambos formatos conviviendo.
+        </p>
+      </div>
+      <aside class="diagnosis-card">
+        <h2>Qué resuelve este cambio</h2>
+        <ul class="diagnosis-list">
+          <li><strong>Lectura inmediata en celular:</strong> 3 días por placa permiten duplicar el tamaño de la hora y el nombre del profe.</li>
+          <li><strong>Conserva el formato carrusel:</strong> Mantiene el guardado y el deslizamiento en Instagram sin saturar la vista.</li>
+          <li><strong>Listo para versión animada:</strong> Los mismos 2 bloques funcionan como micro-video de 8 a 12 segundos para Reel o Story.</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="lab-controls" aria-label="Controles de visualización de la grilla">
+      <div class="controls-row">
+        <div class="controls-group" role="group" aria-label="Modo de presentación">
+          <span class="controls-label">Modo:</span>
+          <button type="button" class="choice-btn mode-btn" data-mode="carousel-a" aria-pressed="true">Carrusel Placa 1 (Lun a Mié)</button>
+          <button type="button" class="choice-btn mode-btn" data-mode="carousel-b" aria-pressed="false">Carrusel Placa 2 (Jue a Sáb)</button>
+          <button type="button" class="choice-btn mode-btn" data-mode="dual" aria-pressed="false">Ver Carrusel Completo (1 + 2)</button>
+          <button type="button" class="choice-btn mode-btn" data-mode="animated" aria-pressed="false">Secuencia Animada (2 Tiempos)</button>
+        </div>
+        <div class="controls-group" role="group" aria-label="Proporción de pantalla">
+          <span class="controls-label">Formato:</span>
+          <button type="button" class="choice-btn format-btn" data-format="45" aria-pressed="true">Feed 4:5</button>
+          <button type="button" class="choice-btn format-btn" data-format="916" aria-pressed="false">Reel / Story 9:16</button>
+        </div>
+      </div>
+
+      <div class="controls-row">
+        <div class="controls-group">
+          <span class="controls-label">Resaltar profe o clase:</span>
+          <input type="search" id="grid-filter" class="filter-input" aria-label="Filtrar o resaltar disciplina o profesor" placeholder="Ej: flexiarte, marti, pkgaray, kids, telas...">
+          <button type="button" class="btn-sheet" id="clear-filter">Limpiar</button>
+        </div>
+        <div class="controls-group" id="anim-controls" style="display: none;">
+          <button type="button" class="btn-gol" id="anim-play-toggle" aria-pressed="true">Pausar secuencia</button>
+          <button type="button" class="choice-btn speed-btn" data-ms="4000" aria-pressed="true">4s por bloque</button>
+          <button type="button" class="choice-btn speed-btn" data-ms="6000" aria-pressed="false">6s por bloque</button>
+        </div>
+      </div>
+
+      <div class="anim-status-bar" id="anim-status-bar" style="display: none;">
+        <span class="anim-status-text" id="anim-status-text">Tiempo 1 de 2 · Mostrando Lunes, Martes y Miércoles</span>
+        <div class="anim-progress-wrap" aria-hidden="true">
+          <div class="anim-progress-fill" id="anim-progress-fill"></div>
+        </div>
+      </div>
+    </section>
+
+    <main class="stage-wrapper" id="stage-wrapper" aria-live="polite"></main>
+
+    <section class="compare-section" aria-labelledby="compare-heading">
+      <h2 class="section-title" id="compare-heading">Cómo decidir el formato con Gra</h2>
+      <div class="compare-grid">
+        <article class="compare-card">
+          <h3>Opción 1: Carrusel Partido (2 placas fijas)</h3>
+          <p>
+            Portada limpia del mes + Placa 1 (Lunes, Martes y Miércoles) + Placa 2 (Jueves, Viernes y Sábado + nota de Domingo). Ideal para guardar en el feed y consultar rápido sin perder detalle de cada profe.
+          </p>
+        </article>
+        <article class="compare-card">
+          <h3>Opción 2: Micro-Video Animado (2 tiempos)</h3>
+          <p>
+            Una pieza de 10 segundos en 4:5 o 9:16 donde aparece primero Lun-Mié (5s) y luego pasa a Jue-Sáb (5s). Funciona como primera placa viva del carrusel o como Story semanal sin saturar la pantalla.
+          </p>
+        </article>
+        <article class="compare-card">
+          <h3>Paso siguiente técnico</h3>
+          <p>
+            La herramienta actual (grilla v4) queda intacta hasta aprobar esta estética. Una vez que definamos con Gra el criterio de 2 bloques, adaptamos el generador para exportar ambos bloques en un clic.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <footer class="colophon">
+      <span>Acrojump 2027 (@acro_jump) · Propuesta conceptual basada en horarios reales de Grilla v4.</span>
+      <span><a href="./presentacion_acro_2027.html">Ir al Pliego Maestro 2027</a> · <a href="./prototipos_web_acro_2027.html">Ver Prototipos Web</a></span>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      const THEME_KEY = 'acro_2027_pliego_theme_v2';
+      const root = document.documentElement;
+      const themeBtn = document.getElementById('theme-toggle');
+
+      function applyTheme(theme) {
+        root.setAttribute('data-theme', theme);
+        const isNight = theme === 'night';
+        themeBtn.setAttribute('aria-pressed', String(isNight));
+        themeBtn.textContent = isNight ? 'Volver a Modo Día (Verde Agua)' : 'Cambiar a Modo Noche';
+      }
+
+      const savedTheme = localStorage.getItem(THEME_KEY) || 'day';
+      applyTheme(savedTheme);
+
+      themeBtn.addEventListener('click', function () {
+        const next = root.getAttribute('data-theme') === 'night' ? 'day' : 'night';
+        localStorage.setItem(THEME_KEY, next);
+        applyTheme(next);
+      });
+
+      const SCHEDULE_BLOCKS = {
+        a: {
+          id: 'a',
+          stepLabel: 'BLOQUE 1 / 2',
+          eyebrow: 'CRONOGRAMA SEMANAL · PRIMERA MITAD',
+          title: 'LUNES · MARTES · MIÉRCOLES',
+          footerNote: 'Deslizá para ver Jueves, Viernes y Sábado · Consultas WhatsApp 11 7609-6294',
+          showSunday: false,
+          days: [
+            {
+              nombre: 'LUNES',
+              horarios: [
+                { hora: '10hs', actividad: 'BABYACRO', nivel: '1 y 2 años', prof: '@active_kids_ba', tipo: 'kids' },
+                { hora: '12hs', actividad: 'ACRO', nivel: 'Nivel Principiante', prof: '@jjsalasaular', tipo: 'acro' },
+                { hora: '15hs', actividad: 'MOVILIDAD Y FUERZA', nivel: 'Para mayores', prof: '@flexiarte.i', tipo: 'acro' },
+                { hora: '16hs', actividad: 'ACRO', nivel: 'Multinivel', prof: '@marti.dh', tipo: 'acro' },
+                { hora: '17:30hs', actividad: 'FLEXIBILIDAD', nivel: 'Multinivel', prof: '@flexiarte.i', tipo: 'acro' },
+                { hora: '19hs', actividad: 'ACRO', nivel: 'Multinivel', prof: '@marti.dh', tipo: 'acro' },
+                { hora: '20:30hs', actividad: 'ACRO DANCE', nivel: 'Multinivel', prof: '@mechimintz', tipo: 'acro' }
+              ]
+            },
+            {
+              nombre: 'MARTES',
+              horarios: [
+                { hora: '10hs', actividad: 'BABYACRO', nivel: '1 y 2 años', prof: '@active_kids_ba', tipo: 'kids' },
+                { hora: '11:30hs', actividad: 'BABYACRO', nivel: '1 y 2 años', prof: '@active_kids_ba', tipo: 'kids' },
+                { hora: '16hs', actividad: 'TELAS', nivel: 'Multinivel', prof: '@maite.castro18', tipo: 'acro' },
+                { hora: '17:30hs', actividad: 'ACROKIDS', nivel: 'Kids', prof: '@louralbanese & @teacheaiese', tipo: 'kids' },
+                { hora: '19hs', actividad: 'ACRO', nivel: 'Nivel Principiante', prof: '@inaki_mujicaa', tipo: 'acro' },
+                { hora: '20:30hs', actividad: 'ACRO DANCE', nivel: 'Multinivel', prof: '@mechimintz', tipo: 'acro' }
+              ]
+            },
+            {
+              nombre: 'MIÉRCOLES',
+              horarios: [
+                { hora: '10:30hs', actividad: 'ACRO', nivel: 'Multinivel', prof: '@jjsalasaular', tipo: 'acro' },
+                { hora: '12hs', actividad: 'ACRO', nivel: 'Nivel Principiante', prof: '@jjsalasaular', tipo: 'acro' },
+                { hora: '14hs', actividad: 'MOVILIDAD Y FUERZA', nivel: 'Para mayores', prof: '@flexiarte.i', tipo: 'acro' },
+                { hora: '17:30hs', actividad: 'MINIKIDS', nivel: 'Kids', prof: '@maite.castro18', tipo: 'kids' },
+                { hora: '17:30hs', actividad: 'ACROKIDS', nivel: 'Kids', prof: '@marti.dh', tipo: 'kids' },
+                { hora: '19hs', actividad: 'ACRO', nivel: 'Multinivel', prof: '@pkgaray', tipo: 'acro' },
+                { hora: '20:30hs', actividad: 'ACRO', nivel: 'Nivel Principiante', prof: '@pkgaray', tipo: 'acro' }
+              ]
+            }
+          ]
+        },
+        b: {
+          id: 'b',
+          stepLabel: 'BLOQUE 2 / 2',
+          eyebrow: 'CRONOGRAMA SEMANAL · SEGUNDA MITAD',
+          title: 'JUEVES · VIERNES · SÁBADO',
+          footerNote: 'Cupos limitados · Guardá este carrusel · @acro_jump · WhatsApp 11 7609-6294',
+          showSunday: true,
+          days: [
+            {
+              nombre: 'JUEVES',
+              horarios: [
+                { hora: '10hs', actividad: 'FRANJA DISPONIBLE', nivel: 'Sala Libre / Alquiler', prof: 'Consultar @acro_jump', tipo: 'free' },
+                { hora: '14hs', actividad: 'FRANJA DISPONIBLE', nivel: 'Sala Libre / Alquiler', prof: 'Consultar @acro_jump', tipo: 'free' },
+                { hora: '16hs', actividad: 'FRANJA DISPONIBLE', nivel: 'Sala Libre / Alquiler', prof: 'Consultar @acro_jump', tipo: 'free' },
+                { hora: '17:30hs', actividad: 'FRANJA DISPONIBLE', nivel: 'Sala Libre / Alquiler', prof: 'Consultar @acro_jump', tipo: 'free' },
+                { hora: '19hs', actividad: 'ACRO', nivel: 'Multinivel', prof: '@pkgaray', tipo: 'acro' },
+                { hora: '20:30hs', actividad: 'ACRO', nivel: 'Nivel Principiante', prof: '@pkgaray', tipo: 'acro' }
+              ]
+            },
+            {
+              nombre: 'VIERNES',
+              horarios: [
+                { hora: '10hs', actividad: 'BABYACRO', nivel: '1 y 2 años', prof: '@active_kids_ba', tipo: 'kids' },
+                { hora: '11hs', actividad: 'BABYACRO', nivel: '1 y 2 años', prof: '@active_kids_ba', tipo: 'kids' },
+                { hora: '12hs', actividad: 'ACRO', nivel: 'Nivel Principiante', prof: '@jjsalasaular', tipo: 'acro' },
+                { hora: '16hs', actividad: 'ACRO', nivel: 'Nivel Principiante', prof: '@louralbanese', tipo: 'acro' },
+                { hora: '17:30hs', actividad: 'ACROKIDS', nivel: 'Kids', prof: '@louralbanese & @teacheaiese', tipo: 'kids' },
+                { hora: '19hs', actividad: 'TELAS', nivel: 'Multinivel', prof: '@maite.castro18 & @caro_francoo', tipo: 'acro' }
+              ]
+            },
+            {
+              nombre: 'SÁBADO',
+              horarios: [
+                { hora: '10:30hs', actividad: 'FRANJA DISPONIBLE', nivel: 'Sala Libre / Alquiler', prof: 'Consultar @acro_jump', tipo: 'free' },
+                { hora: '12hs', actividad: 'ACROKIDS', nivel: 'Kids', prof: '@prof.jazzmin', tipo: 'kids' },
+                { hora: '12hs', actividad: 'MINIKIDS', nivel: 'Kids', prof: '@maite.castro18', tipo: 'kids' },
+                { hora: '13:30hs', actividad: 'ACRO', nivel: 'Nivel Mixto', prof: '@prof.jazzmin', tipo: 'acro' },
+                { hora: '15hs', actividad: 'ACRO', nivel: 'Nivel Principiante', prof: '@marti.dh', tipo: 'acro' }
+              ]
+            }
+          ]
+        }
+      };
+
+      const state = {
+        mode: 'carousel-a',
+        format: '45',
+        filter: '',
+        animPlaying: true,
+        animStep: 'a',
+        animMs: 4000,
+        elapsedMs: 0
+      };
+
+      let animInterval = null;
+
+      const stageWrapper = document.getElementById('stage-wrapper');
+      const animControls = document.getElementById('anim-controls');
+      const animStatusBar = document.getElementById('anim-status-bar');
+      const animStatusText = document.getElementById('anim-status-text');
+      const animProgressFill = document.getElementById('anim-progress-fill');
+      const animPlayToggle = document.getElementById('anim-play-toggle');
+      const filterInput = document.getElementById('grid-filter');
+      const clearFilterBtn = document.getElementById('clear-filter');
+
+      function normalize(str) {
+        return (str || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      }
+
+      function renderPlateHTML(block) {
+        const query = normalize(state.filter.trim());
+        const formatClass = state.format === '916' ? 'format-916' : '';
+
+        const daysHTML = block.days.map(function (day) {
+          const slotsHTML = day.horarios.map(function (slot) {
+            const hay = normalize(slot.hora + ' ' + slot.actividad + ' ' + slot.nivel + ' ' + slot.prof + ' ' + day.nombre);
+            const matched = query.length > 0 && hay.includes(query);
+            const dimmed = query.length > 0 && !matched;
+            const tipoClass = slot.tipo === 'kids' ? 'is-kids' : (slot.tipo === 'free' ? 'is-free' : '');
+            const filterClass = matched ? 'is-match' : (dimmed ? 'is-dimmed' : '');
+
+            return (
+              '<div class="slot-card ' + tipoClass + ' ' + filterClass + '">' +
+                '<div class="slot-top">' +
+                  '<span class="slot-time">' + slot.hora + '</span>' +
+                  '<span class="slot-level">' + slot.nivel + '</span>' +
+                '</div>' +
+                '<div class="slot-activity">' + slot.actividad + '</div>' +
+                '<div class="slot-prof">' + slot.prof + '</div>' +
+              '</div>'
+            );
+          }).join('');
+
+          return (
+            '<div class="day-column">' +
+              '<div class="day-header">' +
+                '<h3 class="day-name">' + day.nombre + '</h3>' +
+                '<span class="day-count">' + day.horarios.length + ' franjas</span>' +
+              '</div>' +
+              '<div class="slot-list">' + slotsHTML + '</div>' +
+            '</div>'
+          );
+        }).join('');
+
+        const sundayHTML = block.showSunday
+          ? (
+            '<div class="sunday-banner">' +
+              '<strong>DOMINGO · ALQUILERES Y GRUPOS CERRADOS</strong>' +
+              '<span>Franja 18:30 a 21:00hs para ensayos, clases particulares o producciones · Escribinos a @acro_jump</span>' +
+            '</div>'
+          )
+          : '';
+
+        return (
+          '<article class="plate-frame ' + formatClass + '">' +
+            '<div class="plate-head">' +
+              '<div>' +
+                '<div class="plate-eyebrow">' + block.eyebrow + '</div>' +
+                '<h2 class="plate-title">' + block.title + '</h2>' +
+              '</div>' +
+              '<div class="plate-step-pill">' + block.stepLabel + '</div>' +
+            '</div>' +
+            '<div class="days-grid">' + daysHTML + '</div>' +
+            sundayHTML +
+            '<div class="plate-foot">' +
+              '<span>' + block.footerNote + '</span>' +
+              '<span>Barrio Abasto · @acro_jump</span>' +
+            '</div>' +
+          '</article>'
+        );
+      }
+
+      function renderStage() {
+        stageWrapper.classList.toggle('is-dual', state.mode === 'dual' && state.format !== '916');
+
+        if (state.mode === 'carousel-a') {
+          stageWrapper.innerHTML = renderPlateHTML(SCHEDULE_BLOCKS.a);
+        } else if (state.mode === 'carousel-b') {
+          stageWrapper.innerHTML = renderPlateHTML(SCHEDULE_BLOCKS.b);
+        } else if (state.mode === 'dual') {
+          stageWrapper.innerHTML = renderPlateHTML(SCHEDULE_BLOCKS.a) + renderPlateHTML(SCHEDULE_BLOCKS.b);
+        } else if (state.mode === 'animated') {
+          const activeBlock = state.animStep === 'a' ? SCHEDULE_BLOCKS.a : SCHEDULE_BLOCKS.b;
+          stageWrapper.innerHTML = renderPlateHTML(activeBlock);
+          animStatusText.textContent = state.animStep === 'a'
+            ? 'Tiempo 1 de 2 · Mostrando Lunes, Martes y Miércoles'
+            : 'Tiempo 2 de 2 · Mostrando Jueves, Viernes y Sábado (+ Domingo)';
+        }
+      }
+
+      function stopAnimTimer() {
+        if (animInterval) {
+          clearInterval(animInterval);
+          animInterval = null;
+        }
+      }
+
+      function startAnimTimer() {
+        stopAnimTimer();
+        if (state.mode !== 'animated' || !state.animPlaying) return;
+        const tickMs = 100;
+        animInterval = setInterval(function () {
+          state.elapsedMs += tickMs;
+          const pct = Math.min(100, (state.elapsedMs / state.animMs) * 100);
+          animProgressFill.style.width = pct + '%';
+
+          if (state.elapsedMs >= state.animMs) {
+            state.elapsedMs = 0;
+            state.animStep = state.animStep === 'a' ? 'b' : 'a';
+            const currentPlate = stageWrapper.querySelector('.plate-frame');
+            if (currentPlate) {
+              currentPlate.classList.add('is-fading');
+            }
+            setTimeout(function () {
+              renderStage();
+              animProgressFill.style.width = '0%';
+            }, 160);
+          }
+        }, tickMs);
+      }
+
+      function syncAnimUI() {
+        const isAnim = state.mode === 'animated';
+        animControls.style.display = isAnim ? 'flex' : 'none';
+        animStatusBar.style.display = isAnim ? 'flex' : 'none';
+        animPlayToggle.setAttribute('aria-pressed', String(state.animPlaying));
+        animPlayToggle.textContent = state.animPlaying ? 'Pausar secuencia' : 'Reproducir secuencia';
+        if (isAnim && state.animPlaying) {
+          startAnimTimer();
+        } else {
+          stopAnimTimer();
+        }
+      }
+
+      document.querySelectorAll('.mode-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.mode = btn.getAttribute('data-mode');
+          state.elapsedMs = 0;
+          animProgressFill.style.width = '0%';
+          document.querySelectorAll('.mode-btn').forEach(function (b) {
+            b.setAttribute('aria-pressed', String(b === btn));
+          });
+          if (state.mode === 'animated') {
+            state.animStep = 'a';
+            const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            state.animPlaying = !prefersReduced;
+          }
+          renderStage();
+          syncAnimUI();
+        });
+      });
+
+      document.querySelectorAll('.format-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.format = btn.getAttribute('data-format');
+          document.querySelectorAll('.format-btn').forEach(function (b) {
+            b.setAttribute('aria-pressed', String(b === btn));
+          });
+          renderStage();
+        });
+      });
+
+      document.querySelectorAll('.speed-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.animMs = Number(btn.getAttribute('data-ms')) || 4000;
+          state.elapsedMs = 0;
+          document.querySelectorAll('.speed-btn').forEach(function (b) {
+            b.setAttribute('aria-pressed', String(b === btn));
+          });
+          if (state.mode === 'animated' && state.animPlaying) {
+            startAnimTimer();
+          }
+        });
+      });
+
+      animPlayToggle.addEventListener('click', function () {
+        state.animPlaying = !state.animPlaying;
+        syncAnimUI();
+      });
+
+      filterInput.addEventListener('input', function () {
+        state.filter = filterInput.value;
+        renderStage();
+      });
+
+      clearFilterBtn.addEventListener('click', function () {
+        filterInput.value = '';
+        state.filter = '';
+        renderStage();
+      });
+
+      renderStage();
+      syncAnimUI();
+    })();
+  </script>
+</body>
+</html>
