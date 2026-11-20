@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="day">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anexo Privado AL: Propuesta Asistente Virtual | Acrojump 2027</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Abolition';
+      src: url('../marca/tipografias/Abolition-Regular.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'FreightBigCmpPro';
+      src: url('../marca/tipografias/FreightBigCmpProSemibold-Regular.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root,
+    [data-theme="day"] {
+      --bg-page: #e6f4f1;
+      --bg-page-alt: #d5eae5;
+      --bg-inset: #13211f;
+      --ink-inset: #f2faf8;
+      --ink-inset-muted: #bdd6d1;
+      --ink-main: #101d1b;
+      --ink-muted: #39504c;
+      --rule-line: #b4d4cd;
+      --rule-strong: #7ba89f;
+      --accent-gol: #b83616;
+      --accent-gol-text: #9e2b10;
+      --accent-gol-ink: #fdfaf5;
+      --acro-jade: #165e53;
+      --acro-jade-ink: #fdfaf5;
+      --acro-jade-on-dark: #7ad8c9;
+      --accent-gol-on-dark: #ff8e70;
+      --surface-input: #f2faf8;
+      --logo-filter: grayscale(1) brightness(0.14) contrast(1.55);
+    }
+
+    [data-theme="night"] {
+      --bg-page: #131c1b;
+      --bg-page-alt: #1b2826;
+      --bg-inset: #1d2b29;
+      --ink-inset: #eef7f5;
+      --ink-inset-muted: #b6ccc7;
+      --ink-main: #eef7f5;
+      --ink-muted: #b6ccc7;
+      --rule-line: #2e4340;
+      --rule-strong: #4e6e69;
+      --accent-gol: #b83616;
+      --accent-gol-text: #ff8e70;
+      --accent-gol-ink: #fdfaf5;
+      --acro-jade: #7ad8c9;
+      --acro-jade-ink: #0f211e;
+      --acro-jade-on-dark: #7ad8c9;
+      --accent-gol-on-dark: #ff8e70;
+      --surface-input: #172321;
+      --logo-filter: sepia(0.35) saturate(0.65) brightness(0.96) contrast(1.08);
+    }
+
+    :root {
+      --font-display: 'Abolition', 'Archivo', sans-serif;
+      --font-editorial: 'FreightBigCmpPro', Georgia, serif;
+      --font-body: 'Archivo', system-ui, -apple-system, sans-serif;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    ::selection {
+      background: var(--accent-gol);
+      color: var(--accent-gol-ink);
+    }
+
+    body {
+      background-color: var(--bg-page);
+      color: var(--ink-main);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.62;
+      min-height: 100vh;
+      overflow-x: hidden;
+      transition: background-color 220ms var(--ease-out), color 220ms var(--ease-out);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--acro-jade);
+      text-decoration: underline;
+      text-underline-offset: 0.24em;
+    }
+
+    a:hover {
+      color: var(--accent-gol-text);
+    }
+
+    button, input, textarea {
+      font-family: inherit;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent-gol);
+      outline-offset: 3px;
+    }
+
+    /* PANTALLA DE ACCESO PROTEGIDO */
+    .lock-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .lock-screen.is-hidden {
+      display: none;
+    }
+
+    .lock-box {
+      width: 100%;
+      max-width: 480px;
+      background-color: var(--bg-page-alt);
+      border: 1px solid var(--rule-strong);
+      border-top: 2px solid var(--ink-main);
+      padding: 34px 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .lock-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.06;
+      text-transform: uppercase;
+      color: var(--ink-main);
+    }
+
+    .lock-desc {
+      font-size: 15px;
+      line-height: 1.56;
+      color: var(--ink-muted);
+    }
+
+    .lock-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .lock-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink-main);
+    }
+
+    .lock-input {
+      min-height: 46px;
+      padding: 10px 14px;
+      border: 1px solid var(--rule-strong);
+      border-radius: 3px;
+      background-color: var(--surface-input);
+      color: var(--ink-main);
+      font-size: 16px;
+    }
+
+    .lock-error {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent-gol-text);
+      min-height: 22px;
+    }
+
+    .lock-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    /* BOTONES */
+    .btn-sheet {
+      min-height: 44px;
+      padding: 10px 16px;
+      border: 1px solid var(--rule-strong);
+      border-radius: 3px;
+      background-color: var(--bg-page);
+      color: var(--ink-main);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-sheet:hover,
+    a.btn-sheet:hover {
+      background-color: var(--bg-page-alt);
+      border-color: var(--ink-main);
+      color: var(--ink-main);
+    }
+
+    .btn-gol {
+      min-height: 44px;
+      padding: 10px 18px;
+      border: 1px solid var(--accent-gol);
+      border-radius: 3px;
+      background-color: var(--accent-gol);
+      color: var(--accent-gol-ink);
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-gol:hover,
+    a.btn-gol:hover {
+      color: var(--accent-gol-ink);
+      opacity: 0.92;
+    }
+
+    .btn-jade {
+      min-height: 44px;
+      padding: 10px 16px;
+      border: 1px solid var(--acro-jade);
+      border-radius: 3px;
+      background-color: var(--acro-jade);
+      color: var(--acro-jade-ink);
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-jade:hover,
+    a.btn-jade:hover {
+      color: var(--acro-jade-ink);
+      opacity: 0.92;
+    }
+
+    /* CONTENIDO PRIVADO DESBLOQUEADO */
+    .private-shell {
+      display: none;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 24px 88px;
+    }
+
+    .private-shell.is-unlocked {
+      display: block;
+    }
+
+    .masthead {
+      border-top: 2px solid var(--ink-main);
+      border-bottom: 1px solid var(--rule-strong);
+      padding: 22px 0 18px;
+      margin-bottom: 44px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .brand-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .logo-crop-box {
+      width: 52px;
+      height: 52px;
+      border: 1px solid var(--rule-strong);
+      background-color: var(--bg-page-alt);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+
+    .logo-crop-box img {
+      width: 44px;
+      height: 70px;
+      object-fit: cover;
+      object-position: center 42%;
+      filter: var(--logo-filter);
+    }
+
+    .page-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.1rem, 4.4vw, 3.8rem);
+      line-height: 1.08;
+      text-transform: uppercase;
+      color: var(--ink-main);
+    }
+
+    .page-lead {
+      margin-top: 10px;
+      font-size: 16px;
+      line-height: 1.56;
+      color: var(--ink-muted);
+      max-width: 64ch;
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    /* BLOQUES DE PROPUESTA */
+    .section-block {
+      margin-top: 48px;
+      padding-top: 40px;
+      border-top: 1px solid var(--rule-strong);
+    }
+
+    .section-block:first-of-type {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.9rem, 3.5vw, 3rem);
+      line-height: 1.06;
+      text-transform: uppercase;
+      color: var(--ink-main);
+      margin-bottom: 12px;
+    }
+
+    .section-sub {
+      font-size: 17px;
+      line-height: 1.56;
+      color: var(--ink-muted);
+      max-width: 66ch;
+      margin-bottom: 24px;
+    }
+
+    /* TESIS CENTRAL */
+    .thesis-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .thesis-inset {
+      background-color: var(--bg-inset);
+      color: var(--ink-inset);
+      padding: 32px 30px;
+      border: 1px solid var(--rule-strong);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .thesis-quote {
+      font-family: var(--font-editorial);
+      font-size: clamp(1.75rem, 2.8vw, 2.3rem);
+      line-height: 1.35;
+      color: var(--accent-gol-on-dark);
+    }
+
+    .thesis-inset p {
+      font-size: 16px;
+      line-height: 1.62;
+      color: var(--ink-inset);
+    }
+
+    .role-box {
+      background-color: var(--bg-page-alt);
+      border: 1px solid var(--rule-strong);
+      padding: 26px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .role-box h3 {
+      font-family: var(--font-editorial);
+      font-size: 26px;
+      line-height: 1.35;
+      color: var(--ink-main);
+    }
+
+    .role-list {
+      padding-left: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 15px;
+      line-height: 1.55;
+      color: var(--ink-muted);
+    }
+
+    /* 3 ESTACIONES OPERATIVAS */
+    .ops-ledger {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      border-top: 2px solid var(--ink-main);
+      border-bottom: 1px solid var(--rule-strong);
+    }
+
+    .ops-col {
+      padding: 24px 22px;
+      border-right: 1px solid var(--rule-line);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .ops-col:last-child {
+      border-right: none;
+    }
+
+    .ops-step {
+      font-family: var(--font-display);
+      font-size: 26px;
+      line-height: 1;
+      color: var(--acro-jade);
+    }
+
+    .ops-title {
+      font-family: var(--font-editorial);
+      font-size: 25px;
+      line-height: 1.35;
+      color: var(--ink-main);
+    }
+
+    .ops-copy {
+      font-size: 15px;
+      line-height: 1.56;
+      color: var(--ink-muted);
+    }
+
+    /* NIVELES DE PERMISO Y SEGURIDAD */
+    .perm-list {
+      border-top: 2px solid var(--ink-main);
+      list-style: none;
+    }
+
+    .perm-row {
+      display: grid;
+      grid-template-columns: 240px minmax(0, 1fr);
+      gap: 20px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--rule-line);
+      align-items: start;
+    }
+
+    .perm-level {
+      font-size: 15px;
+      font-weight: 800;
+      line-height: 1.4;
+      color: var(--ink-main);
+    }
+
+    .perm-level.is-stop {
+      color: var(--accent-gol-text);
+    }
+
+    .perm-desc {
+      font-size: 15px;
+      line-height: 1.56;
+      color: var(--ink-muted);
+    }
+
+    /* CUADERNO DE DECISION PRIVADO */
+    .notes-box {
+      background-color: var(--bg-page-alt);
+      border: 1px solid var(--rule-strong);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .note-area {
+      width: 100%;
+      min-height: 130px;
+      padding: 12px 14px;
+      border: 1px solid var(--rule-strong);
+      border-radius: 3px;
+      background-color: var(--surface-input);
+      color: var(--ink-main);
+      font-size: 15px;
+      line-height: 1.52;
+      resize: vertical;
+    }
+
+    .note-area::placeholder {
+      color: var(--ink-muted);
+    }
+
+    .notes-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .save-status {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--acro-jade);
+    }
+
+    @media (max-width: 900px) {
+      .thesis-grid,
+      .ops-ledger,
+      .perm-row {
+        grid-template-columns: 1fr;
+      }
+
+      .ops-col {
+        border-right: none;
+        border-bottom: 1px solid var(--rule-line);
+        padding: 20px 0;
+      }
+
+      .ops-col:last-child {
+        border-bottom: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .private-shell {
+        padding: 18px 16px 64px;
+      }
+
+      .lock-box {
+        padding: 26px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- CANDADO DE ACCESO EXCLUSIVO AL -->
+  <section class="lock-screen" id="lock-screen" aria-label="Acceso protegido con contraseña">
+    <div class="lock-box">
+      <h1 class="lock-title">Anexo Privado: Asistente Virtual 2027</h1>
+      <p class="lock-desc">
+        Esta sección forma parte del sitio de Acrojump 2027, pero queda bloqueada para que AL decida en qué momento de la reunión abrirla y presentarla.
+      </p>
+      <form class="lock-form" id="unlock-form" autocomplete="off">
+        <label class="lock-label" for="pwd-input">Ingresá la contraseña de acceso:</label>
+        <input class="lock-input" id="pwd-input" type="password" placeholder="Contraseña..." required>
+        <div class="lock-error" id="pwd-error" aria-live="polite"></div>
+        <div class="lock-actions">
+          <button type="submit" class="btn-gol">Desbloquear propuesta</button>
+          <a class="btn-sheet" href="./presentacion_acro_2027.html">Volver al Pliego</a>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- CONTENIDO PRIVADO DESBLOQUEADO -->
+  <div class="private-shell" id="private-shell">
+    <header class="masthead">
+      <div class="brand-left">
+        <div class="logo-crop-box">
+          <img src="../marca/logos/LOGO-COMPLETO-transparente.png" alt="Marca Acrojump">
+        </div>
+        <div>
+          <h1 class="page-title">Propuesta: Asistente Virtual Operativo (Agente Claude)</h1>
+          <p class="page-lead">
+            Considerar "contratar" un colaborador virtual configurado y supervisado por AL para operar las automatizaciones diarias de @acro_jump, sin reemplazar a nadie del equipo humano.
+          </p>
+        </div>
+      </div>
+
+      <div class="top-actions">
+        <a class="btn-sheet" href="./presentacion_acro_2027.html">Volver al Pliego 2027</a>
+        <button type="button" class="btn-sheet" id="btn-theme-toggle" aria-pressed="false">
+          <span id="theme-toggle-label">Pasar a Modo Sala de Noche</span>
+        </button>
+        <button type="button" class="btn-gol" id="btn-lock">Bloquear acceso</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="section-block" aria-labelledby="t-concepto">
+        <h2 class="section-title" id="t-concepto">La idea explicada sin vueltas</h2>
+        <p class="section-sub">
+          En lugar de sumar carga administrativa sobre Gra, los profes o la nueva integrante de contenido, proponemos sumar un agente autónomo tipo Claude dedicado exclusivamente a la rutina operativa.
+        </p>
+
+        <div class="thesis-grid">
+          <div class="thesis-inset">
+            <div class="thesis-quote">Un asistente virtual a medida que trabaja con las reglas de Acrojump y bajo supervisión de AL.</div>
+            <p>
+              No es un bot genérico que responde frío ni publica por su cuenta sin criterio. AL se encarga de configurarlo desde cero, darle el manual de tono rioplatense, conectarlo con Acro Suite 2.0 y fijar los límites exactos de qué puede ejecutar solo y qué necesita aprobación humana.
+            </p>
+          </div>
+
+          <div class="role-box">
+            <h3>Qué hace AL en esta propuesta</h3>
+            <ul class="role-list">
+              <li>Diseña y mantiene las instrucciones del agente (tono, horarios, reglas de marca y prioridades).</li>
+              <li>Conecta las herramientas internas (Acro Suite 2.0, generadores Craft y Meta Business).</li>
+              <li>Audita lo que el asistente produce cada semana para que nunca se desvíe del espíritu humano del Manifiesto.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block" aria-labelledby="t-tareas">
+        <h2 class="section-title" id="t-tareas">Qué tareas concretas manejaría el asistente</h2>
+        <p class="section-sub">
+          Tres bloques operativos bien delimitados donde hoy se pierden horas repetitivas todas las semanas.
+        </p>
+
+        <div class="ops-ledger">
+          <article class="ops-col">
+            <div class="ops-step">01</div>
+            <h3 class="ops-title">Orquestar Meta Business y Grillas</h3>
+            <p class="ops-copy">
+              Lee los cambios de horario, cupos libres o feriados desde Acro Suite 2.0, dispara las placas base y deja armada la cola semanal de publicación lista para aprobar.
+            </p>
+          </article>
+
+          <article class="ops-col">
+            <div class="ops-step">02</div>
+            <h3 class="ops-title">Borradores con la voz de Acro</h3>
+            <p class="ops-copy">
+              Redacta textos de avisos, días de lluvia y respuestas a consultas frecuentes respetando los modismos de la sala, evitando frases frías de gimnasio comercial.
+            </p>
+          </article>
+
+          <article class="ops-col">
+            <div class="ops-step">03</div>
+            <h3 class="ops-title">Seguimiento silencioso de gestión</h3>
+            <p class="ops-copy">
+              Detecta packs por vencer, alumnos que faltaron varias semanas o consultas entrantes de escuelas de danza (B2B) y deja el recordatorio armado para contacto humano.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-block" aria-labelledby="t-limites">
+        <h2 class="section-title" id="t-limites">Niveles de permiso y control humano</h2>
+        <p class="section-sub">
+          Para que Gra tenga tranquilidad total al evaluar esta incorporación, el asistente opera por capas estrictas de autorización.
+        </p>
+
+        <ul class="perm-list">
+          <li class="perm-row">
+            <div class="perm-level">Nivel 1: Automático interno</div>
+            <div class="perm-desc">Leer la base de Acro Suite 2.0, detectar vencimientos o cupos libres y armar los borradores de placas y textos en carpeta local.</div>
+          </li>
+          <li class="perm-row">
+            <div class="perm-level">Nivel 2: Aprobación en 1 clic</div>
+            <div class="perm-desc">Programar publicaciones en Meta Business, enviar campañas de recaptación o responder consultas de convenios B2B con escuelas de danza.</div>
+          </li>
+          <li class="perm-row">
+            <div class="perm-level is-stop">Nivel 3: Zona prohibida para IA</div>
+            <div class="perm-desc">Decisiones pedagógicas, vínculo personal en colchoneta, filmación espontánea del "abrazo de gol" y cualquier mensaje delicado con familias o alumnos.</div>
+          </li>
+        </ul>
+      </section>
+
+      <section class="section-block" aria-labelledby="t-notas">
+        <h2 class="section-title" id="t-notas">Apuntes privados y esquema de inversión</h2>
+        <p class="section-sub">
+          Espacio exclusivo para anotar presupuesto mensual estimado de suscripción/API, honorarios de configuración y acuerdos con Gra sobre el asistente virtual.
+        </p>
+
+        <div class="notes-box">
+          <label for="agent-notes" style="font-size: 15px; font-weight: 700; color: var(--ink-main);">
+            Notas privadas sobre costos, alcance inicial y próximos pasos:
+          </label>
+          <textarea class="note-area" id="agent-notes" placeholder="Anotá acá presupuesto mensual de suscripción, tareas piloto del primer mes o comentarios de Gra..."></textarea>
+          <div class="notes-footer">
+            <span class="save-status" id="agent-save-status" aria-live="polite">Sin notas guardadas todavía.</span>
+            <button type="button" class="btn-jade" id="btn-export-agent">Descargar Notas del Agente (.md)</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      /* HASH SHA-256 PURO (FUNCIONA EN HTTPS Y FILE:// SIN TEXTO PLANO) */
+      var TARGET_HASH = '2e3fb823603e86a74938c6b152379ad3375c82f2e0d9811e03778c4f20ce0a7a';
+      var SESSION_KEY = 'acro_2027_agente_unlocked';
+      var THEME_KEY = 'acro_2027_pliego_theme_v2';
+      var NOTES_KEY = 'acro_2027_notas_agente';
+
+      function sha256(ascii) {
+        function rightRotate(value, amount) {
+          return (value >>> amount) | (value << (32 - amount));
+        }
+        var mathPow = Math.pow;
+        var maxWord = mathPow(2, 32);
+        var i, j;
+        var result = '';
+        var words = [];
+        var asciiBitLength = ascii.length * 8;
+        var hash = [];
+        var k = [];
+        var primeCounter = 0;
+        var isComposite = {};
+
+        for (var candidate = 2; primeCounter < 64; candidate++) {
+          if (!isComposite[candidate]) {
+            for (i = 0; i < 313; i += candidate) {
+              isComposite[i] = candidate;
+            }
+            hash[primeCounter] = (mathPow(candidate, 0.5) * maxWord) | 0;
+            k[primeCounter++] = (mathPow(candidate, 1 / 3) * maxWord) | 0;
+          }
+        }
+
+        ascii += '\x80';
+        while ((ascii.length % 64) - 56) ascii += '\x00';
+        for (i = 0; i < ascii.length; i++) {
+          j = ascii.charCodeAt(i);
+          words[i >> 2] |= j << (((3 - i) % 4) * 8);
+        }
+        words[words.length] = (asciiBitLength / maxWord) | 0;
+        words[words.length] = asciiBitLength;
+
+        for (j = 0; j < words.length;) {
+          var w = words.slice(j, (j += 16));
+          var oldHash = hash;
+          hash = hash.slice(0, 8);
+          for (i = 0; i < 64; i++) {
+            var w15 = w[i - 15], w2 = w[i - 2];
+            var a = hash[0], e = hash[4];
+            var temp1 =
+              hash[7] +
+              (rightRotate(e, 6) ^ rightRotate(e, 11) ^ rightRotate(e, 25)) +
+              ((e & hash[5]) ^ (~e & hash[6])) +
+              k[i] +
+              (w[i] =
+                i < 16
+                  ? w[i]
+                  : (w[i - 16] +
+                      (rightRotate(w15, 7) ^ rightRotate(w15, 18) ^ (w15 >>> 3)) +
+                      w[i - 7] +
+                      (rightRotate(w2, 17) ^ rightRotate(w2, 19) ^ (w2 >>> 10))) |
+                    0);
+            var temp2 =
+              (rightRotate(a, 2) ^ rightRotate(a, 13) ^ rightRotate(a, 22)) +
+              ((a & hash[1]) ^ (a & hash[2]) ^ (hash[1] & hash[2]));
+            hash = [(temp1 + temp2) | 0].concat(hash);
+            hash[4] = (hash[4] + temp1) | 0;
+          }
+          for (i = 0; i < 8; i++) {
+            hash[i] = (hash[i] + oldHash[i]) | 0;
+          }
+        }
+        for (i = 0; i < 8; i++) {
+          for (j = 3; j + 1; j--) {
+            var b = (hash[i] >> (j * 8)) & 255;
+            result += (b < 16 ? 0 : '') + b.toString(16);
+          }
+        }
+        return result;
+      }
+
+      /* TEMA COMPARTIDO */
+      var root = document.documentElement;
+      var btnThemeToggle = document.getElementById('btn-theme-toggle');
+      var themeToggleLabel = document.getElementById('theme-toggle-label');
+
+      function applyTheme(theme) {
+        var next = theme === 'night' ? 'night' : 'day';
+        root.setAttribute('data-theme', next);
+        if (btnThemeToggle) {
+          btnThemeToggle.setAttribute('aria-pressed', next === 'night' ? 'true' : 'false');
+          themeToggleLabel.textContent = next === 'night' ? 'Volver a Verde Agua Clarito' : 'Pasar a Modo Sala de Noche';
+        }
+        try { localStorage.setItem(THEME_KEY, next); } catch (err) {}
+      }
+
+      try {
+        var savedTheme = localStorage.getItem(THEME_KEY);
+        if (savedTheme === 'night' || savedTheme === 'day') applyTheme(savedTheme);
+      } catch (err) {
+        applyTheme('day');
+      }
+
+      btnThemeToggle.addEventListener('click', function () {
+        applyTheme(root.getAttribute('data-theme') === 'night' ? 'day' : 'night');
+      });
+
+      /* LOGICA DE DESBLOQUEO */
+      var lockScreen = document.getElementById('lock-screen');
+      var privateShell = document.getElementById('private-shell');
+      var unlockForm = document.getElementById('unlock-form');
+      var pwdInput = document.getElementById('pwd-input');
+      var pwdError = document.getElementById('pwd-error');
+      var btnLock = document.getElementById('btn-lock');
+
+      function setUnlocked(unlocked) {
+        lockScreen.classList.toggle('is-hidden', unlocked);
+        privateShell.classList.toggle('is-unlocked', unlocked);
+        try {
+          if (unlocked) {
+            sessionStorage.setItem(SESSION_KEY, '1');
+          } else {
+            sessionStorage.removeItem(SESSION_KEY);
+          }
+        } catch (err) {}
+      }
+
+      try {
+        if (sessionStorage.getItem(SESSION_KEY) === '1') {
+          setUnlocked(true);
+        }
+      } catch (err) {}
+
+      unlockForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var val = (pwdInput.value || '').trim();
+        if (sha256(val) === TARGET_HASH) {
+          pwdError.textContent = '';
+          pwdInput.value = '';
+          setUnlocked(true);
+        } else {
+          pwdError.textContent = 'Contraseña incorrecta. Probá de nuevo.';
+          pwdInput.select();
+        }
+      });
+
+      btnLock.addEventListener('click', function () {
+        setUnlocked(false);
+        pwdInput.focus();
+      });
+
+      /* NOTAS PRIVADAS */
+      var notesArea = document.getElementById('agent-notes');
+      var saveStatus = document.getElementById('agent-save-status');
+
+      try {
+        var saved = localStorage.getItem(NOTES_KEY);
+        if (saved) {
+          notesArea.value = saved;
+          saveStatus.textContent = 'Notas privadas guardadas en este navegador.';
+        }
+      } catch (err) {}
+
+      notesArea.addEventListener('input', function () {
+        try {
+          localStorage.setItem(NOTES_KEY, notesArea.value);
+          saveStatus.textContent = notesArea.value.trim() ? 'Guardado localmente en este navegador.' : 'Sin notas guardadas todavía.';
+        } catch (err) {
+          saveStatus.textContent = 'No se pudo escribir en localStorage. Exportá en Markdown antes de cerrar.';
+        }
+      });
+
+      document.getElementById('btn-export-agent').addEventListener('click', function () {
+        var text = '# Anexo Privado: Asistente Virtual Acrojump 2027\n\n' + (notesArea.value.trim() || '[Sin apuntes cargados todavía]') + '\n';
+        var blob = new Blob([text], { type: 'text/markdown;charset=utf-8' });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'propuesta_agente_virtual_acrojump_2027.md';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      });
+    })();
+  </script>
+</body>
+</html>
