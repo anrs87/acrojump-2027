@@ -865,20 +865,12 @@
       function setUnlocked(unlocked) {
         lockScreen.classList.toggle('is-hidden', unlocked);
         privateShell.classList.toggle('is-unlocked', unlocked);
-        try {
-          if (unlocked) {
-            sessionStorage.setItem(SESSION_KEY, '1');
-          } else {
-            sessionStorage.removeItem(SESSION_KEY);
-          }
-        } catch (err) {}
       }
 
-      try {
-        if (sessionStorage.getItem(SESSION_KEY) === '1') {
-          setUnlocked(true);
-        }
-      } catch (err) {}
+      try { sessionStorage.removeItem(SESSION_KEY); } catch (err) {}
+      window.addEventListener('pageshow', function (ev) {
+        if (ev.persisted) { window.location.reload(); }
+      });
 
       unlockForm.addEventListener('submit', function (e) {
         e.preventDefault();
